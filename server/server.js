@@ -10,6 +10,12 @@ app.post("/users/register", (req, res) => {
   routerHelper.register(req,res);
 
 });
+
+
+app.get("/users/register", (req, res) => { 
+    routerHelper.register(req,res);
+  
+  });
     
 
 app.post("/users/login", (req, res) => {

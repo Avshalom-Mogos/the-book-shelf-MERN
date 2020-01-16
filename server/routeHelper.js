@@ -15,6 +15,7 @@ MongoClient.connect(url, function(err, db) {
 
     //expect email , password
      const queryUser = req.body;
+     console.log(queryUser)
 
     dbo.collection(collectionName).findOne(queryUser, function(err, user) {
       if (err) {
@@ -49,6 +50,8 @@ MongoClient.connect(url, function(err, db) {
   const dbo = db.db(dbName);
   //expect email , password
   const queryUser = req.body;
+  console.log(queryUser);
+  
   dbo.collection(collectionName).findOne({email:queryUser.email}, function(err, userFound)   {
     if (err) {
         return res.sendStatus(500);
