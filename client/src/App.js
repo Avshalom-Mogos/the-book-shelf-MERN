@@ -17,8 +17,8 @@ export default class App extends React.Component {
     return (
 
       <div>
-        <MyNavbar />
         <BrowserRouter>
+        <MyNavbar />
           <Switch>
             <Route exact path="/home" render={() => <Home />} />
             <Route exact path="/" render={() => <Home />} />

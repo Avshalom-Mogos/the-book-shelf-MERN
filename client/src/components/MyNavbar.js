@@ -1,6 +1,7 @@
 import React from 'react'
 import { Nav, Navbar, Form, FormControl, Button } from "react-bootstrap"
-import {Link,NavLink} from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import "./CSS/MyNavbar.css"
 
 
 
@@ -13,8 +14,12 @@ export default class MyNavbar extends React.Component {
 
         return (
             <div>
-                <Navbar bg="light" expand="lg" sticky="top">
-                    <Navbar.Brand href="/home">The Book Shelf</Navbar.Brand>
+                <Navbar  expand="" sticky="top"> 
+                {/* expand="lg" */}
+                
+                    <Navbar.Brand>
+                        <NavLink className="NavLink" to="/home">The Book Shelf</NavLink>
+                    </Navbar.Brand>
                     <Form inline onSubmit={(e) => this.redirectToSearch(e)}>
                         <FormControl onChange={(e) => this.storeInputVal(e)} type="text" placeholder="Search" className="mr-sm-2" />
                         <Button onClick={this.redirectToSearch} variant="outline-success">Search</Button>
@@ -22,13 +27,21 @@ export default class MyNavbar extends React.Component {
                     </Form>
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
-                            {/* <Nav.Link href="/login">Login</Nav.Link> */}
-                            <NavLink to="/login"/>
-                            <Nav.Link href="/sales">Sales</Nav.Link>
-                            <Nav.Link href="/about">About</Nav.Link>
+                            <Nav.Link>
+                                <NavLink to="/login">Login</NavLink>
+                            </Nav.Link>
+                            <Nav.Link>
+                                <NavLink to="/login">Login</NavLink>
+                            </Nav.Link>
+                            <Nav.Link>
+                                <NavLink to="/about">About</NavLink>
+                            </Nav.Link>
+
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
+
+
 
             </div>
         )
