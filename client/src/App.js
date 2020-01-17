@@ -6,6 +6,7 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import About from './components/About';
 import Sales from './components/Sales';
+import Footer from './components/Footer';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 export default class App extends React.Component {
@@ -29,6 +30,7 @@ export default class App extends React.Component {
             <Route path="/search/:searchParam" render={(props) => <Search  {...props} />} />
             <Route render={() => <h1>ERROR:404</h1>} />
           </Switch>
+        <Footer/>
         </BrowserRouter>
       </div>
     );

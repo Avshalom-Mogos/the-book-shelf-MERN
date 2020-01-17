@@ -4,9 +4,7 @@ import { Form, Button, Container } from "react-bootstrap";
 export default class Signup extends Component {
     render() {
         return (
-            <div>
-                <br />
-                <br />
+            <div style={{ margin: "70px 0" }}>
                 <Container>
                     <Form>
                         <Form.Group controlId="formBasicName">
