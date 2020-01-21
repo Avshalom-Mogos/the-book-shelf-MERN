@@ -20,6 +20,7 @@ export default class Signup extends Component {
         agreedEULA: false
 
     }
+    
 
     render() {
 
