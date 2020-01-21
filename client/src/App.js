@@ -11,32 +11,63 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 export default class App extends React.Component {
 
+  state = {
+
+    userInfo: {
+      userName: "Guest"
+    }
+
+  }
 
   render() {
 
-
     return (
 
-      <div>
+      <div style={{ height: "601px" }}>
         <BrowserRouter>
-        <MyNavbar />
+          <MyNavbar user={this.state.userInfo} triggerLogout={this.logout} />
           <Switch>
-            <Route exact path="/home" render={() => <Home />} />
             <Route exact path="/" render={() => <Home />} />
-            <Route exact path="/login" render={() => <Login />} />
+            <Route exact path="/home" render={() => <Home />} />
+            <Route exact path="/login" render={() => <Login triggerLogin={this.login} />} />
             <Route exact path="/signup" render={() => <Signup />} />
             <Route exact path="/about" render={() => <About />} />
             <Route exact path="/sales" render={() => <Sales />} />
-            <Route path="/search/:searchParam" render={(props) => <Search  {...props} />} />
+            <Route path="/search/:searchParam" render={(props) => <Search user={this.state.userInfo}  {...props} />} />
             <Route render={() => <h1>ERROR:404</h1>} />
           </Switch>
-        <Footer/>
         </BrowserRouter>
+        <Footer />
       </div>
     );
   }
 
+  login = () => {
+
+    let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
+    this.setState({ userInfo: user });
+  }
+
+  logout = () => {
+
+    sessionStorage.removeItem("theBookShelf_user_login");
+    this.setState({ userInfo: { userName: "Guest" } });
+  }
+
+  componentDidMount() {
+    console.log("mount");
+    
+    let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
+
+    if (user) {
+      this.login()
+    } else {
+      this.setState({ userInfo: { userName: "Guest" } })
+    }
+  }
 }
+
+
 
 
 

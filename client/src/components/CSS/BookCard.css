@@ -1,9 +1,19 @@
 .BookCard{
+    
     width:100%;
     height:80%;
+    box-shadow: 1px 1px 5px;
+    transition: all .5s;
+}
+
+.BookCard:hover{
+    box-shadow: 5px 5px 5px;
+    cursor: pointer;
+    transform: scale(1.05);
 }
 
 .imgCard{
+
     width:100%;
     height:40%;
 }
