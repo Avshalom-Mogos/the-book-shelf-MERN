@@ -1,7 +1,8 @@
 import React from 'react'
-import { Nav, Navbar, Form, FormControl, Button } from "react-bootstrap"
+import { Nav, Navbar, Form, FormControl, Button,Dropdown } from "react-bootstrap"
 import { Link } from "react-router-dom";
 import "./CSS/MyNavbar.css"
+
 
 
 
@@ -24,8 +25,39 @@ export default class MyNavbar extends React.Component {
                     </Navbar.Brand>
 
                     <Form inline>
-                        <Navbar.Text>{`Hello ${this.props.user.userName}`}</Navbar.Text>
+                        <Navbar.Text>
+                        <Dropdown> 
+                        <Dropdown.Toggle variant="Success" id="dropdown-basic">
+                         My Shelf
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu >
+                        {`Hello ${this.state.userInfo.userName}`} 
+                       
+                         {
+                                this.state.userInfo._id ?  
+                                    <div>
+                                           
+                                    <Dropdown.Item as ={Link} to ="/Cart" style={{color:"black"}} >Cart</Dropdown.Item>
+                                    <Dropdown.Item as ={Link} to = "/Settings" style={{color:"black"}}>Settings</Dropdown.Item></div> : 
+                                      <Nav.Link  style={{color:"black"}}  as={Link} to="/login">Login</Nav.Link> 
+                                    
+                            }
+                          
+                            
+                            <Nav.Link>  {
+                                this.state.userInfo._id ?
+                                    <Nav.Link style={{color:"black"}} onClick={this.props.triggerLogout}>Logout</Nav.Link> :
+                                   " "
+                                
+                            }</Nav.Link>
+                        </Dropdown.Menu>
+                        </Dropdown>
+                        
+                           </Navbar.Text>
                         <Navbar.Toggle className="ml-3" aria-controls="basic-navbar-nav" />
+
+                       
                     </Form>
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
@@ -33,12 +65,16 @@ export default class MyNavbar extends React.Component {
                                 <FormControl onChange={(e) => this.searchParams = e.target.value} type="text" placeholder="Search" className="mr-sm-2" />
                                 <Button onClick={this.redirectToSearch} variant="outline-success">Search</Button>
                             </Form>
+                       
+                      
                             {
-                                this.props.user._id ?
-                                    <Nav.Link onClick={this.props.triggerLogout}>Logout</Nav.Link> :
-                                    <Nav.Link as={Link} to="/login">Login</Nav.Link>
+                                this.state.userInfo._id ? " " : 
+                                    <Nav.Link as={Link} to="/login">Login</Nav.Link> 
+                                    
                             }
+                           
                             <Nav.Link as={Link} to="/about">About</Nav.Link>
+                    
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>

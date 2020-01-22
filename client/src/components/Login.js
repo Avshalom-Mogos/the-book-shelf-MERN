@@ -6,18 +6,24 @@ import { Redirect } from "react-router-dom"
 export default class Login extends Component {
 
     state = {
-        email: "",
-        password: "",
         redirectToHome: false,
         error: false,
 
     }
 
+    userInfo ={
+        email: "",
+        password: "",
+
+    }
+
+
+
     login = () => {
 
         axios.post("/users/login", {
-            email: this.state.email,
-            password: this.state.password
+            email: this.userInfo.email,
+            password: this.userInfo.password,
 
         }).then(res => {
             //res.data is user
@@ -44,7 +50,7 @@ export default class Login extends Component {
     }
 
     render() {
-        const disabled = !this.state.email || !this.state.password;
+      
 
         if (this.state.redirectToHome) {
             return < Redirect to="/" />
@@ -56,7 +62,7 @@ export default class Login extends Component {
                 <Container>
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control onChange={e => this.setState({ email: e.target.value })} type="email" placeholder="Enter email" />
+                        <Form.Control required onChange={(e) => this.userInfo.email = e.target.value} type="email" placeholder="Enter email" />
                         <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
                         </Form.Text>
@@ -64,7 +70,7 @@ export default class Login extends Component {
 
                     <Form.Group controlId="formBasicPassword">
                         <Form.Label >Password</Form.Label>
-                        <Form.Control onChange={e => this.setState({ password: e.target.value })} type="password" placeholder="Password" />
+                        <Form.Control required onChange={(e) => this.userInfo.password = e.target.value} type="password" placeholder="Password" />
                     </Form.Group>
                     <Form.Group controlId="formBasicCheckbox">
                         <label>Dont have an account? </label>
@@ -72,7 +78,7 @@ export default class Login extends Component {
 
                     </Form.Group>
                     {this.state.error ? <p style={{ color: "red" }}> Password or Email Invalid</p> : ""}
-                    <Button disabled={disabled} onClick={this.login} variant="primary" type="submit">Submit</Button>
+                    <Button onClick={this.login} variant="primary" type="submit">Submit</Button>
                 </Container>
 
             </div>
