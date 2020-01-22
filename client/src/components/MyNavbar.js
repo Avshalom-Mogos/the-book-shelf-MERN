@@ -7,9 +7,9 @@ import "./CSS/MyNavbar.css"
 
 export default class MyNavbar extends React.Component {
 
-    state = {
-        userInfo: {}
-    }
+    // state = {
+    //     userInfo: {}
+    // }
 
     searchParams = "";
 
@@ -24,7 +24,7 @@ export default class MyNavbar extends React.Component {
                     </Navbar.Brand>
 
                     <Form inline>
-                        <Navbar.Text>{`Hello ${this.state.userInfo.userName}`}</Navbar.Text>
+                        <Navbar.Text>{`Hello ${this.props.user.userName}`}</Navbar.Text>
                         <Navbar.Toggle className="ml-3" aria-controls="basic-navbar-nav" />
                     </Form>
                     <Navbar.Collapse id="basic-navbar-nav">
@@ -34,7 +34,7 @@ export default class MyNavbar extends React.Component {
                                 <Button onClick={this.redirectToSearch} variant="outline-success">Search</Button>
                             </Form>
                             {
-                                this.state.userInfo._id ?
+                                this.props.user._id ?
                                     <Nav.Link onClick={this.props.triggerLogout}>Logout</Nav.Link> :
                                     <Nav.Link as={Link} to="/login">Login</Nav.Link>
                             }
@@ -52,38 +52,38 @@ export default class MyNavbar extends React.Component {
         window.location.href = `/search/${this.searchParams}`
     }
 
-    componentDidMount() {
-        console.log("mount");
-        this.checkUserLogin()
+    // componentDidMount() {
+    //     console.log("mount");
+    //     this.checkUserLogin()
 
-    }
+    // }
 
-    componentDidUpdate(prev) {
-        console.log("update");
+    // componentDidUpdate(prev) {
+    //     console.log("update");
 
-        console.log(this.state.userInfo.userName, prev.user.userName);
-        console.log(prev.user.userName);
-        console.log(this.props.user.userName)
+    //     console.log(this.state.userInfo.userName, prev.user.userName);
+    //     console.log(prev.user.userName);
+    //     console.log(this.props.user.userName)
 
 
-        if (this.props.user.userName !== prev.user.userName) {
+    //     if (this.props.user.userName !== prev.user.userName) {
 
-            this.checkUserLogin()
-        }
+    //         this.checkUserLogin()
+    //     }
 
-    }
+    // }
 
-    checkUserLogin = () => {
+    // checkUserLogin = () => {
 
-        // let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
-        // console.log("user in storage:",user);
-        // if (user) {
-        this.setState({ userInfo: this.props.user });
-        // } else {
-        //     this.setState({ userInfo: { userName: "Guest" } });
-        // }
+    //     // let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
+    //     // console.log("user in storage:",user);
+    //     // if (user) {
+    //     this.setState({ userInfo: this.props.user });
+    //     // } else {
+    //     //     this.setState({ userInfo: { userName: "Guest" } });
+    //     // }
 
-    }
+    //}
 
 
 
