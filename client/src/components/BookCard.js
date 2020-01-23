@@ -35,6 +35,9 @@ export default class BookCard extends Component {
 
         )
     }
+
+
+
     addMissingDetails = () => {
 
 
