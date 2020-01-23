@@ -25,7 +25,7 @@ export default class App extends React.Component {
 
     return (
 
-      <div style={{ height: "601px" }}>
+      <div style={{ height: "100vh" }}>
         <BrowserRouter>
           <MyNavbar user={this.state.userInfo} triggerLogout={this.logout} />
           <Switch>
@@ -40,8 +40,8 @@ export default class App extends React.Component {
             <Route path="/search/:searchParam" render={(props) => <Search user={this.state.userInfo}  {...props} />}  />
             <Route render={() => <h1>ERROR:404</h1>} />
           </Switch>
+          <Footer />
         </BrowserRouter>
-        <Footer />
       </div>
     );
   }
@@ -70,7 +70,7 @@ export default class App extends React.Component {
 
   componentDidMount() {
     console.log("mount");
-    
+
     let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
 
     if (user) {
