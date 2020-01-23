@@ -5,22 +5,26 @@ app.use(express.json());
 const routerHelper = require("./routeHelper")
 
 
-
 app.post("/users/register", (req, res) => { 
   routerHelper.register(req,res);
 
 });
-
-
-// app.get("/users/register", (req, res) => { 
-//     routerHelper.register(req,res);
-  
-//   });
     
-
 app.post("/users/login", (req, res) => {
   routerHelper.login(req,res);
 
 });
+
+app.get("/cart", (req, res) => {
+  routerHelper.getCartData(req,res);
+
+});
+
+app.post("/cart", (req, res) => {
+  routerHelper.addToCart(req,res);
+
+});
+
+
 
 app.listen(PORT, () => console.log("Server is up on port: " + PORT));

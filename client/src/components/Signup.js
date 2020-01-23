@@ -17,8 +17,7 @@ export default class Signup extends Component {
         email: "",
         password: "",
         confirmPassword: "",
-        agreedEULA: false
-
+        agreedEULA: false,
     }
     
 
@@ -71,7 +70,9 @@ export default class Signup extends Component {
             email: this.userInfo.email,
             password: this.userInfo.password,
             userName: this.userInfo.userName,
-            agreedEULA: this.userInfo.agreedEULA
+            agreedEULA: this.userInfo.agreedEULA,
+            myCart:[]
+
 
 
         }).then(res => {

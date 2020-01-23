@@ -1,22 +1,13 @@
 import React, { Component } from 'react'
 
 export default class Cart extends Component {
-    state = {
-        book: {}
-    }
+    state = { book: {} };
+
     render() {
-           
-            
-
-        
-
-
         return (
-            <div style={{height:"100%"}}>
+            <div>
                 <h1>My Cart</h1>
             </div>
         )
     }
-      
-    
 }

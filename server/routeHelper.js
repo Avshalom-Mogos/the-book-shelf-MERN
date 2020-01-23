@@ -79,6 +79,15 @@ function register(req, res) {
 
 //find user (DO THIS LATER)
 
+function getCartData(req, res) {
+
+}
+
+function addToCart(req, res) {
+
+}
 
 module.exports.register = register;
 module.exports.login = login;
+module.exports.getCartData = getCartData;
+module.exports.addToCart = addToCart;
