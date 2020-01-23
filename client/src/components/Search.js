@@ -22,7 +22,8 @@ export default class Search extends Component {
                         this.state.books.map((book, index) => {
                             return (
                                 <Col key={index} md="4" sm="6" lg="4" xl="3">
-                                    <BookCard book={book} />
+                                    <BookCard book={book}/>
+                                   
                                 </Col>
                             )
                         })
@@ -36,10 +37,14 @@ export default class Search extends Component {
 
 
 
+
     componentDidMount() {
         axios.get(`https://www.googleapis.com/books/v1/volumes?q=:${this.searchParam}&key=AIzaSyDhshslNH7uBtbjyb_AXtPz2vlYOFTF6pI`)
             .then((res) => {
                 this.setState({ books: res.data.items })
+                console.log( res.data.items);
+                
+                
 
             })
     }

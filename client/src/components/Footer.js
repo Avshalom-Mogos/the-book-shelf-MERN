@@ -17,7 +17,7 @@ export default class Footer extends Component {
 
                                 <div className="col-xs-12 col-sm-6 col-md-3">
                                     <div className="widget subscribe no-box">
-                                        <h5 className="widget-title">The Book Shelf<span></span></h5>
+                                        <h5 className="widget-title">The Book Shelf <span></span></h5>
                                         <p>About the company, little discription will goes here.. </p>
                                     </div>
                                 </div>
@@ -75,11 +75,15 @@ export default class Footer extends Component {
                             <div className="row">
                                 <div className="col-md-12 text-center">
                                     <p>Copyright The Book Shelf © 2020. All rights reserved.</p>
+                                  <div>default</div>
+                                   
                                 </div>
                             </div>
                         </div>
                     </div>
+                   
                 </footer>
+               
 
 
                 {/*  */}

@@ -3,7 +3,7 @@ import { Card, Button } from "react-bootstrap"
 import "./CSS/BookCard.css"
 
 export default class BookCard extends Component {
-    
+
     render() {
 
         this.addMissingDetails();
@@ -36,14 +36,8 @@ export default class BookCard extends Component {
 
         )
     }
-    addToCart = () => {
-        let book = JSON.stringify(this.props.book);
-        sessionStorage.setItem("theBookShelf_user_cart", book)
-        console.log("CART");
-        console.log(JSON.parse(sessionStorage.getItem("theBookShelf_user_cart")));
-        
-        
-    }
+
+
 
     addMissingDetails = () => {
 

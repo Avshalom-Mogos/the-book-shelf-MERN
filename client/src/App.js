@@ -32,13 +32,13 @@ export default class App extends React.Component {
           <Switch>
             <Route exact path="/" render={() => <Home />} />
             <Route exact path="/home" render={() => <Home />} />
-            <Route exact path="/login" render={() => <Login triggerLogin={this.login} />} />
+            <Route exact path="/login" render={() => <Login triggerLogin={this.login} />}/>
             <Route exact path="/signup" render={() => <Signup />} />
             <Route exact path="/about" render={() => <About />} />
             <Route exact path="/sales" render={() => <Sales />} />
             <Route exact path="/Cart" render={() => <Cart />} />
             <Route exact path="/Settings" render={()=><Settings/>}/>
-            <Route path="/search/:searchParam" render={(props) => <Search user={this.state.userInfo}  {...props} />} />
+            <Route path="/search/:searchParam" render={(props) => <Search user={this.state.userInfo}  {...props} />}  />
             <Route render={() => <h1>ERROR:404</h1>} />
           </Switch>
           <Footer />
@@ -46,6 +46,16 @@ export default class App extends React.Component {
       </div>
     );
   }
+  
+
+
+  saveChangeHendler =()=>{
+    console.log("dsfgj");
+    
+ 
+    
+}
+
 
   login = () => {
 
