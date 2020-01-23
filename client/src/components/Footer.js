@@ -75,7 +75,7 @@ export default class Footer extends Component {
                             <div className="row">
                                 <div className="col-md-12 text-center">
                                     <p>Copyright The Book Shelf © 2020. All rights reserved.</p>
-                                  <div>default</div>
+                                        
                                    
                                 </div>
                             </div>

@@ -3,6 +3,8 @@ import { Form, Button, Container } from "react-bootstrap";
 import axios from "axios"
 import { Redirect } from "react-router-dom"
 
+import "./CSS/Signup.css"
+
 export default class Signup extends Component {
 
     state = {
@@ -28,7 +30,7 @@ export default class Signup extends Component {
 
         }
         return (
-            <div style={{ height: "100%",border:"3px solid red" }}>
+            <div className="signUp" style={{ height: "100%"}}>
                 <Container>
                     <Form onSubmit={this.handleSubmit}>
                         <Form.Group controlId="formBasicName">

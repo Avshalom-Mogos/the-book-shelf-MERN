@@ -85,6 +85,11 @@ export default class MyNavbar extends React.Component {
         window.location.href = `/search/${this.searchParams}`
     }
 
+<<<<<<< HEAD
    
+=======
+
+
+>>>>>>> f0ab1d7bd7f9d72de283f24e7936f02e3c5b3ba8
 
 }

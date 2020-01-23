@@ -34,7 +34,7 @@ export default class App extends React.Component {
             <Route path="/search/:searchParam" render={(props) => <Search user={this.state.userInfo}  {...props} />} />
             <Route render={() => <h1>ERROR:404</h1>} />
           </Switch>
-          <Footer />
+          <Footer  />
         </BrowserRouter>
       </div>
     );

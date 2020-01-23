@@ -2,8 +2,17 @@
 
     background-image: url("../IMG/home-background.jpg");
     background-size: cover;
+<<<<<<< HEAD
     display: flex;
     min-height: 70vh;
+=======
+    width: 100%;
+    height: 100%;
+    display: flex;
+    min-height:  calc(100vh - 258px); 
+    
+   
+>>>>>>> f0ab1d7bd7f9d72de283f24e7936f02e3c5b3ba8
 }
   
 .Home h1{
