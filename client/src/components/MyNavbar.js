@@ -32,10 +32,10 @@ export default class MyNavbar extends React.Component {
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu >
-                        {`Hello ${this.state.userInfo.userName}`} 
+                        {`Hello ${this.props.userInfo.userName}`} 
                        
                          {
-                                this.state.userInfo._id ?  
+                                this.props.userInfo._id ?  
                                     <div>
                                            
                                     <Dropdown.Item as ={Link} to ="/Cart" style={{color:"black"}} >Cart</Dropdown.Item>
@@ -46,7 +46,7 @@ export default class MyNavbar extends React.Component {
                           
                             
                             <Nav.Link>  {
-                                this.state.userInfo._id ?
+                                this.props.userInfo._id ?
                                     <Nav.Link style={{color:"black"}} onClick={this.props.triggerLogout}>Logout</Nav.Link> :
                                    " "
                                 
@@ -68,7 +68,7 @@ export default class MyNavbar extends React.Component {
                        
                       
                             {
-                                this.state.userInfo._id ? " " : 
+                                this.props.userInfo._id ? " " : 
                                     <Nav.Link as={Link} to="/login">Login</Nav.Link> 
                                     
                             }

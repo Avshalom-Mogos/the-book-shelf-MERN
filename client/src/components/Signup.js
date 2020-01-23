@@ -29,7 +29,7 @@ export default class Signup extends Component {
 
         }
         return (
-            <div style={{ height: "100%",padding:"80px" }}>
+            <div style={{ height: "100%",border:"3px solid red" }}>
                 <Container>
                     <Form onSubmit={this.handleSubmit}>
                         <Form.Group controlId="formBasicName">
@@ -55,7 +55,7 @@ export default class Signup extends Component {
                         <Form.Group controlId="formBasicCheckbox">
                             <Form.Check onChange={(e) => this.userInfo.agreedEULA = e.target.checked} type="checkbox" label="Accept Terms & Conditions" required />
                         </Form.Group>
-                        {this.state.error ? <p style={{ color: "red" }}>passwords dosnt match</p> : ""}
+                        {this.state.error ? <p style={{ color: "red" }}>passwords doesn't match</p> : ""}
                         <Button variant="primary" type="submit">Sign up</Button>
                     </Form>
                 </Container>

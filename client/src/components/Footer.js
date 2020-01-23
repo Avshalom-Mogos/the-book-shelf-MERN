@@ -38,15 +38,6 @@ export default class Footer extends Component {
                                             <li>
                                                 <div className="thumb-content"><a href="#.">Event/Tickets</a></div>
                                             </li>
-                                            <li>
-                                                <div className="thumb-content"><a href="#.">News</a></div>
-                                            </li>
-                                            <li>
-                                                <div className="thumb-content"><a href="#.">Lifestyle</a></div>
-                                            </li>
-                                            <li>
-                                                <div className="thumb-content"><a href="#.">About</a></div>
-                                            </li>
                                         </ul>
                                     </div>
                                 </div>

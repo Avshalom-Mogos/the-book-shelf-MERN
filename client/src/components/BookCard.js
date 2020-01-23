@@ -3,6 +3,7 @@ import { Card, Button } from "react-bootstrap"
 import "./CSS/BookCard.css"
 
 export default class BookCard extends Component {
+    
     render() {
 
         this.addMissingDetails();
@@ -24,7 +25,7 @@ export default class BookCard extends Component {
                 </Card.Body>
                 <Card.Footer>
                     <div className="d-flex justify-content-between">
-                        <Button className="d.inline" variant="primary">Add to Cart</Button>
+                        <Button onClick={this.addToCart} className="d.inline" variant="primary">Add to Cart</Button>
                         <p>{this.props.book.saleInfo.listPrice.amount}.99 ILS</p>
                     </div>
                 </Card.Footer>
@@ -35,6 +36,15 @@ export default class BookCard extends Component {
 
         )
     }
+    addToCart = () => {
+        let book = JSON.stringify(this.props.book);
+        sessionStorage.setItem("theBookShelf_user_cart", book)
+        console.log("CART");
+        console.log(JSON.parse(sessionStorage.getItem("theBookShelf_user_cart")));
+        
+        
+    }
+
     addMissingDetails = () => {
 
 

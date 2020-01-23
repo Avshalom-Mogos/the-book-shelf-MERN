@@ -25,9 +25,10 @@ export default class App extends React.Component {
 
     return (
 
-      <div style={{ height: "100vh" }}>
+      <div style={{ height: "53.7ch" }}> 
+      {/* REFACTOR LATER ^^^^^^^^^^^^^^ */}
         <BrowserRouter>
-          <MyNavbar user={this.state.userInfo} triggerLogout={this.logout} />
+          <MyNavbar userInfo={this.state.userInfo} triggerLogout={this.logout} />
           <Switch>
             <Route exact path="/" render={() => <Home />} />
             <Route exact path="/home" render={() => <Home />} />

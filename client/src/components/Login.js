@@ -57,7 +57,7 @@ export default class Login extends Component {
 
         }
         return (
-            <div style={{ height: "100%", padding: "120px" }}>
+            <div style={{ height: "100%", padding: "40px" }}>
 
                 <Container>
                     <Form.Group controlId="formBasicEmail">
