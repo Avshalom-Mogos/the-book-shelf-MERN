@@ -88,38 +88,6 @@ export default class MyNavbar extends React.Component {
         window.location.href = `/search/${this.searchParams}`
     }
 
-    // componentDidMount() {
-    //     console.log("mount");
-    //     this.checkUserLogin()
-
-    // }
-
-    // componentDidUpdate(prev) {
-    //     console.log("update");
-
-    //     console.log(this.state.userInfo.userName, prev.user.userName);
-    //     console.log(prev.user.userName);
-    //     console.log(this.props.user.userName)
-
-
-    //     if (this.props.user.userName !== prev.user.userName) {
-
-    //         this.checkUserLogin()
-    //     }
-
-    // }
-
-    // checkUserLogin = () => {
-
-    //     // let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
-    //     // console.log("user in storage:",user);
-    //     // if (user) {
-    //     this.setState({ userInfo: this.props.user });
-    //     // } else {
-    //     //     this.setState({ userInfo: { userName: "Guest" } });
-    //     // }
-
-    //}
 
 
 

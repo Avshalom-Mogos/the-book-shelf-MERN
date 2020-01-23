@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Form, Button, Container } from "react-bootstrap";
 import axios from "axios"
 import { Redirect } from "react-router-dom"
-
+import "./CSS/Login.css"
 export default class Login extends Component {
 
     state = {
@@ -57,7 +57,7 @@ export default class Login extends Component {
 
         }
         return (
-            <div style={{ height: "100%", padding: "40px" }}>
+            <div className="Login" style={{ height: "100%", padding: "40px" }}>
 
                 <Container>
                     <Form.Group controlId="formBasicEmail">

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-
+import "./CSS/Settings.css"
 export default class Settings extends Component {
     render() {
         return (
-            <div style={{height:"100%"}}>
+            <div className="Settings" style={{height:"100%"}}>
                 <h1>Hello from settings</h1>
             </div>
         )
