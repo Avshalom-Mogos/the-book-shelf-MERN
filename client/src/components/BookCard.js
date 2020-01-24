@@ -23,20 +23,32 @@ export default class BookCard extends Component {
                     </Card.Text>
 
                 </Card.Body>
-                <Card.Footer>
+                <Card.Footer>              
                     <div className="d-flex justify-content-between">
                         <Button onClick={this.addToCart} className="d.inline" variant="primary">Add to Cart</Button>
                         <p>{this.props.book.saleInfo.listPrice.amount}.99 ILS</p>
+                        
                     </div>
                 </Card.Footer>
-
-
+                <p className="Rating p-2 text-center">{this.RandomRating()}<i className="em em-star mx-2"  aria-label="WHITE MEDIUM STAR"></i> </p>
             </Card>
 
 
         )
     }
 
+    
+RandomRating= ()=>{
+    
+    return(
+        <span>
+           {(Math.random()*4+1).toFixed(1)}
+            
+        </span>
+    )
+    
+}
+   
 
 
     addMissingDetails = () => {
@@ -67,6 +79,8 @@ export default class BookCard extends Component {
             let defaultDescription = "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s";
             this.props.book.volumeInfo.description = defaultDescription;
         }
+
+       
 
 
 

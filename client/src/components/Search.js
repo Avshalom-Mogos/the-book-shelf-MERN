@@ -22,7 +22,8 @@ export default class Search extends Component {
                         this.state.books.map((book, index) => {
                             return (
                                 <Col key={index} md="4" sm="6" lg="4" xl="3">
-                                    <BookCard book={book}/>
+                                    <BookCard book={book} />
+                                   
                                    
                                 </Col>
                             )
