@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Card, Button } from "react-bootstrap"
+import axios from "axios"
 import "./CSS/BookCard.css"
 
 export default class BookCard extends Component {
@@ -25,7 +26,7 @@ export default class BookCard extends Component {
                 </Card.Body>
                 <Card.Footer>
                     <div className="d-flex justify-content-between">
-                        <Button onClick={this.addToCart} className="d.inline" variant="primary">Add to Cart</Button>
+                        <Button onClick={this.addToCart} variant="primary">Add to Cart</Button>
                         <p>{this.props.book.saleInfo.listPrice.amount}.99 ILS</p>
                     </div>
                 </Card.Footer>
@@ -37,7 +38,16 @@ export default class BookCard extends Component {
         )
     }
 
-
+    addToCart = () => {
+        let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
+        axios.post("/cart/add", { id: user._id,book:this.props.book })
+            .then((res) => {
+            console.log(res)
+           
+                this.props.Toast(`"${JSON.parse(res.config.data).book.volumeInfo.title}" Was added to the cart!`)
+                this.setState({ items: res.data })
+            })
+    }
 
     addMissingDetails = () => {
 

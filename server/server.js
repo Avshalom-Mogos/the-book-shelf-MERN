@@ -15,7 +15,7 @@ app.post("/users/login", (req, res) => {
 
 });
 
-app.get("/cart/get", (req, res) => {
+app.post("/cart/get", (req, res) => {
   routerHelper.getCartData(req,res);
 
 });

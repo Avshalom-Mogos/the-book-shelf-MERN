@@ -83,6 +83,7 @@ function register(req, res) {
 function getCartData(req, res) {
 
   let id = req.body.id;
+ 
   MongoClient.connect(url, function (err, db) {
     if (err) throw err;
     var dbo = db.db(dbName);
@@ -98,13 +99,17 @@ function addToCart(req, res) {
 
   let id = req.body.id;
   let book = req.body.book;
-  MongoClient.connect(url, function (err, db) {
+  console.log(id);
+  console.log(book);
+  
+  MongoClient.connect(url, function(err, db) {
     if (err) throw err;
-    var dbo = db.db("mydb");
-    var myquery = { _id: id };
-    var newvalues = { $set: { myCart: book } };
-    dbo.collection("customers").updateOne(myquery, newvalues, function (err, res) {
+    var dbo = db.db(dbName);
+    var myquery = { _id: new ObjectID(id) };
+    var newvalues = { $push: {myCart:book } };
+    dbo.collection(collectionName).updateOne(myquery, newvalues, function(err, result) {
       if (err) throw err;
+      res.send(result)
       console.log("1 document updated");
       db.close();
     });
