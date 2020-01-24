@@ -5,6 +5,7 @@ const dbName = "Book_Shelf"
 collectionName = "users"
 
 
+
 function login(req, res) {
   console.log("/users/login")
   MongoClient.connect(url, function (err, db) {
@@ -117,11 +118,38 @@ function addToCart(req, res) {
 
 }
 
-function insert() {
+function deleteFromCart(req,res){ 
+  
+let userId = req.params.userId;
+let bookId = req.params.bookId;
+ console.log("כובל");
 
+
+MongoClient.connect(url, function(err, db) {
+  if (err) 
+  {
+    return res.sendStatus(500);
+  }
+  var dbo = db.db(dbName);
+  var myquery = { _id: new ObjectID (userId) };
+  var newvalues = { $pull: {"myCart":{id:bookId} } };
+  dbo.collection(collectionName).updateOne(myquery,  newvalues,  function(err, result) {
+    if (err){
+      return res.sendStatus(500);
+    }
+    res.send(result)
+    console.log("1 document deleted!!!");
+  
+  });
+});
 }
+
+
+
+
 
 module.exports.register = register;
 module.exports.login = login;
 module.exports.getCartData = getCartData;
 module.exports.addToCart = addToCart;
+module.exports.deleteFromCart=deleteFromCart
