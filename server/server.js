@@ -15,12 +15,12 @@ app.post("/users/login", (req, res) => {
 
 });
 
-app.get("/cart", (req, res) => {
+app.get("/cart/get", (req, res) => {
   routerHelper.getCartData(req,res);
 
 });
 
-app.post("/cart", (req, res) => {
+app.post("/cart/add", (req, res) => {
   routerHelper.addToCart(req,res);
 
 });

@@ -1,4 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
+const ObjectID = require('mongodb').ObjectID;
 const url = "mongodb://localhost:27017/";
 const dbName = "Book_Shelf"
 collectionName = "users"
@@ -77,13 +78,41 @@ function register(req, res) {
 
 }
 
-//find user (DO THIS LATER)
+//refactor find user (DO THIS LATER)
 
 function getCartData(req, res) {
 
+  let id = req.body.id;
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db(dbName);
+    dbo.collection(collectionName).findOne({ _id: new ObjectID(id) }, function (err, user) {
+      if (err) throw err;
+      res.send(user.myCart)
+      db.close();
+    });
+  });
 }
 
 function addToCart(req, res) {
+
+  let id = req.body.id;
+  let book = req.body.book;
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("mydb");
+    var myquery = { _id: id };
+    var newvalues = { $set: { myCart: book } };
+    dbo.collection("customers").updateOne(myquery, newvalues, function (err, res) {
+      if (err) throw err;
+      console.log("1 document updated");
+      db.close();
+    });
+  });
+
+}
+
+function insert() {
 
 }
 
