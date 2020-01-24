@@ -10,10 +10,9 @@ export default class Search extends Component {
 
     state = { books: [], showSpinner: true, showToast: false };
     searchParam = this.props.match.params.searchParam;
-    msg = "";
+    toastMsg = "";
 
     render() {
-
 
         return (
             <Container style={{ marginTop: "20px" }}>
@@ -32,7 +31,10 @@ export default class Search extends Component {
                         this.state.books.map((book, index) => {
                             return (
                                 <Col key={index} sm="6" md="4" lg="3">
-                                    <BookCard book={book} Toast={this.ToastDisplay} />
+                                    <BookCard book={book}
+                                        Toast={this.ToastDisplay}
+                                        triggerLogin={this.props.triggerLogin}
+                                    />
 
                                 </Col>
                             )
@@ -48,26 +50,22 @@ export default class Search extends Component {
     //
     ToastDisplay = (msg) => {
 
-        this.msg = msg;
-        let that = this
+        this.toastMsg = msg;
         this.setState({ showToast: true })
-        //hide after 3 sec
-        setTimeout(function () {
-            that.setState({ showToast: false })
-        }, 3000);
     }
 
     Toast = () => {
         return (
 
-            <Toast style={this.ToastStyle} onClose={() => this.setState({ showToast: false })}>
+            <Toast style={this.ToastStyle} autohide
+                delay={2000} animation
+                onClose={() => this.setState({ showToast: false })}>
                 <Toast.Header>
                     <img src="" className="rounded mr-2" alt="" />
                     <strong className="mr-auto">The Book Shelf</strong>
                 </Toast.Header>
-                <Toast.Body>{this.msg}</Toast.Body>
+                <Toast.Body>{this.toastMsg}</Toast.Body>
             </Toast>
-
         )
     }
 
@@ -84,7 +82,7 @@ export default class Search extends Component {
 
 
     componentDidMount() {
-        axios.get(`https://www.googleapis.com/books/v1/volumes?q=:${this.searchParam}&key=AIzaSyDhshslNH7uBtbjyb_AXtPz2vlYOFTF6pI`)
+        axios.get(`https://www.googleapis.com/books/v1/volumes?q=:${this.searchParam}&maxResults=40&projection=full&key=AIzaSyDhshslNH7uBtbjyb_AXtPz2vlYOFTF6pI`)
             .then((res) => {
                 this.setState({ books: res.data.items, showSpinner: false })
                 console.log(res.data.items);

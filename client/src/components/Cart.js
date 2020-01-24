@@ -12,12 +12,14 @@ export default class Cart extends Component {
         return (
             <div className="Cart container">
                 <h1>My Cart</h1>
+                <p>all items: {this.state.items.length}</p>
+
 
                 {
-                    this.state.items.map((book,index) => {
+                    this.state.items.map((book, index) => {
                         return (
-                            <div>
-                               <CartItem key={index} book={book}/>
+                            <div key={index}>
+                                <CartItem  book={book} />
                             </div>
                         )
                     })

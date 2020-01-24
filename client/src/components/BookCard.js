@@ -24,14 +24,14 @@ export default class BookCard extends Component {
                     </Card.Text>
 
                 </Card.Body>
-                <Card.Footer>              
+                <Card.Footer>
                     <div className="d-flex justify-content-between">
                         <Button onClick={this.addToCart} variant="primary">Add to Cart</Button>
                         <p>{this.props.book.saleInfo.listPrice.amount}.99 ILS</p>
-                        
+
                     </div>
                 </Card.Footer>
-                <p className="Rating p-2 text-center">{this.RandomRating()}<i className="em em-star mx-2"  aria-label="WHITE MEDIUM STAR"></i> </p>
+                <p className="Rating p-2 text-center">{this.RandomRating()}<i className="em em-star mx-2" aria-label="WHITE MEDIUM STAR"></i> </p>
             </Card>
 
 
@@ -40,26 +40,36 @@ export default class BookCard extends Component {
 
     addToCart = () => {
         let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
-        axios.post("/cart/add", { id: user._id,book:this.props.book })
+        axios.post("/cart/add", { id: user._id, book: this.props.book })
             .then((res) => {
-            console.log(res)
-           
-                this.props.Toast(`"${JSON.parse(res.config.data).book.volumeInfo.title}" Was added to the cart!`)
-                this.setState({ items: res.data })
+                console.log(res)
+                let newBook = JSON.parse(res.config.data)
+                this.props.Toast(`"${newBook.book.volumeInfo.title}" Was added to the cart!`)
+
+
+                //update my cart in session storage
+                let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
+                user.myCart.push(newBook.book)
+                let updatedUser = JSON.stringify(user)
+                sessionStorage.setItem("theBookShelf_user_login", updatedUser);
+
+
+                //update user info on App.js
+                this.props.triggerLogin()
             })
     }
-    
-RandomRating= ()=>{
-    
-    return(
-        <span>
-           {(Math.random()*4+1).toFixed(1)}
-            
-        </span>
-    )
-    
-}
-   
+
+    RandomRating = () => {
+
+        return (
+            <span>
+                {(Math.random() * 4 + 1).toFixed(1)}
+
+            </span>
+        )
+
+    }
+
 
 
     addMissingDetails = () => {
@@ -91,7 +101,7 @@ RandomRating= ()=>{
             this.props.book.volumeInfo.description = defaultDescription;
         }
 
-       
+
 
 
 

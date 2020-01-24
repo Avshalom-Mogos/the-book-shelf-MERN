@@ -29,7 +29,9 @@ export default class MyNavbar extends React.Component {
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu >
-                                    <Dropdown.Header style={{ color: "black" }}>{`Hello ${this.props.userInfo.userName}`}</Dropdown.Header>
+                                    <Dropdown.Header style={{ color: "black" }}>
+                                        <strong>{`Welcome ${this.props.userInfo.userName}`}</strong>
+                                        </Dropdown.Header>
                                     <Dropdown.Divider />
 
                                     {
