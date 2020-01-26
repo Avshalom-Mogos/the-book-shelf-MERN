@@ -23,6 +23,7 @@ export default class BookCard extends Component {
                         {this.props.book.volumeInfo.description}
                     </Card.Text>
 
+                <p className="Rating p-2 text-center">{this.props.book.rating}<i className="em em-star mx-2" aria-label="WHITE MEDIUM STAR"></i> </p>
                 </Card.Body>
                 <Card.Footer>
                     <div className="d-flex justify-content-between">
@@ -31,7 +32,6 @@ export default class BookCard extends Component {
 
                     </div>
                 </Card.Footer>
-                <p className="Rating p-2 text-center">{this.RandomRating()}<i className="em em-star mx-2" aria-label="WHITE MEDIUM STAR"></i> </p>
             </Card>
 
 
@@ -59,16 +59,7 @@ export default class BookCard extends Component {
             })
     }
 
-    RandomRating = () => {
-
-        return (
-            <span>
-                {(Math.random() * 4 + 1).toFixed(1)}
-
-            </span>
-        )
-
-    }
+   
 
 
 
@@ -93,6 +84,12 @@ export default class BookCard extends Component {
 
             let defaultAuthors = "Ardato Belay";
             this.props.book.volumeInfo.authors = [defaultAuthors];
+        }
+
+        if(!this.props.book.rating){
+
+            let RandomRating = (Math.random() * 4 + 1).toFixed(1)
+            this.props.book.rating = RandomRating;
         }
 
         if (!this.props.book.volumeInfo.description) {

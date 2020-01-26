@@ -53,7 +53,7 @@ export default class Login extends Component {
       
 
         if (this.state.redirectToHome) {
-            return < Redirect to="/" />
+            return < Redirect to="/"/>
 
         }
         return (

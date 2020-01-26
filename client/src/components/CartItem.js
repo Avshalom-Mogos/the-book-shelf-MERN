@@ -1,34 +1,43 @@
 import React, { Component } from 'react'
 import axios from "axios"
+import { Container, Col, Row, Spinner } from 'react-bootstrap';
 export default class cartItem extends Component {
     
     deleteBook = ()=>{
+
+    let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
+
     
-   axios.delete("cart/delete/5e2aba53a84743056879d3a8/"+ this.props.book.id)
-   .then(res=>{
-       console.log(res);
-       
-   }).catch(err=>{
+   axios.delete(`cart/delete/${user._id}/${this.props.book.id}`)
+   .then(res=>this.props.update())
+   .catch(err=>{
        console.log(err);
        
    })
         
-    
-     
-       
+  
 }
     render() {
         const book = this.props.book;
         return (
-            <div style={this.style}>
-                <img src={book.volumeInfo.imageLinks.thumbnail} alt={"imgBook"} />
+            <Container className="container"  style={{marginTop:"10px"}}> 
+             <Row className="row"> 
+            <Col  className="col-sm"  style={{fontWeight:"bold",textAlign:"center"}}>
+                <img  style={{ marginTop: "10px" }} src={book.volumeInfo.imageLinks.thumbnail} alt={"imgBook"} />
+             </Col>
+
+             <Col  className="col-sm"> 
                 <p>{book.volumeInfo.title}</p>
-                <button onClick={this.deleteBook}>Remove from cart</button>
-            </div>
+            </Col>
+            <Col  className="col-sm"> 
+                { <button onClick={this.deleteBook}  style={{marginTop:"10px"}}  className="btn btn-primary">Remove from cart</button> }
+             </Col>
+            </Row>
+            </Container>
+            
+
         )
     }
-    //temp style
-    style = {
-        border: "1px solid red"
-    }
+    
+  
 }

@@ -10,14 +10,16 @@ import Footer from './components/Footer';
 import Cart from "./components/Cart";
 import Settings from "./components/Settings";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Redirect } from "react-router-dom"
 import "./App.css"
 
 export default class App extends React.Component {
 
-  state = { userInfo: { userName: "Guest" } };
+  state = { userInfo: { userName: "Guest" }};
 
   render() {
-
+   
+  
     return (
       <div className="App">
         <BrowserRouter>
@@ -29,7 +31,7 @@ export default class App extends React.Component {
             <Route exact path="/signup" render={() => <Signup />} />
             <Route exact path="/about" render={() => <About />} />
             <Route exact path="/sales" render={() => <Sales />} />
-            <Route exact path="/Cart" render={() => <Cart />} />
+            <Route exact path="/Cart" render={() => <Cart triggerLogin={this.login}/>} />
             <Route exact path="/Settings" render={() => <Settings />} />
             <Route path="/search/:searchParam" render={(props) => <Search user={this.state.userInfo} triggerLogin={this.login} {...props} />} />
             <Route render={() => <h1>ERROR:404</h1>} />
@@ -41,17 +43,20 @@ export default class App extends React.Component {
   }
 
 
-  
+
   login = () => {
+
 
     let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
     this.setState({ userInfo: user });
   }
 
   logout = () => {
+   
 
     sessionStorage.removeItem("theBookShelf_user_login");
-    this.setState({ userInfo: { userName: "Guest" } });
+   
+    this.setState({ userInfo: { userName: "Guest" }});
   }
 
   componentDidMount() {

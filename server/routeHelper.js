@@ -121,11 +121,13 @@ function addToCart(req, res) {
 function deleteFromCart(req,res){ 
   
 let userId = req.params.userId;
+console.log(userId)
 let bookId = req.params.bookId;
- console.log("כובל");
+console.log(bookId)
+ console.log("ok");
 
 
-MongoClient.connect(url, function(err, db) {
+MongoClient.connect(url, function(err, db) { 
   if (err) 
   {
     return res.sendStatus(500);
