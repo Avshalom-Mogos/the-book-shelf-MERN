@@ -10,7 +10,7 @@ import Footer from './components/Footer';
 import Cart from "./components/Cart";
 import Settings from "./components/Settings";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { Redirect } from "react-router-dom"
+
 import "./App.css"
 
 export default class App extends React.Component {
