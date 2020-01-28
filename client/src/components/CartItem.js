@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Container, Col, Row } from 'react-bootstrap';
 import axios from "axios"
-
+import { Container, Col, Row,} from 'react-bootstrap';
 
 export default class cartItem extends Component {
 
@@ -19,19 +19,30 @@ export default class cartItem extends Component {
         
         const book = this.props.book;
         return (
-            <Container className="container" style={{ marginTop: "10px" }}>
-                <Row className="row">
-                    <Col className="col-sm" style={{ fontWeight: "bold", textAlign: "center" }}>
-                        <img style={{ marginTop: "10px" }} src={book.volumeInfo.imageLinks.thumbnail} alt={"imgBook"} />
-                    </Col>
-                    <Col className="col-sm">
-                        <p>{book.volumeInfo.title}</p>
-                    </Col>
-                    <Col className="col-sm">
-                        {<button onClick={this.deleteBook} style={{ marginTop: "10px" }} className="btn btn-primary">Remove from cart</button>}
-                    </Col>
-                </Row>
+            <div> 
+            <Container className="container" > 
+             <Row className="row"> 
+            <Col  sm={3} >
+                <img  src={book.volumeInfo.imageLinks.thumbnail} alt={"imgBook"} />
+               
+             </Col>
+             <Col  sm={3} > 
+             <p>{book.volumeInfo.title}</p>
+             </Col>
+           
+            <Col  sm={3}> 
+                { <button onClick={this.deleteBook}    className="btn btn-primary">Remove from cart</button> }
+             </Col>
+            
+            </Row>
+           
+
             </Container>
+            
+          
+            </div>
         )
+
+       
     }
 }

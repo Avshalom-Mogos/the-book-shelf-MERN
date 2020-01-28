@@ -2,17 +2,30 @@ import React, { Component } from 'react';
 import axios from "axios";
 import "./CSS/Cart.css";
 import CartItem from './CartItem';
+import { Redirect } from "react-router-dom"
+import { Container, Col, Row} from 'react-bootstrap';
 
 export default class Cart extends Component {
 
-    state = { items: [] }
+    state = { items: []}
+
+
 
     render() {
-
+        if(this.state.redirectToPurchaseHistory){
+         return <Redirect to ="Settings"/>
+        }
         return (
-            <div  className="Cart-container">
-                <h1>My Cart</h1>
+            <div>   
+               <h1>My Cart</h1>
                 <p >all items: {this.state.items.length}</p>
+                <div className="d-flex"> 
+            <Container  className="Cart flex-grow-1">
+             
+                <Row>
+
+              
+               <Col> 
 
 
                 {
@@ -25,8 +38,19 @@ export default class Cart extends Component {
                         )
                     })
                 }
-                 <button  className="btn" >CheckOut</button>
+               
+                 
+                 </Col >
+                 </Row> 
+                
+            </Container>
+
+            <div> 
+                 <button  className="btn  btn-lg  mr-5">CheckOut</button>
             </div>
+            </div>
+            </div>
+
         )
     }
 
