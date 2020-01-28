@@ -8,7 +8,7 @@ import About from './components/About';
 import Sales from './components/Sales';
 import Footer from './components/Footer';
 import Cart from "./components/Cart";
-import Settings from "./components/Settings";
+import PurchaseHistory from "./components/PurchaseHistory";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import "./App.css"
@@ -32,7 +32,7 @@ export default class App extends React.Component {
             <Route exact path="/about" render={() => <About />} />
             <Route exact path="/sales" render={() => <Sales />} />
             <Route exact path="/Cart" render={() => <Cart triggerLogin={this.login}/>} />
-            <Route exact path="/Settings" render={() => <Settings />} />
+            <Route exact path="/PurchaseHistory" render={() => <PurchaseHistory />} />
             <Route path="/search/:searchParam" render={(props) => <Search user={this.state.userInfo} triggerLogin={this.login} {...props} />} />
             <Route render={() => <h1>ERROR:404</h1>} />
           </Switch>

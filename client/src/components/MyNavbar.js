@@ -41,7 +41,7 @@ export default class MyNavbar extends React.Component {
                                                     <span className="mr-3">Shopping Cart</span>
                                                     <Badge pill variant="danger">{this.props.userInfo.myCart.length}</Badge>
                                                     </Dropdown.Item>
-                                                <Dropdown.Item as={Link} to="/Settings" style={{ color: "black" }}>Settings</Dropdown.Item>
+                                                <Dropdown.Item as={Link} to="/PurchaseHistory" style={{ color: "black" }}>Purchase History</Dropdown.Item>
                                                 <Dropdown.Item style={{ color: "black" }} onClick={this.props.triggerLogout}>Logout</Dropdown.Item>
                                             </div> :
                                             <Dropdown.Item style={{ color: "black" }} as={Link} to="/login">Login</Dropdown.Item>

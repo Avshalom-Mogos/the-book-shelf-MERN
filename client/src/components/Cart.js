@@ -10,7 +10,6 @@ export default class Cart extends Component {
     state = { items: []}
 
 
-
     render() {
         if(this.state.redirectToPurchaseHistory){
          return <Redirect to ="Settings"/>
