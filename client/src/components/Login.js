@@ -57,9 +57,9 @@ export default class Login extends Component {
 
         }
         return (
-            <div className="Login" style={{ height: "100%", padding: "40px" }}>
+            <div className="Login">
 
-                <Container>
+                <Container className="Login-from">
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
                         <Form.Control required onChange={(e) => this.userInfo.email = e.target.value} type="email" placeholder="Enter email" />

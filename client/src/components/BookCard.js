@@ -8,11 +8,10 @@ export default class BookCard extends Component {
     render() {
 
         this.addMissingDetails();
+        // console.log(this.props.book.volumeInfo.imageLinks);
         //console.log(this.props.book.volumeInfo.categories); USE THIS TO FILTER LATER
 
         return (
-
-
             <Card className="BookCard">
                 <Card.Img className="imgCard" src={this.props.book.volumeInfo.imageLinks.thumbnail} />
                 <Card.Body>
@@ -33,8 +32,6 @@ export default class BookCard extends Component {
                     </div>
                 </Card.Footer>
             </Card>
-
-
         )
     }
 

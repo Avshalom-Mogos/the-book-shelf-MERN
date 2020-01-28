@@ -1,3 +1,12 @@
 .Login{
     min-height:  calc(100vh - 258px); 
+    background-color: #f0f0f0;
+    display: flex;
+}
+
+.Login-from{
+    background-color: white;
+    padding: 50px;
+    margin: auto auto;
+    box-shadow: 2px 2px 2px;
 }
