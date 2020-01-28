@@ -3,8 +3,8 @@ import axios from "axios";
 import "./CSS/Cart.css";
 import CartItem from './CartItem';
 import { Redirect } from "react-router-dom"
-import { Container, Col, Row } from 'react-bootstrap';
-
+import { Container, Col, Row} from 'react-bootstrap';
+import {Badge} from "react-bootstrap"
 export default class Cart extends Component {
 
     state = { items: [] }
@@ -14,44 +14,52 @@ export default class Cart extends Component {
         if (this.state.redirectToPurchaseHistory) {
             return <Redirect to="Settings" />
         }
+
+      
         return (
-            <div>
-                <h1>My Cart</h1>
-                <p >all items: {this.state.items.length}</p>
-                <div className="d-flex">
-                    <Container className="Cart flex-grow-1">
+            <div className="bg">   
+               <h1>My Cart</h1>
+              
+                <div className="d-flex"> 
+            <Container  className="Cart flex-grow-1">
+             
+                <Row>
 
-                        <Row>
-
-
-                            <Col>
-
-
-                                {
-                                    this.state.items.map((book, index) => {
-                                        return (
-                                            <div key={index}>
-                                                <CartItem book={book} update={this.getAllCartDataFromDB} />
-
-                                            </div>
-                                        )
-                                    })
-                                }
+              
+               <Col> 
 
 
-                            </Col >
-                        </Row>
+                {
+                    this.state.items.map((book, index) => {
+                        return (
+                            <div key={index}>
+                                <CartItem  book={book} update={this.getAllCartDataFromDB}/>
+                               
+                            </div>
+                        )
+                    })
+                }
+               
+                 
+                 </Col >
+                 </Row> 
+                
+            </Container>
 
-                    </Container>
+            <div className="ChekOut"> 
 
-                    <div>
-                        <button className="btn  btn-lg  mr-5">CheckOut</button>
-                    </div>
-                </div>
+                <h5>all items: <Badge>{this.state.items.length}</Badge></h5>
+                 <button style={{marginBottom:"10px"}} className="btn  btn-lg  mr-5">CheckOut</button>
+                 <h5>Total:</h5>
+                
+            </div>
+            
+            </div>
             </div>
 
         )
     }
+
 
     componentDidMount() {
         this.getAllCartDataFromDB()
