@@ -1,40 +1,34 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { Container, Col, Row } from 'react-bootstrap';
-import axios from "axios"
+import axios from "axios";
 
 export default class cartItem extends Component {
 
     render() {
-        
+
         const book = this.props.book;
         return (
-            <div> 
-            <Container   className="container text-center"> 
-             <Row className="row"> 
-            <Col   sm={3} >
-                <img  style={{marginBottom:"10px"}} src={book.volumeInfo.imageLinks.thumbnail} alt={"imgBook"} />
-               
-             </Col>
-             <Col  sm={3} > 
-             <p>{book.volumeInfo.title}</p>
-             </Col>
-           
-            <Col  sm={3}> 
-                { <button onClick={this.deleteBook}    className="btn btn-primary">Remove from cart</button> }
-             </Col>
-            
-            </Row>
-           
+            <div>
+                <Container className="container text-center">
+                    <Row className="row">
+                        <Col sm={3} >
+                            <img style={{ marginBottom: "10px" }} src={book.volumeInfo.imageLinks.thumbnail} alt={"imgBook"} />
 
-            </Container>
-            
-          
+                        </Col>
+                        <Col sm={3} >
+                            <p>{book.volumeInfo.title}</p>
+                        </Col>
+
+                        <Col sm={3}>
+                            {<button onClick={this.deleteBook} className="btn btn-primary">Remove from cart</button>}
+                        </Col>
+
+                    </Row>
+                </Container>
             </div>
         )
-
-       
     }
-    
+
     deleteBook = () => {
 
         let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
@@ -44,7 +38,4 @@ export default class cartItem extends Component {
                 console.log(err);
             })
     }
-
-
-
 }
