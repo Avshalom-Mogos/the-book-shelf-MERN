@@ -13,27 +13,24 @@ export default class BookCard extends Component {
 
         return (
             <Card className="BookCard">
-                <Card.Img className="imgCard" src={this.props.book.volumeInfo.imageLinks.thumbnail} />
-                <Card.Body>
-                    <Card.Title>{this.props.book.volumeInfo.title}</Card.Title>
-                    <Card.Text className="text-muted">By {this.props.book.volumeInfo.authors[0]}</Card.Text>
-
-                    <Card.Text className="description">
-                        {this.props.book.volumeInfo.description}
+                <Card.Img className="BookCard-img" src={this.props.book.volumeInfo.imageLinks.thumbnail} />
+                <Card.Body className="BookCard-cardBody">
+                <Card.Title className="BookCard-title">{this.props.book.volumeInfo.title}</Card.Title>
+                    <Card.Text className="Bookcard-authors">By {this.props.book.volumeInfo.authors[0]}</Card.Text>
+                    <Card.Text className="BookCard-rating">
+                        {this.props.book.rating}
+                        <i className="em em-star mx-2" aria-label="WHITE MEDIUM STAR"></i>
                     </Card.Text>
-
-                <p className="Rating p-2 text-center">{this.props.book.rating}<i className="em em-star mx-2" aria-label="WHITE MEDIUM STAR"></i> </p>
+                    <Card.Text>{this.props.book.saleInfo.listPrice.amount}.99 ILS</Card.Text>
                 </Card.Body>
                 <Card.Footer>
-                    <div className="d-flex justify-content-between">
-                        <Button onClick={this.addToCart} variant="primary">Add to Cart</Button>
-                        <p>{this.props.book.saleInfo.listPrice.amount}.99 ILS</p>
-
-                    </div>
+                    <Button onClick={this.addToCart} className="BookCard-addToCart-btn" variant="primary">Add to Cart</Button>
                 </Card.Footer>
             </Card>
         )
     }
+
+
 
     addToCart = () => {
         let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
@@ -41,7 +38,7 @@ export default class BookCard extends Component {
             .then((res) => {
                 console.log(res)
                 let newBook = JSON.parse(res.config.data)
-                this.props.Toast(`"${newBook.book.volumeInfo.title}" Was added to the cart!`)
+                this.props.Toast(newBook.book.volumeInfo.title)
 
 
                 //update my cart in session storage
@@ -55,9 +52,6 @@ export default class BookCard extends Component {
                 this.props.triggerLogin()
             })
     }
-
-   
-
 
 
     addMissingDetails = () => {
@@ -83,7 +77,7 @@ export default class BookCard extends Component {
             this.props.book.volumeInfo.authors = [defaultAuthors];
         }
 
-        if(!this.props.book.rating){
+        if (!this.props.book.rating) {
 
             let RandomRating = (Math.random() * 4 + 1).toFixed(1)
             this.props.book.rating = RandomRating;

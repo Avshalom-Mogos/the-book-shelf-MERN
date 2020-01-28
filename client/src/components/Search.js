@@ -16,14 +16,14 @@ export default class Search extends Component {
 
         return (
             <div className="Search">
-                <Container>
+                {
+                    this.state.showSpinner ?
+                        <Spinner animation="border" className="Search-spinner" variant="warning" />
+                        : <h3>{`${this.state.books.length} results for ${this.searchParam}:`}</h3>
+                }
                     {this.state.showToast ? this.Toast() : ""}
+                <Container>
 
-                    {
-                        this.state.showSpinner ?
-                            <Spinner animation="border" className="d-flex" style={this.spinnerStyle} variant="warning" />
-                            : <h3>{`${this.state.books.length} results for ${this.searchParam}:`}</h3>
-                    }
                     <Row style={{ marginTop: "20px" }}>
 
                         {
@@ -57,30 +57,20 @@ export default class Search extends Component {
 
     Toast = () => {
         return (
+            <div className="Search-toast-container">
+                <Toast className="Search-toast" autohide
+                    delay={3000} animation
+                    onClose={() => this.setState({ showToast: false })}>
+                    <Toast.Header>
+                        <img src="" className="rounded mr-2" alt="brandImg" />
+                        <strong className="mr-auto">The Book Shelf</strong>
+                    </Toast.Header>
+                    <Toast.Body>"<strong>{this.toastMsg}</strong>" was added to the cart!</Toast.Body>
+                </Toast>
+            </div>
 
-            <Toast style={this.ToastStyle} autohide
-                delay={2000} animation
-                onClose={() => this.setState({ showToast: false })}>
-                <Toast.Header>
-                    <img src="" className="rounded mr-2" alt="" />
-                    <strong className="mr-auto">The Book Shelf</strong>
-                </Toast.Header>
-                <Toast.Body>{this.toastMsg}</Toast.Body>
-            </Toast>
         )
     }
-
-    ToastStyle = {
-        position: "fixed",
-        top: 0,
-        zIndex: 1,
-        margin: "auto auto"
-    }
-
-
-    //
-
-
 
     componentDidMount() {
         axios.get(`https://www.googleapis.com/books/v1/volumes?q=:${this.searchParam}&maxResults=40&projection=full&key=AIzaSyDhshslNH7uBtbjyb_AXtPz2vlYOFTF6pI`)
@@ -88,17 +78,8 @@ export default class Search extends Component {
                 this.setState({ books: res.data.items, showSpinner: false })
                 console.log(res.data.items);
 
-
-
             })
     }
-    spinnerStyle = {
-        width: "200px",
-        height: "200px",
-        margin: "auto auto",
-
-    }
-
 }
 
 

@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { Container, Col, Row } from 'react-bootstrap';
-import axios from "axios"
+import axios from "axios";
 
 export default class cartItem extends Component {
 
     render() {
-        
+
         const book = this.props.book;
         return (
             <div> 
@@ -31,8 +31,6 @@ export default class cartItem extends Component {
           
             </div>
         )
-
-       
     }
 
     deleteBook = () => {
@@ -44,7 +42,4 @@ export default class cartItem extends Component {
                 console.log(err);
             })
     }
-
-
-
 }
