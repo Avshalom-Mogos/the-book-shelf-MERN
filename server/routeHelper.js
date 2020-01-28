@@ -83,8 +83,8 @@ function register(req, res) {
 
 function getCartData(req, res) {
 
-  let id = req.body.id;
- 
+  let id = req.params.userId;
+
   MongoClient.connect(url, function (err, db) {
     if (err) throw err;
     var dbo = db.db(dbName);
@@ -102,13 +102,13 @@ function addToCart(req, res) {
   let book = req.body.book;
   console.log(id);
   console.log(book);
-  
-  MongoClient.connect(url, function(err, db) {
+
+  MongoClient.connect(url, function (err, db) {
     if (err) throw err;
     var dbo = db.db(dbName);
     var myquery = { _id: new ObjectID(id) };
-    var newvalues = { $push: {myCart:book } };
-    dbo.collection(collectionName).updateOne(myquery, newvalues, function(err, result) {
+    var newvalues = { $push: { myCart: book } };
+    dbo.collection(collectionName).updateOne(myquery, newvalues, function (err, result) {
       if (err) throw err;
       res.send(result)
       console.log("1 document updated");
@@ -118,35 +118,70 @@ function addToCart(req, res) {
 
 }
 
-function deleteFromCart(req,res){ 
-  
-let userId = req.params.userId;
-console.log(userId)
-let bookId = req.params.bookId;
-console.log(bookId)
- console.log("ok");
+function deleteFromCart(req, res) {
+
+  let userId = req.params.userId;
+  console.log(userId)
+  let bookId = req.params.bookId;
+  console.log(bookId)
+  console.log("ok");
 
 
-MongoClient.connect(url, function(err, db) { 
-  if (err) 
-  {
-    return res.sendStatus(500);
-  }
-  var dbo = db.db(dbName);
-  var myquery = { _id: new ObjectID (userId) };
-  var newvalues = { $pull: {"myCart":{id:bookId} } };
-  dbo.collection(collectionName).updateOne(myquery,  newvalues,  function(err, result) {
-    if (err){
+  MongoClient.connect(url, function (err, db) {
+    if (err) {
       return res.sendStatus(500);
     }
-    res.send(result)
-    console.log("1 document deleted!!!");
-  
+    var dbo = db.db(dbName);
+    var myquery = { _id: new ObjectID(userId) };
+    var newvalues = { $pull: { myCart: { id: bookId } } };
+    dbo.collection(collectionName).updateOne(myquery, newvalues, function (err, result) {
+      if (err) {
+        return res.sendStatus(500);
+      }
+      res.send(result)
+      console.log("1 document deleted!!!");
+
+    });
   });
-});
 }
 
+//Purchase History
 
+
+function getPurchaseHistoryData(req, res) {
+
+  let userId = req.params.userId;
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db(dbName);
+    dbo.collection(collectionName).findOne({ _id: new ObjectID(userId) }, function (err, user) {
+      if (err) throw err;
+      res.send(user.myCart)
+      db.close();
+    });
+  });
+}
+
+function addToPurchaseHistory(req, res) {
+
+  let id = req.body.id;
+  let book = req.body.book;
+  console.log(id);
+  console.log(book);
+
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db(dbName);
+    var myquery = { _id: new ObjectID(id) };
+    var newvalues = { $push: { purchaseHistory: book } };
+    dbo.collection(collectionName).updateOne(myquery, newvalues, function (err, result) {
+      if (err) throw err;
+      res.send(result)
+      console.log("1 document updated");
+      db.close();
+    });
+  });
+}
 
 
 
@@ -154,4 +189,6 @@ module.exports.register = register;
 module.exports.login = login;
 module.exports.getCartData = getCartData;
 module.exports.addToCart = addToCart;
-module.exports.deleteFromCart=deleteFromCart
+module.exports.deleteFromCart = deleteFromCart;
+module.exports.getPurchaseHistoryData = getPurchaseHistoryData;
+module.exports.addToPurchaseHistory = addToPurchaseHistory;
