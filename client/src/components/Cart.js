@@ -2,18 +2,15 @@ import React, { Component } from 'react';
 import axios from "axios";
 import "./CSS/Cart.css";
 import CartItem from './CartItem';
-import { Redirect } from "react-router-dom"
-import { Container, Col, Row} from 'react-bootstrap';
-import {Badge} from "react-bootstrap"
+import { Container, Col, Row,Badge} from 'react-bootstrap';
+
 export default class Cart extends Component {
 
-    state = { items: [] }
+    state = { items: []}
 
+    prices= [];
 
     render() {
-        if (this.state.redirectToPurchaseHistory) {
-            return <Redirect to="Settings" />
-        }
 
       
         return (
@@ -48,12 +45,13 @@ export default class Cart extends Component {
 
             <div className="ChekOut"> 
 
-                <h5>all items: <Badge>{this.state.items.length}</Badge></h5>
-                 <button style={{marginBottom:"10px"}} className="btn  btn-lg  mr-5">CheckOut</button>
-                 <h5>Total:</h5>
+                <h5> <i class="fas fa-book"></i>  all Books: <Badge>{this.state.items.length}</Badge></h5>
+               <h5>Total: {this.state.items.reduce((total,book)=>{
+               return total+book.saleInfo.listPrice.amount
+                },0)} ILS</h5>
+                <button className="btn  btn-lg  mr-5">CheckOut</button>
                 
             </div>
-            
             </div>
             </div>
 

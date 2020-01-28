@@ -20,7 +20,7 @@ export default class cartItem extends Component {
              </Col>
            
             <Col  sm={3}> 
-                { <button onClick={this.deleteBook}    className="btn btn-primary">Remove from cart</button> }
+                { < i onClick={this.deleteBook}  class="fas fa-trash btn"></i> }
              </Col>
             
             </Row>
@@ -34,7 +34,7 @@ export default class cartItem extends Component {
 
        
     }
-    
+
     deleteBook = () => {
 
         let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
