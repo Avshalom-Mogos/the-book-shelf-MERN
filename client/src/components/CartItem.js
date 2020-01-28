@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Container, Col, Row } from 'react-bootstrap';
 import axios from "axios"
-import { Container, Col, Row,} from 'react-bootstrap';
+
 
 export default class cartItem extends Component {
 
@@ -20,10 +20,10 @@ export default class cartItem extends Component {
         const book = this.props.book;
         return (
             <div> 
-            <Container className="container" > 
+            <Container   className="container text-center"> 
              <Row className="row"> 
-            <Col  sm={3} >
-                <img  src={book.volumeInfo.imageLinks.thumbnail} alt={"imgBook"} />
+            <Col   sm={3} >
+                <img  style={{marginBottom:"10px"}} src={book.volumeInfo.imageLinks.thumbnail} alt={"imgBook"} />
                
              </Col>
              <Col  sm={3} > 
@@ -45,4 +45,5 @@ export default class cartItem extends Component {
 
        
     }
+    
 }
