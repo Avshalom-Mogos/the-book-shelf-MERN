@@ -10,7 +10,6 @@ import Footer from './components/Footer';
 import Cart from "./components/Cart";
 import PurchaseHistory from "./components/PurchaseHistory";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-
 import "./App.css"
 
 export default class App extends React.Component {
@@ -46,17 +45,16 @@ export default class App extends React.Component {
 
   login = () => {
 
-
     let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
     this.setState({ userInfo: user });
   }
 
   logout = () => {
    
-
     sessionStorage.removeItem("theBookShelf_user_login");
-   
     this.setState({ userInfo: { userName: "Guest" }});
+    //redirect to home
+    window.location.href = `/home`
   }
 
   componentDidMount() {

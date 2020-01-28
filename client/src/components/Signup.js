@@ -30,8 +30,8 @@ export default class Signup extends Component {
 
         }
         return (
-            <div className="signUp" style={{ height: "100%"}}>
-                <Container>
+            <div className="signup">
+                <Container className="signup-from">
                     <Form onSubmit={this.handleSubmit}>
                         <Form.Group controlId="formBasicName">
                             <Form.Label>Username</Form.Label>

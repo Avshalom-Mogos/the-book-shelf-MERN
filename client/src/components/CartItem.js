@@ -1,24 +1,22 @@
 import React, { Component } from 'react'
+import { Container, Col, Row } from 'react-bootstrap';
 import axios from "axios"
 import { Container, Col, Row,} from 'react-bootstrap';
 
 export default class cartItem extends Component {
-    
-    deleteBook = ()=>{
 
-    let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
+    deleteBook = () => {
 
-    
-   axios.delete(`cart/delete/${user._id}/${this.props.book.id}`)
-   .then(res=>this.props.update())
-   .catch(err=>{
-       console.log(err);
-       
-   })
-        
-  
-}
+        let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
+        axios.delete(`cart/delete/${user._id}/${this.props.book.id}`)
+            .then(res => this.props.update())
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
     render() {
+        
         const book = this.props.book;
         return (
             <div> 
@@ -47,6 +45,4 @@ export default class cartItem extends Component {
 
        
     }
-    
-  
 }
