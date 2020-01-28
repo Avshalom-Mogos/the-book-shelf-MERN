@@ -73,9 +73,8 @@ export default class Signup extends Component {
             password: this.userInfo.password,
             userName: this.userInfo.userName,
             agreedEULA: this.userInfo.agreedEULA,
-            myCart:[]
-
-
+            myCart:[],
+            purchaseHistory:[],
 
         }).then(res => {
             //res.data is user

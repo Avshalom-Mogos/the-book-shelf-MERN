@@ -37,7 +37,7 @@ export default class BookCard extends Component {
 
     addToCart = () => {
         let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
-        axios.post("/cart/add", { id: user._id, book: this.props.book })
+        axios.post("/cart", { id: user._id, book: this.props.book })
             .then((res) => {
                 console.log(res)
                 let newBook = JSON.parse(res.config.data)
