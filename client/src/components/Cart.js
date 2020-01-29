@@ -49,7 +49,7 @@ export default class Cart extends Component {
                <h5>Total: {this.state.items.reduce((total,book)=>{
                return total+book.saleInfo.listPrice.amount
                 },0)} ILS</h5>
-               <button  className="btn  btn-lg  mr-5">CheckOut</button>
+               <button style={{marginBottom:"10px"}} className="btn  btn-lg  mr-5">CheckOut</button>
                   
             </div>
             </div>
