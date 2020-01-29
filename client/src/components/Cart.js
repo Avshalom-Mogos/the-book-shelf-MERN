@@ -60,7 +60,7 @@ export default class Cart extends Component {
 
 
     componentDidMount() {
-        this.getAllCartDataFromDB()
+        this.getAllCartDataFromDB();
     }
 
     getAllCartDataFromDB = () => {

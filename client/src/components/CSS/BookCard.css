@@ -18,9 +18,8 @@
 }
 
 .BookCard-title{
-   
     line-height: 1.5em;
-    height: 4.5em;       /* height is 2x line-height, so two lines will display */
+    height: 1.5em;       /* height is 2x line-height, so two lines will display */
     overflow: hidden;  /* prevents extra lines from being visible */
 }
 

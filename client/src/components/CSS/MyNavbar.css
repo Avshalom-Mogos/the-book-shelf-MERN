@@ -1,3 +1,19 @@
-.NavLink{
-    color: red;
+.MyNavbar-form{
+    display: flex;
+    justify-content: space-evenly;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.MyNavbar-search-input{
+    display: inline-block;
+    width: 90%
+}
+
+.MyNavbar-search-btn{
+    width: 3%;
+    padding: 9px;
+    background-color: orange;
+    cursor: pointer;
+
 }
