@@ -1,5 +1,5 @@
 import React from 'react'
-import { Nav, Navbar, Form, FormControl, Dropdown, Badge } from "react-bootstrap"
+import { Navbar, Form, FormControl, Dropdown, Badge } from "react-bootstrap"
 import { Link } from "react-router-dom";
 import "./CSS/MyNavbar.css"
 
@@ -13,7 +13,7 @@ export default class MyNavbar extends React.Component {
 
         return (
             <div>
-                <Nav>
+               
                     <Navbar bg="dark" variant="dark" expand="">
                         <Navbar.Brand as={Link} to="/home">
                             The Book Shelf
@@ -46,16 +46,16 @@ export default class MyNavbar extends React.Component {
                             </Navbar.Text>
                         </Form>
                     </Navbar>
-                </Nav>
-                <Nav>
+               
+        
                     <Navbar style={this.NavbarStyle}>
                         <Form className="MyNavbar-form" onSubmit={(e) => this.redirectToSearch(e)}>
                             <FormControl onChange={(e) => this.searchParams = e.target.value} type="text" placeholder="Search" className="MyNavbar-search-input" />
                             {/* <Button onClick={this.redirectToSearch} variant="outline-success">Search</Button> */}
-                            <i onClick={this.redirectToSearch} class="fas fa-search MyNavbar-search-btn"></i>
+                            <i onClick={this.redirectToSearch} className="fas fa-search MyNavbar-search-btn"></i>
                         </Form>
                     </Navbar>
-                </Nav>
+              
             </div>
         )
     }
