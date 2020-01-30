@@ -3,6 +3,7 @@
     min-height:  calc(100vh - 258px); 
     background-color: white;
     background-color: #f0f0f0;
+     overflow-x: hidden; 
    
 
 }
@@ -17,8 +18,10 @@
 .Cart-checkOut{
     background-color: #ffffff;
     padding:10px;
-    /* padding-bottom: 10px; */
+    padding-bottom: 10px;
     width: 40%;
     height: 20%;
-    margin-right: 15px;
+    
+    /* margin-left: 15px; */
+    /* text-align: center; */
 }

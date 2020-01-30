@@ -36,13 +36,13 @@ export default class Cart extends Component {
                         </Row>
                     </Col>
 
-                    <div className="Cart-checkOut">
+                    <div  className="Cart-checkOut">
 
                         <h5> <i className="fas fa-book"></i>  all Books: <Badge>{this.state.items.length}</Badge></h5>
                         <h5>Total: {this.state.items.reduce((total, book) => {
                             return total + book.saleInfo.listPrice.amount
                         }, 0)} ILS</h5>
-                        <button onClick={() => this.setState({ showOrderSummary: true })} style={{ marginBottom: "10px" }} className="btn  btn-lg  mr-5">CheckOut</button>
+                        <button onClick={() => this.setState({ showOrderSummary: true })} style={{ marginBottom: "10px" }} className="btn  btn-lg ">CheckOut</button>
                     </div>
                 </Row>
             </div>

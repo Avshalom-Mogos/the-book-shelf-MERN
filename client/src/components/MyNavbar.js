@@ -12,15 +12,15 @@ export default class MyNavbar extends React.Component {
     render() {
 
         return (
-            <div>
+            <div >
                
-                    <Navbar bg="dark" variant="dark" expand="">
+                    <Navbar  bg="dark" variant="dark" expand="">
                         <Navbar.Brand as={Link} to="/home">
                             The Book Shelf
                     </Navbar.Brand>
                         <Form inline>
                             <Navbar.Text  >
-                                <DropdownButton  id="dropdown-basic-button" title="My Shelf ">
+                                <DropdownButton  id="dropdown-basic-button" title="My Shelf">
                                         <Dropdown.Header style={{ color: "black" }}>
                                             <strong>{`Welcome ${this.props.userInfo.userName}`}</strong>
                                         </Dropdown.Header>
@@ -42,6 +42,7 @@ export default class MyNavbar extends React.Component {
                             </Navbar.Text>
                         </Form>
                     </Navbar>
+                    
                     <Navbar style={this.NavbarStyle}>
                         <Form className="MyNavbar-form" onSubmit={(e) => this.redirectToSearch(e)}>
                             <FormControl onChange={(e) => this.searchParams = e.target.value} type="text" placeholder="Search" className="MyNavbar-search-input" />
