@@ -46,8 +46,6 @@ export default class MyNavbar extends React.Component {
                             </Navbar.Text>
                         </Form>
                     </Navbar>
-               
-        
                     <Navbar style={this.NavbarStyle}>
                         <Form className="MyNavbar-form" onSubmit={(e) => this.redirectToSearch(e)}>
                             <FormControl onChange={(e) => this.searchParams = e.target.value} type="text" placeholder="Search" className="MyNavbar-search-input" />
@@ -55,7 +53,6 @@ export default class MyNavbar extends React.Component {
                             <i onClick={this.redirectToSearch} className="fas fa-search MyNavbar-search-btn"></i>
                         </Form>
                     </Navbar>
-              
             </div>
         )
     }

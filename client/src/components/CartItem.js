@@ -20,7 +20,7 @@ export default class cartItem extends Component {
              </Col>
            
             <Col  sm={3}> 
-                { < i onClick={this.deleteBook}  class="fas fa-trash btn"></i> }
+                { < i onClick={this.deleteBook}  className="fas fa-trash btn"></i> }
              </Col>
             
             </Row>

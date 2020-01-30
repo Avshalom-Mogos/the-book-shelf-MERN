@@ -162,7 +162,7 @@ function getPurchaseHistoryData(req, res) {
 function addToPurchaseHistory(req, res) {
 
   let id = req.body.id;
-  let book = req.body.book;
+  let newArr = req.body.newArr;
   console.log(id);
   console.log(book);
 
@@ -170,7 +170,7 @@ function addToPurchaseHistory(req, res) {
     if (err) throw err;
     var dbo = db.db(dbName);
     var myquery = { _id: new ObjectID(id) };
-    var newvalues = { $push: { purchaseHistory: book } };
+    var newvalues = { $set: { purchaseHistory: newArr } };
     dbo.collection(collectionName).updateOne(myquery, newvalues, function (err, result) {
       if (err) throw err;
       res.send(result)
