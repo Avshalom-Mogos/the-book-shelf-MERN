@@ -32,7 +32,7 @@ app.get("/purchaseHistory/:userId", (req, res) => {
 });
 
 app.post("/purchaseHistory", (req, res) => {
-  routerHelper.addToCart(req, res);
+  routerHelper.addToPurchaseHistory(req, res);
 });
 
 

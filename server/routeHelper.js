@@ -153,7 +153,7 @@ function getPurchaseHistoryData(req, res) {
     var dbo = db.db(dbName);
     dbo.collection(collectionName).findOne({ _id: new ObjectID(userId) }, function (err, user) {
       if (err) throw err;
-      res.send(user.myCart)
+      res.send(user.purchaseHistory)
       db.close();
     });
   });
@@ -161,16 +161,19 @@ function getPurchaseHistoryData(req, res) {
 
 function addToPurchaseHistory(req, res) {
 
-  let id = req.body.id;
-  let newArr = req.body.newArr;
-  console.log(id);
-  console.log(book);
+  let userId = req.body.id;
+  let items = req.body.items;
+
+  console.log("######################");
+  console.log(userId);
+  console.log(items);
+  console.log("######################");
 
   MongoClient.connect(url, function (err, db) {
     if (err) throw err;
     var dbo = db.db(dbName);
-    var myquery = { _id: new ObjectID(id) };
-    var newvalues = { $set: { purchaseHistory: newArr } };
+    var myquery = { _id: new ObjectID(userId) };
+    var newvalues = { $push: { purchaseHistory: { $each: items } } };
     dbo.collection(collectionName).updateOne(myquery, newvalues, function (err, result) {
       if (err) throw err;
       res.send(result)

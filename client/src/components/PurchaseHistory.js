@@ -21,27 +21,27 @@ export default class PurchaseHistory extends Component {
     }
 
     componentDidMount() {
-        // this.getPurchaseHistoryFromDB()
+         this.getPurchaseHistoryFromDB()
 
     }
 
     getPurchaseHistoryFromDB = () => {
         let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
-        axios.get(`/cart/${user._id}`)
+        axios.get(`/purchaseHistory/${user._id}`)
             .then((res) => {
                 console.log(res.data)
 
                 
-                // update myCart in Session storage
-                user.purchaseHistory = [...res.data]
-                let updatedUser = JSON.stringify(user)
-                sessionStorage.setItem("theBookShelf_user_login", updatedUser);
+                // // update myCart in Session storage
+                // user.purchaseHistory = [...res.data]
+                // let updatedUser = JSON.stringify(user)
+                // sessionStorage.setItem("theBookShelf_user_login", updatedUser);
 
-                this.setState({ items: res.data })
+                // this.setState({ items: res.data })
 
 
-                //update user info on App.js
-                this.props.triggerLogin()
+                // //update user info on App.js
+                // this.props.triggerLogin()
             })
             .catch(err => console.log(err))
     }
