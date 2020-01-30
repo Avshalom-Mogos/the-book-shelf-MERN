@@ -31,7 +31,7 @@ export default class App extends React.Component {
             <Route exact path="/about" render={() => <About />} />
             <Route exact path="/sales" render={() => <Sales />} />
             <Route exact path="/Cart" render={() => <Cart triggerLogin={this.login}/>} />
-            <Route exact path="/PurchaseHistory" render={() => <PurchaseHistory />} />
+            <Route exact path="/PurchaseHistory" render={() => <PurchaseHistory triggerLogin={this.login}/>} />
             <Route path="/search/:searchParam" render={(props) => <Search user={this.state.userInfo} triggerLogin={this.login} {...props} />} />
             <Route render={() => <h1>ERROR:404</h1>} />
           </Switch>

@@ -2,59 +2,51 @@ import React, { Component } from 'react';
 import axios from "axios";
 import "./CSS/Cart.css";
 import CartItem from './CartItem';
-import { Col, Row,Badge} from 'react-bootstrap';
+import OrderSummary from "./OrderSummary"
+import { Container, Col, Row, Badge } from 'react-bootstrap';
 
 export default class Cart extends Component {
 
-    state = { items: []}
+    state = { items: [], showOrderSummary: false }
 
-    prices= [];
+    prices = [];
 
     render() {
 
-      
+
         return (
-            <div className="Cart">   
-              
-              
-                <Row> 
-            <Col md={7} className="Cart-container flex-grow-1">
-             
-                <Row>
+            <div className="Cart">
 
-              
-               <Col> 
+                {this.state.showOrderSummary ? <OrderSummary items={this.state.items} close={this.closeOrder} /> : ""}
+                <Row className="d-flex">
+                    <Col className="Cart-container flex-grow-1">
+                        <Row>
+                            <Col>
+                                {
+                                    this.state.items.map((book, index) => {
+                                        return (
+                                            <div key={index}>
+                                                <CartItem book={book} update={this.getAllCartDataFromDB} />
 
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </Col>
+                        </Row>
+                    </Col>
 
-                {
-                    this.state.items.map((book, index) => {
-                        return (
-                            <div key={index}>
-                                <CartItem  book={book} update={this.getAllCartDataFromDB}/>
-                               
-                            </div>
-                        )
-                    })
-                }
-               
-                 
-                 </Col >
-                 </Row> 
-                
-            </Col>
+                    <div className="Cart-checkOut">
 
-            <div  md={4}  className="Cart-checkOut w-sm-100"> 
-            <button style={{marginBottom:"10px"}} className="btn  btn-lg  mr-5">CheckOut</button>
-                <h5> <i class="fas fa-book"></i>  all Books: <Badge>{this.state.items.length}</Badge></h5>
-               <h5 >Total: {this.state.items.reduce((total,book)=>{
-               return total+book.saleInfo.listPrice.amount
-                },0)} ILS</h5>
-             
-                  
+                        <h5> <i className="fas fa-book"></i>  all Books: <Badge>{this.state.items.length}</Badge></h5>
+                        <h5>Total: {this.state.items.reduce((total, book) => {
+                            return total + book.saleInfo.listPrice.amount
+                        }, 0)} ILS</h5>
+                        <button onClick={() => this.setState({ showOrderSummary: true })} style={{ marginBottom: "10px" }} className="btn  btn-lg  mr-5">CheckOut</button>
+                    </div>
+                </Row>
             </div>
-            </Row>
-            </div>
-
+            
         )
     }
 
@@ -80,6 +72,10 @@ export default class Cart extends Component {
                 //update user info on App.js
                 this.props.triggerLogin()
             })
+    }
+
+    closeOrder = () => {
+        this.setState({ showOrderSummary: false })
     }
 
 }

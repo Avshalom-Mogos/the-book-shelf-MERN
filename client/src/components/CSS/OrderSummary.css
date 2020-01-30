@@ -1,0 +1,12 @@
+.OrderSummary{
+    position: fixed;
+    width:500px;
+    /* height:200px; */
+    padding:10px;
+    z-index:200;
+    margin: 5% auto;
+    left: 0;
+    right: 0;
+    background-color:#FFF;
+    border:5px solid #CCC;
+}
