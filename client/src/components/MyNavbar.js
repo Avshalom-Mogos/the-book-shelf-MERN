@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navbar, Form, FormControl, Dropdown, Badge } from "react-bootstrap"
+import { Navbar, Form, FormControl, Dropdown, Badge,DropdownButton} from "react-bootstrap"
 import { Link } from "react-router-dom";
 import "./CSS/MyNavbar.css"
 
@@ -19,12 +19,8 @@ export default class MyNavbar extends React.Component {
                             The Book Shelf
                     </Navbar.Brand>
                         <Form inline>
-                            <Navbar.Text>
-                                <Dropdown>
-                                    <Dropdown.Toggle variant="Success" id="dropdown-menu-align-right">
-                                        My Shelf
-                                </Dropdown.Toggle>
-                                    <Dropdown.Menu >
+                            <Navbar.Text  >
+                                <DropdownButton  id="dropdown-basic-button" title="My Shelf ">
                                         <Dropdown.Header style={{ color: "black" }}>
                                             <strong>{`Welcome ${this.props.userInfo.userName}`}</strong>
                                         </Dropdown.Header>
@@ -41,18 +37,20 @@ export default class MyNavbar extends React.Component {
                                                 </div> :
                                                 <Dropdown.Item style={{ color: "black" }} as={Link} to="/login">Login</Dropdown.Item>
                                         }
-                                    </Dropdown.Menu>
-                                </Dropdown>
+                                  
+                                </DropdownButton>
                             </Navbar.Text>
                         </Form>
                     </Navbar>
+                  
+
+
                
         
                     <Navbar style={this.NavbarStyle}>
                         <Form className="MyNavbar-form" onSubmit={(e) => this.redirectToSearch(e)}>
                             <FormControl onChange={(e) => this.searchParams = e.target.value} type="text" placeholder="Search" className="MyNavbar-search-input" />
-                            {/* <Button onClick={this.redirectToSearch} variant="outline-success">Search</Button> */}
-                            <i onClick={this.redirectToSearch} className="fas fa-search MyNavbar-search-btn"></i>
+                            <i onClick={this.redirectToSearch} className="fas fa-search btn"></i>
                         </Form>
                     </Navbar>
               

@@ -11,15 +11,15 @@ export default class cartItem extends Component {
             <div> 
             <Container   className="container text-center"> 
              <Row className="row"> 
-            <Col   sm={3} >
+            <Col   sm={4} >
                 <img  style={{marginBottom:"10px"}} src={book.volumeInfo.imageLinks.thumbnail} alt={"imgBook"} />
                
              </Col>
-             <Col  sm={3} > 
+             <Col  sm={4} > 
              <p>{book.volumeInfo.title}</p>
              </Col>
            
-            <Col  sm={3}> 
+            <Col  sm={4}> 
                 { < i onClick={this.deleteBook}  class="fas fa-trash btn"></i> }
              </Col>
             
@@ -32,6 +32,7 @@ export default class cartItem extends Component {
             </div>
         )
     }
+    
 
     deleteBook = () => {
 

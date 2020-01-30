@@ -17,3 +17,16 @@
     cursor: pointer;
 
 }
+#dropdown-basic-button{
+  padding-left: 20%;
+  padding-right: 20%;
+  margin-right:26px;
+  
+}
+
+.fa-search{
+    padding-top: 10px;
+    height: 1.5%;
+    margin-top: 2px;
+
+}

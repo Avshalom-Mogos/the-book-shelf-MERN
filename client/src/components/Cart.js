@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from "axios";
 import "./CSS/Cart.css";
 import CartItem from './CartItem';
-import { Container, Col, Row,Badge} from 'react-bootstrap';
+import { Col, Row,Badge} from 'react-bootstrap';
 
 export default class Cart extends Component {
 
@@ -15,10 +15,10 @@ export default class Cart extends Component {
       
         return (
             <div className="Cart">   
-               <h1>My Cart</h1>
               
-                <div className="d-flex"> 
-            <Container  className="Cart-container flex-grow-1">
+              
+                <Row> 
+            <Col md={7} className="Cart-container flex-grow-1">
              
                 <Row>
 
@@ -41,18 +41,18 @@ export default class Cart extends Component {
                  </Col >
                  </Row> 
                 
-            </Container>
+            </Col>
 
-            <div className="Cart-checkOut"> 
-
+            <div  md={4}  className="Cart-checkOut w-sm-100"> 
+            <button style={{marginBottom:"10px"}} className="btn  btn-lg  mr-5">CheckOut</button>
                 <h5> <i class="fas fa-book"></i>  all Books: <Badge>{this.state.items.length}</Badge></h5>
-               <h5>Total: {this.state.items.reduce((total,book)=>{
+               <h5 >Total: {this.state.items.reduce((total,book)=>{
                return total+book.saleInfo.listPrice.amount
                 },0)} ILS</h5>
-               <button style={{marginBottom:"10px"}} className="btn  btn-lg  mr-5">CheckOut</button>
+             
                   
             </div>
-            </div>
+            </Row>
             </div>
 
         )
