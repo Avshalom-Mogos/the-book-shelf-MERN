@@ -9,14 +9,10 @@ export default class Cart extends Component {
 
     state = { items: [], showOrderSummary: false }
 
-    prices = [];
-
     render() {
-
 
         return (
             <div className="Cart">
-
                 {this.state.showOrderSummary ? <OrderSummary items={this.state.items} close={this.closeOrder} /> : ""}
                 <Row className="d-flex">
                     <Col className="Cart-container flex-grow-1">
@@ -27,7 +23,6 @@ export default class Cart extends Component {
                                         return (
                                             <div key={index}>
                                                 <CartItem book={book} update={this.getAllCartDataFromDB} />
-
                                             </div>
                                         )
                                     })
@@ -37,7 +32,6 @@ export default class Cart extends Component {
                     </Col>
 
                     <div  className="Cart-checkOut">
-
                         <h5> <i className="fas fa-book"></i>  all Books: <Badge>{this.state.items.length}</Badge></h5>
                         <h5>Total: {this.state.items.reduce((total, book) => {
                             return total + book.saleInfo.listPrice.amount
@@ -52,10 +46,12 @@ export default class Cart extends Component {
 
 
     componentDidMount() {
+
         this.getAllCartDataFromDB();
     }
 
     getAllCartDataFromDB = () => {
+
         let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
         axios.get(`/cart/${user._id}`)
             .then((res) => {
@@ -75,6 +71,7 @@ export default class Cart extends Component {
     }
 
     closeOrder = () => {
+
         this.setState({ showOrderSummary: false })
     }
 
