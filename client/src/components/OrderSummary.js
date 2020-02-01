@@ -24,6 +24,8 @@ export default class OrderSummary extends Component {
                 }
                 <button onClick={this.addToPurchaseHistory}>buy all</button>
                 <button onClick={() => this.props.close()}>X</button>
+                <button onClick={this.addDateStamp}>date</button>
+
             </div>
         )
     }
@@ -32,10 +34,20 @@ export default class OrderSummary extends Component {
 
     addToPurchaseHistory = () => {
         let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
+        let itemsArray = [...this.props.items];
+        this.addDateStamp(itemsArray);
 
-        axios.post("/purchaseHistory", { id: user._id, items: this.props.items })
+        axios.post("/purchaseHistory", { id: user._id, items: itemsArray })
             .then((res) => console.log(res))
             .catch((err) => console.log("hello"))
+
+    }
+
+    addDateStamp = (itemsArray) => {
+
+        itemsArray.forEach(item => {
+            item.dateOfPurchase = new Date().toDateString();
+        });
 
     }
 }
