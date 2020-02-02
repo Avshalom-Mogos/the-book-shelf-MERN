@@ -1,3 +1,8 @@
+.MyNavbar{
+    padding: 10px;
+}
+
+
 .MyNavbar-form{
     display: flex;
     justify-content: space-evenly;
@@ -15,19 +20,22 @@
     padding: 9px;
     background-color: orange;
     cursor: pointer;
-
 }
+
 #dropdown-basic-button{
- padding-left: 10%; 
-  padding-right: 10%;  
-     width: 80%; 
- 
-  
+    width: 188px; 
+    padding: 4px;
+    margin: 0px 4px;
+}
+.dropdown-menu{
+    width: 188px; 
+    padding: 4px;
+    margin: 0px 4px;
+
 }
 
 .fa-search{
     padding-top: 10px;
     height: 1.5%;
     margin-top: 2px;
-
 }

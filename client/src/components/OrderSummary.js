@@ -24,8 +24,6 @@ export default class OrderSummary extends Component {
                 }
                 <button onClick={this.addToPurchaseHistory}>buy all</button>
                 <button onClick={() => this.props.close()}>X</button>
-                <button onClick={this.addDateStamp}>date</button>
-
             </div>
         )
     }
