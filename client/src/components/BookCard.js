@@ -24,7 +24,11 @@ export default class BookCard extends Component {
                     <Card.Text>{this.props.book.saleInfo.listPrice.amount}.99 ILS</Card.Text>
                 </Card.Body>
                 <Card.Footer>
-                    <Button onClick={this.addToCart} className="BookCard-addToCart-btn" variant="primary">Add to Cart</Button>
+                       { JSON.parse(sessionStorage.getItem("theBookShelf_user_login"))? 
+                       <Button onClick={this.addToCart} className="BookCard-addToCart-btn" variant="primary">Add to Cart</Button>
+                       :  <Button  className="BookCard-addToCart-btn" variant="primary">Add to Cart</Button>} 
+                        
+                   
                 </Card.Footer>
             </Card>
         )

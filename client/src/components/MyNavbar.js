@@ -20,7 +20,7 @@ export default class MyNavbar extends React.Component {
                     </Navbar.Brand>
                         <Form inline>
                             <Navbar.Text  >
-                                <DropdownButton  id="dropdown-basic-button" title="My Shelf">
+                                <DropdownButton  style={{ marginRight:"100px",width:"100%"}} id="dropdown-basic-button" title="My Shelf">
                                         <Dropdown.Header style={{ color: "black" }}>
                                             <strong>{`Welcome ${this.props.userInfo.userName}`}</strong>
                                         </Dropdown.Header>
