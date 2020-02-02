@@ -3,9 +3,23 @@ import { Card, Button } from "react-bootstrap"
 import axios from "axios"
 import "./CSS/BookCard.css"
 
+import {Redirect} from "react-router-dom"
 export default class BookCard extends Component {
+    state ={flag:false}
+
+
+    changeHendler =()=>{
+        this.setState({flag:true})
+    }
+
 
     render() {
+        if(this.state.flag){
+            return <Redirect to="/ReadMore"/>
+            
+        }
+        
+        
 
         this.addMissingDetails();
         // console.log(this.props.book.volumeInfo.imageLinks);
@@ -28,8 +42,9 @@ export default class BookCard extends Component {
                        <Button onClick={this.addToCart} className="BookCard-addToCart-btn" variant="primary">Add to Cart</Button>
                        :  <Button  className="BookCard-addToCart-btn" variant="primary">Add to Cart</Button>} 
                         
-                   
+                 
                 </Card.Footer>
+                <button onClick={this.changeHendler}>Read more</button>
             </Card>
         )
     }
