@@ -15,14 +15,14 @@ export default class Search extends Component {
     render() {
 
         return (
-            <div className="Search">
+            <div  className="Search">
                 {
                     this.state.showSpinner ?
                         <Spinner animation="border" className="Search-spinner" variant="warning" />
                         : <h3>{`${this.state.books.length} results for ${this.searchParam}:`}</h3>
                 }
                     {this.state.showToast ? this.Toast() : ""}
-                <Container>
+                <Container> 
 
                     <Row style={{ marginTop: "20px" }}>
 
@@ -32,7 +32,9 @@ export default class Search extends Component {
                                     <Col key={index} sm="6" md="4" lg="3">
                                         <BookCard book={book}
                                             Toast={this.ToastDisplay}
-                                            triggerLogin={this.props.triggerLogin}
+                                            triggerLogin={this.props.triggerLogin} 
+                                            moreDetails={this.props.moreDetails} 
+                                            
                                         />
 
                                     </Col>
@@ -48,12 +50,19 @@ export default class Search extends Component {
         )
     }
 
+
+
+
+
+
+
     //
     ToastDisplay = (msg) => {
 
         this.toastMsg = msg;
         this.setState({ showToast: true })
     }
+
 
     Toast = () => {
         return (
@@ -63,7 +72,7 @@ export default class Search extends Component {
                     onClose={() => this.setState({ showToast: false })}>
                     <Toast.Header>
                         <img src="" className="rounded mr-2" alt="brandImg" />
-                        <strong className="mr-auto">The Book Shelf</strong>
+                        <strong className="mr-auto">The Book Shelf</strong> 
                     </Toast.Header>
                     <Toast.Body>"<strong>{this.toastMsg}</strong>" was added to the cart!</Toast.Body>
                 </Toast>

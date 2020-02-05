@@ -9,22 +9,22 @@ export default class BookCard extends Component {
 
 
     changeHendler =()=>{
+        this.props.moreDetails(this.props.book)
         this.setState({flag:true})
+
     }
 
 
     render() {
-        if(this.state.flag){
+         if(this.state.flag){
             return <Redirect to="/ReadMore"/>
             
-        }
+         }
         
         
 
         this.addMissingDetails();
-        // console.log(this.props.book.volumeInfo.imageLinks);
-        //console.log(this.props.book.volumeInfo.categories); USE THIS TO FILTER LATER
-
+    
         return (
             <Card className="BookCard">
                 <Card.Img className="BookCard-img" src={this.props.book.volumeInfo.imageLinks.thumbnail} />
@@ -38,11 +38,12 @@ export default class BookCard extends Component {
                     <Card.Text>{this.props.book.saleInfo.listPrice.amount}.99 ILS</Card.Text>
                 </Card.Body>
                 <Card.Footer>
-                    {JSON.parse(sessionStorage.getItem("theBookShelf_user_login")) ?
-                        <Button onClick={this.addToCart} className="BookCard-addToCart-btn" variant="primary">Add to Cart</Button>
-                        : <Button className="BookCard-addToCart-btn" variant="primary">Add to Cart</Button>}
+                       { JSON.parse(sessionStorage.getItem("theBookShelf_user_login"))? 
+                       <Button onClick={this.addToCart} className="BookCard-addToCart-btn" variant="primary">Add to Cart</Button>
+                       :  <Button  className="BookCard-addToCart-btn" variant="primary">Add to Cart</Button>} 
+                        
                 </Card.Footer>
-                <button onClick={this.changeHendler}>Read more</button>
+                <button onClick={this.changeHendler} >Read more</button> 
             </Card>
         )
     }
@@ -63,7 +64,7 @@ export default class BookCard extends Component {
                 user.myCart.push(newBook.book)
                 let updatedUser = JSON.stringify(user)
                 sessionStorage.setItem("theBookShelf_user_login", updatedUser);
-
+                
 
                 //update user info on App.js
                 this.props.triggerLogin()

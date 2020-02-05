@@ -20,10 +20,12 @@ export default class Cart extends Component {
                         <Col className="Cart-container flex-grow-1">
                             <Row>
                                 <Col>
+                                <h1 style={{textAlign:"center"}}> {this.state.items.length===0?"The cart is Empty":""}</h1>
                                     {
                                         this.state.items.map((book, index) => {
                                             return (
-                                                <CartItem key={index} book={book} update={this.getAllCartDataFromDB} />
+                                                <CartItem key={index} book={book} update={this.getAllCartDataFromDB}/> 
+                                                
                                             )
                                         })
                                     }
@@ -35,7 +37,8 @@ export default class Cart extends Component {
                         <h5>Total: {this.state.items.reduce((total, book) => {
                             return total + book.saleInfo.listPrice.amount
                         }, 0)} ILS</h5>
-                        <button onClick={() => this.setState({ showOrderSummary: true })} style={{ marginBottom: "10px" }} className="btn  btn-lg ">CheckOut</button>
+                        {this.state.items.length===0? <button style={{ marginBottom: "10px" }} className="btn  btn-lg ">CheckOut</button> : 
+                        <button onClick={() => this.setState({ showOrderSummary: true })} style={{ marginBottom: "10px" }} className="btn  btn-lg ">CheckOut</button>  }
                     </div>
                     </Row>
 
