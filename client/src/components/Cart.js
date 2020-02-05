@@ -14,7 +14,7 @@ export default class Cart extends Component {
         return (
             <div className="Cart">
                 <Container>
-                  
+
                     {this.state.showOrderSummary ? <OrderSummary items={this.state.items} close={this.closeOrder} /> : ""}
                     <Row className="d-flex">
                         <Col className="Cart-container flex-grow-1">
@@ -31,12 +31,12 @@ export default class Cart extends Component {
                             </Row>
                         </Col>
                         <div className="Cart-checkOut">
-                        <h5> <i className="fas fa-book"></i>  all Books: <Badge>{this.state.items.length}</Badge></h5>
-                        <h5>Total: {this.state.items.reduce((total, book) => {
-                            return total + book.saleInfo.listPrice.amount
-                        }, 0)} ILS</h5>
-                        <button onClick={() => this.setState({ showOrderSummary: true })} style={{ marginBottom: "10px" }} className="btn  btn-lg ">CheckOut</button>
-                    </div>
+                            <h5> <i className="fas fa-book"></i>  all Books: <Badge>{this.state.items.length}</Badge></h5>
+                            <h5>Total: {this.state.items.reduce((total, book) => {
+                                return total + book.saleInfo.listPrice.amount
+                            }, 0)} ILS</h5>
+                            <button onClick={() => this.setState({ showOrderSummary: true })} style={{ marginBottom: "10px" }} className="btn  btn-lg ">CheckOut</button>
+                        </div>
                     </Row>
 
 

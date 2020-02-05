@@ -3,23 +3,23 @@ import { Card, Button } from "react-bootstrap"
 import axios from "axios"
 import "./CSS/BookCard.css"
 
-import {Redirect} from "react-router-dom"
+import { Redirect } from "react-router-dom"
 export default class BookCard extends Component {
-    state ={flag:false}
+    state = { flag: false }
 
 
-    changeHendler =()=>{
-        this.setState({flag:true})
+    changeHendler = () => {
+        this.setState({ flag: true })
     }
 
 
     render() {
-        if(this.state.flag){
-            return <Redirect to="/ReadMore"/>
-            
+        if (this.state.flag) {
+            return <Redirect to="/ReadMore" />
+
         }
-        
-        
+
+
 
         this.addMissingDetails();
         // console.log(this.props.book.volumeInfo.imageLinks);

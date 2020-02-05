@@ -1,5 +1,11 @@
-.MyNavbar{
-    padding: 10px;
+.MyNavbar {
+    padding: 0px 10px;
+}
+
+.MyNavbar-search-navbar{
+    padding: 4px 0;
+    background-color: lightslategrey
+    
 }
 
 

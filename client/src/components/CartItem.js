@@ -9,13 +9,13 @@ export default class cartItem extends Component {
         const book = this.props.book;
         return (
             <Row className="text-center">
-                <Col ms={4} sm={12} >
+                <Col md={4} sm={12} >
                     <img style={{ marginBottom: "10px" }} src={book.volumeInfo.imageLinks.thumbnail} alt={"imgBook"} />
                 </Col>
-                <Col ms={4} sm={12} >
+                <Col md={4} sm={12} >
                     <p>{book.volumeInfo.title}</p>
                 </Col>
-                <Col ms={4} sm={12}>
+                <Col md={4} sm={12}>
                     {< i onClick={this.deleteBook} className="fas fa-trash btn"></i>}
                 </Col>
             </Row>

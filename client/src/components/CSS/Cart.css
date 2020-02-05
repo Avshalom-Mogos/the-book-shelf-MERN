@@ -18,14 +18,19 @@
 .Cart-checkOut{
     background-color: #ffffff;
     padding:10px;
-    padding-bottom: 10px;
-    width: 40%;
+    width: 20%;
     height: 20%;
+    text-align: center;
+    border: 1px solid red;
     
-    /* margin-left: 15px; */
-    /* text-align: center; */
 }
 
-.col{
-    background-color: red;
+.col-md-4{
+    /* background-color: red; */
+    /* border: 1px solid red; */
+}
+
+.row{
+    
+
 }
