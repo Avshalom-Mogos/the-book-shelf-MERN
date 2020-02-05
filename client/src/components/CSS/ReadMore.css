@@ -1,4 +1,41 @@
 .ReadMore{
     min-height:  calc(100vh - 258px);
 
+
+}
+
+
+.img{
+    flex:  0 0 25%;
+   
+ 
+}
+
+
+.ReadMore-pic{
+    width:100%;
+    height:100%;
+    border-radius: 10px;
+   
+}
+
+
+
+.search{
+width: 40%;
+float: right; 
+margin-left:20%;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  background-color: orange;
+  
+ 
+
+} 
+.Add{
+    width: 40%;
+   float: right; 
+  margin-left:20%;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  background-color: orange;
+    
 }

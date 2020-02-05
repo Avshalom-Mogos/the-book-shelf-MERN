@@ -1,13 +1,16 @@
 .Search{
     background-color: #f0f0f0;
     min-height:  calc(100vh - 258px);
+    
 }
 
-.Search-spinner{
+.Search-spinner{ 
     display: flex;
     width: 200px;
     height: 200px;
     margin: 200px auto;
+    
+ 
    
 }
 
@@ -16,9 +19,13 @@
     top: 15px;
     z-index: 1;
     width: 100%;
+    
 }
 
 .Search-toast{
     margin: 0 auto;
     border: 2px outset;
+    
+    
 }
+

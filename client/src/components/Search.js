@@ -39,7 +39,9 @@ export default class Search extends Component {
                                     <Col key={index} sm="6" md="4" lg="3">
                                         <BookCard book={book}
                                             Toast={this.ToastDisplay}
-                                            triggerLogin={this.props.triggerLogin}
+                                            triggerLogin={this.props.triggerLogin} 
+                                            moreDetails={this.props.moreDetails} 
+                                            
                                         />
                                     </Col>
                                 )
@@ -51,6 +53,12 @@ export default class Search extends Component {
             </div>
         )
     }
+
+
+
+
+
+
 
     //
     ToastDisplay = (msg) => {
@@ -100,7 +108,7 @@ export default class Search extends Component {
                     onClose={() => this.setState({ showToast: false })}>
                     <Toast.Header>
                         <img src="" className="rounded mr-2" alt="brandImg" />
-                        <strong className="mr-auto">The Book Shelf</strong>
+                        <strong className="mr-auto">The Book Shelf</strong> 
                     </Toast.Header>
                     <Toast.Body>"<strong>{this.toastMsg}</strong>" was added to the cart!</Toast.Body>
                 </Toast>
