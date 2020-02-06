@@ -16,6 +16,7 @@ export default class Search extends Component {
 
         return (
             <div className="Search">
+                    {this.state.showToast ? this.Toast() : ""}
                 <Container>
                     {
                         this.state.showSpinner ?
@@ -27,7 +28,6 @@ export default class Search extends Component {
                                 </ButtonToolbar>
                             </div>
                     }
-                    {this.state.showToast ? this.Toast() : ""}
 
                     <Row style={{ marginTop: "20px" }}>
 
