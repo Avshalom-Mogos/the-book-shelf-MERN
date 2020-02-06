@@ -37,8 +37,8 @@ export default class Cart extends Component {
                         <h5>Total: {this.state.items.reduce((total, book) => {
                             return total + book.saleInfo.listPrice.amount
                         }, 0)} ILS</h5>
-                        {this.state.items.length===0? <button style={{ marginBottom: "10px" }} className="btn  btn-lg ">CheckOut</button> : 
-                        <button onClick={() => this.setState({ showOrderSummary: true })} style={{ marginBottom: "10px" }} className="btn  btn-lg ">CheckOut</button>  }
+                        {this.state.items.length===0? <button style={{ marginBottom: "10px",opacity: 0.5}} className="btn-lg ">CheckOut</button> : 
+                        <button onClick={() => this.setState({ showOrderSummary: true })} style={{ marginBottom: "10px" }} className="btn  btn-lg ">CheckOut</button>}
                     </div>
                     </Row>
 

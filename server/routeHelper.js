@@ -86,10 +86,17 @@ function getCartData(req, res) {
   let id = req.params.userId;
 
   MongoClient.connect(url, function (err, db) {
-    if (err) throw err;
+    if (err){
+      console.log(err)
+      return res.sendStatus(500);
+    }
+    
     var dbo = db.db(dbName);
     dbo.collection(collectionName).findOne({ _id: new ObjectID(id) }, function (err, user) {
-      if (err) throw err;
+      if (err) {
+        console.log(err)
+        return res.sendStatus(500);
+      }
       res.send(user.myCart)
       db.close();
     });
@@ -104,12 +111,18 @@ function addToCart(req, res) {
   console.log(book);
 
   MongoClient.connect(url, function (err, db) {
-    if (err) throw err;
+    if (err){
+      console.log(err)
+      return res.sendStatus(500)
+    }
     var dbo = db.db(dbName);
     var myquery = { _id: new ObjectID(id) };
     var newvalues = { $push: { myCart: book } };
     dbo.collection(collectionName).updateOne(myquery, newvalues, function (err, result) {
-      if (err) throw err;
+      if (err) {
+        console.log(err)
+        res.sendStatus(500);
+      }
       res.send(result)
       console.log("1 document updated");
       db.close();
@@ -177,7 +190,7 @@ function addToPurchaseHistory(req, res) {
     dbo.collection(collectionName).updateOne(myquery, newvalues, function (err, result) {
       if (err) throw err;
       res.send(result)
-      console.log("1 document updated");
+      console.log("1 document updated");  
       db.close();
     });
   });

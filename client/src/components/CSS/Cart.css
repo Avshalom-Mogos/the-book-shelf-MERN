@@ -4,6 +4,8 @@
     background-color: white;
     background-color: #f0f0f0;
      overflow-x: hidden; 
+    
+     
    
 
 }
@@ -12,7 +14,8 @@
     background: #ffffff;
     border: 2px solid lightgray;
     min-height: 600px;
-   
+    border-radius: 10px;
+    
 }
 
 .Cart-checkOut{
@@ -21,7 +24,9 @@
     width: 20%;
     height: 20%;
     text-align: center;
-    border: 1px solid red;
+    border-radius: 10px;
+    /* border: 1px solid red; */
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     
 }
 

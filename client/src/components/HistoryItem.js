@@ -8,20 +8,17 @@ export default class HistoryItem extends Component {
         const book = this.props.book;
         return (
                 <Row className="HistoryItem">
-                    <Col sm={4} style={this.style}>
+                    <Col className="Col" sm={4} >
                         <img src={book.volumeInfo.imageLinks.thumbnail} alt={"imgBook"} />
                     </Col>
-                    <Col sm={4} style={this.style}>
+                    <Col  className="Col" sm={4} >
                         <p>{book.volumeInfo.title}</p>
                     </Col>
-                    <Col sm={4} style={this.style}>
+                    <Col  className="Col" sm={4} >
                         <p>{book.dateOfPurchase}</p>
                     </Col>
                 </Row>
         )
     }
-    style = {
-        border: "1px solid red",
-      
-    }
+   
 }
