@@ -1,31 +1,27 @@
 .Search{
     background-color: #f0f0f0;
     min-height:  calc(100vh - 258px);
-    
 }
 
+
 .Search-spinner{ 
-    display: flex;
+    position: fixed;
+    margin: 10% auto;
+    left: 0;
+    right: 0;
     width: 200px;
     height: 200px;
-    margin: 200px auto;
-    
- 
-   
 }
 
 .Search-toast-container{
     position: fixed;
-    top: 15px;
+    top: 5%;
     z-index: 1;
-    width: 100%;
-    
+    width: 100%;  
 }
 
 .Search-toast{
     margin: 0 auto;
-    border: 2px outset;
-    
-    
+    border: 2px outset #ff8d1e;
 }
 

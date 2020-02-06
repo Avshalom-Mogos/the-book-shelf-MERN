@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import "./CSS/ReadMore.css"
-import { Container, Row,Card,Col, Alert} from 'react-bootstrap';
+import { Container, Row,Card,Col, Toast} from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 import "./CSS/ReadMore.css";
 import axios from "axios"
@@ -8,7 +8,7 @@ import SuccessAlert from "./SuccessAlert"
 
 export default class ReadMore extends Component {
     
-    state ={flag:false, alert_Masage:""}
+    state ={flag:false, showToast:false}
 
     render() {
         console.log(this.props);
@@ -26,7 +26,8 @@ export default class ReadMore extends Component {
         return (
             
             <div className="ReadMore">
-                  {this.state.alert_Masage==="success"?<SuccessAlert/> :""}
+                  {/* {this.state.showToast==="success"?<SuccessAlert/> :""} */}
+                  {this.state.showToast ? this.Toast() : ""}
                   
                   <Card>  
               
@@ -90,7 +91,22 @@ export default class ReadMore extends Component {
 
 
 
+    Toast = () => {
+        return (
+            <div className="Search-toast-container">
+                <Toast className="Search-toast" autohide
+                    delay={3000} animation
+                    onClose={() => this.setState({ showToast: false })}>
+                    <Toast.Header>
+                        <img src="" className="rounded mr-2" alt="brandImg" />
+                        <strong className="mr-auto">The Book Shelf</strong> 
+                    </Toast.Header>
+                    <Toast.Body>Book was added to the cart!</Toast.Body>
+                </Toast>
+            </div>
 
+        )
+    }
 
 
     BackToSearch =()=>{
@@ -106,7 +122,7 @@ export default class ReadMore extends Component {
             .then((res) => {
                 ///____________________________________
                 
-                this.setState({alert_Masage:"success"})
+                this.setState({showToast:true})
                 console.log(res)
                 let newBook = JSON.parse(res.config.data)
                
