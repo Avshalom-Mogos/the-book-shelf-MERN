@@ -13,7 +13,7 @@ export default class Cart extends Component {
 
         return (
             <div className="Cart">
-                <Container>
+  
 
                     {this.state.showOrderSummary ? <OrderSummary items={this.state.items} close={this.closeOrder} /> : ""}
                     <Row className="d-flex">
@@ -43,7 +43,7 @@ export default class Cart extends Component {
                     </Row>
 
 
-                </Container>
+              
             </div>
 
         )
