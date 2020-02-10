@@ -2,13 +2,19 @@ import React, { Component } from 'react'
 import axios from "axios";
 import BookCard from './BookCard';
 import "./CSS/Search.css"
-import { Container, Col, Row, Spinner, ButtonToolbar, Button } from 'react-bootstrap';
-import Toast from 'react-bootstrap/Toast'
+import { Container, Col, Row, Spinner, Accordion, Toast, Dropdown, Card } from 'react-bootstrap';
+
 
 
 export default class Search extends Component {
 
-    state = { books: [], showSpinner: true, showToast: false, listToDisplay: [] };
+    state = {
+        books: [],
+        showSpinner: true,
+        showToast: false,
+        listToDisplay: [],
+        categories: "categories"
+    };
     searchParam = this.props.match.params.searchParam;
     toastMsg = "";
 
@@ -16,56 +22,53 @@ export default class Search extends Component {
 
         return (
             <div className="Search">
-                    {this.state.showToast ? this.Toast() : ""}
-                <Container>
+                {this.state.showToast ? this.Toast() : ""}
+                <Container fluid>
                     {
                         this.state.showSpinner ?
                             <Spinner animation="border" className="Search-spinner" variant="warning" />
-                            : <div>
+                            : <div className="Search-resultsNum">
                                 <h3>{`${this.state.listToDisplay.length} results for "${this.searchParam}":`}</h3>
-                                <ButtonToolbar style={{ border: "3px outset lightgrey" }}>
-                                    {this.FilterButtons()}
-                                </ButtonToolbar>
                             </div>
                     }
+                    <Row>
+                        <Col lg={3} md={12} style={{ marginTop: "20px" }}>
+                            <Accordion style={{ padding: "0px 15px" }}>
+                                <Card>
+                                    <Accordion.Toggle className="Search-accordion-header" as={Card.Header} eventKey="0">
+                                        {this.state.categories}
+                                    </Accordion.Toggle>
+                                    <Accordion.Collapse eventKey="0">
+                                        <div>
+                                            {this.FilterButtons()}
+                                        </div>
+                                    </Accordion.Collapse>
+                                </Card>
+                            </Accordion >
+                        </Col>
+                        <Col>
+                            <Row style={{ marginTop: "20px" }}>
 
-                    <Row style={{ marginTop: "20px" }}>
 
-                        {
-                            this.state.listToDisplay.map((book, index) => {
-                                // console.log(book.volumeInfo.book.volumeInfo.categories);
-
-                                return (
-                                    <Col key={index} sm="6" md="4" lg="3">
-                                        <BookCard book={book}
-                                            Toast={this.ToastDisplay}
-                                            triggerLogin={this.props.triggerLogin} 
-                                            moreDetails={this.props.moreDetails} 
-                                            
-                                        />
-                                    </Col>
-                                )
-                            })
-                        }
-
+                                {this.state.listToDisplay.map((book, index) => {
+                                    return (
+                                        <Col key={index} sm="6" md="3" lg="3">
+                                            <BookCard book={book}
+                                                Toast={this.ToastDisplay}
+                                                triggerLogin={this.props.triggerLogin}
+                                                moreDetails={this.props.moreDetails}
+                                            />
+                                        </Col>
+                                    )
+                                })}
+                            </Row>
+                        </Col>
                     </Row>
                 </Container>
             </div>
         )
     }
 
-
-
-
-
-
-
-    //
-    ToastDisplay = (msg) => {
-
-        this.toastMsg = msg;
-        this.setState({ showToast: true })
-    }
 
     FilterButtons = () => {
 
@@ -78,7 +81,15 @@ export default class Search extends Component {
                 if (!booksBtnsObj[book.volumeInfo.categories]) {
 
                     booksBtnsObj[book.volumeInfo.categories] = book.volumeInfo.categories[0];
-                    return <Button key={index} variant="primary"
+                    return <Dropdown.Item
+                        className={
+                            booksBtnsObj[book.volumeInfo.categories] === this.state.categories ?
+                                "Search-accordion-item Search-accordion-item-selected"
+                                : "Search-accordion-item"
+                        }
+
+
+                        key={index} variant="primary"
                         onClick={() => {
                             //filter search results
                             let tmpArr = this.state.books.filter((bookFilter) => {
@@ -86,20 +97,22 @@ export default class Search extends Component {
                                     return bookFilter.volumeInfo.categories[0] === booksBtnsObj[book.volumeInfo.categories]
                                 }
                             })
-
                             console.log(tmpArr);
-
-                            this.setState({ listToDisplay: [...tmpArr] })
-                            //
+                            this.setState({ listToDisplay: [...tmpArr], categories: booksBtnsObj[book.volumeInfo.categories] })
                         }}
-                    >{booksBtnsObj[book.volumeInfo.categories]}</Button>
+                    >{booksBtnsObj[book.volumeInfo.categories]}</Dropdown.Item>
                 }
-                // console.log(book.volumeInfo.book.volumeInfo.categories);
             }
         })
         return btns
     }
-    
+
+
+    ToastDisplay = (msg) => {
+
+        this.toastMsg = msg;
+        this.setState({ showToast: true })
+    }
 
     Toast = () => {
         return (
@@ -109,23 +122,69 @@ export default class Search extends Component {
                     onClose={() => this.setState({ showToast: false })}>
                     <Toast.Header>
                         <img src="" className="rounded mr-2" alt="brandImg" />
-                        <strong className="mr-auto">The Book Shelf</strong> 
+                        <strong className="mr-auto">The Book Shelf</strong>
                     </Toast.Header>
                     <Toast.Body>"<strong>{this.toastMsg}</strong>" was added to the cart!</Toast.Body>
                 </Toast>
             </div>
-
         )
     }
 
     componentDidMount() {
         axios.get(`https://www.googleapis.com/books/v1/volumes?q=:${this.searchParam}&maxResults=40&projection=full&key=AIzaSyDhshslNH7uBtbjyb_AXtPz2vlYOFTF6pI`)
             .then((res) => {
-                this.setState({ books: res.data.items, showSpinner: false, listToDisplay: res.data.items })
+                let fullDataArr = [...res.data.items]
+                fullDataArr.forEach((book, index) => {
+                    this.addMissingDetails(fullDataArr, index)
+                });
+                console.log(fullDataArr);
                 console.log(res.data.items);
-
+                this.setState({ books: fullDataArr, showSpinner: false, listToDisplay: fullDataArr })
             })
     }
+
+    addMissingDetails = (fullDataArr, index) => {
+
+
+        if (!fullDataArr[index].saleInfo.listPrice) {
+
+            let randPrice = Math.floor(Math.random() * (70 - 20 + 1)) + 20
+            fullDataArr[index].saleInfo.listPrice = { amount: 0 };
+            fullDataArr[index].saleInfo.listPrice.amount = randPrice;
+        }
+
+        if (!fullDataArr[index].volumeInfo.imageLinks) {
+
+            let defaultSrc = "https://render.fineartamerica.com/images/rendered/default/print/5.875/8.000/break/images-medium-5/brown-closed-book-orensila.jpg"
+            fullDataArr[index].volumeInfo.imageLinks = { thumbnail: "" };
+            fullDataArr[index].volumeInfo.imageLinks.thumbnail = defaultSrc;
+        }
+
+        if (!fullDataArr[index].volumeInfo.authors) {
+
+            let defaultAuthors = "Ardato Belay";
+            fullDataArr[index].volumeInfo.authors = [defaultAuthors];
+        }
+
+        if (!fullDataArr[index].volumeInfo.categories) {
+
+            let defaultCategory = "General";
+            fullDataArr[index].volumeInfo.categories = [defaultCategory];
+        }
+
+        if (!fullDataArr[index].rating) {
+
+            let RandomRating = (Math.random() * 4 + 1).toFixed(1)
+            fullDataArr[index].rating = RandomRating;
+        }
+
+        if (!fullDataArr[index].volumeInfo.description) {
+
+            let defaultDescription = "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s";
+            fullDataArr[index].volumeInfo.description = defaultDescription;
+        }
+    }
+
 }
 
 
