@@ -10,17 +10,19 @@ export default class Cart extends Component {
     state = { items: [], showOrderSummary: false }
 
     render() {
-
+     const  style={
+            color:"red"
+        }
         return (
             <div className="Cart">
   
-
+                    <Container>   
                     {this.state.showOrderSummary ? <OrderSummary items={this.state.items} close={this.closeOrder} /> : ""}
                     <Row className="d-flex">
                         <Col className="Cart-container flex-grow-1">
                             <Row>
                                 <Col>
-                                <h1 style={{textAlign:"center"}}> {this.state.items.length===0?"The cart is Empty":""}</h1>
+                                <h1 className="cart-text"> {this.state.items.length===0?"The cart is Empty":""} </h1>
                                     {
                                         this.state.items.map((book, index) => {
                                             return (
@@ -42,7 +44,7 @@ export default class Cart extends Component {
                     </div>
                     </Row>
 
-
+                    </Container>
               
             </div>
 

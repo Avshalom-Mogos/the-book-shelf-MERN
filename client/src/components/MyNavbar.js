@@ -42,8 +42,9 @@ export default class MyNavbar extends React.Component {
                 </Navbar>
 
                 <Navbar className="MyNavbar-search-navbar">
-                    <Form className="MyNavbar-form" onSubmit={(e) => this.redirectToSearch(e)}>
-                        <FormControl onChange={(e) => this.searchParams = e.target.value} type="text" placeholder="Search" className="MyNavbar-search-input" />
+                    <Form  className="MyNavbar-form" onSubmit={(e) => this.redirectToSearch(e)}>
+                        
+                        <FormControl  onChange={(e) => this.searchParams = e.target.value} type="text" placeholder="Search" className="MyNavbar-search-input" />
                         <i onClick={this.redirectToSearch} className="fas fa-search btn"></i>
                     </Form>
                 </Navbar>
@@ -53,7 +54,12 @@ export default class MyNavbar extends React.Component {
 
     redirectToSearch = (e) => {
         e.preventDefault();
-        window.location.href = `/search/${this.searchParams}`
+        
+        if(this.searchParams.length>0){
+            window.location.href = `/search/${this.searchParams}`
+        }
+       
+
     }
 
 }

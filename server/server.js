@@ -4,7 +4,6 @@ const PORT = process.env.PORT || 5000;
 const routerHelper = require("./routeHelper")
 app.use(express.json());
 
-
 app.post("/users/register", (req, res) => {
   routerHelper.register(req, res);
 });

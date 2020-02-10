@@ -1,30 +1,34 @@
 import React, { Component } from 'react';
-import { Col, Row } from 'react-bootstrap';
+import { Col, Row, Container } from 'react-bootstrap';
 import axios from "axios";
-
 export default class cartItem extends Component {
 
     render() {
 
         const book = this.props.book;
         return (
+            <Container>
             <Row className="text-center">
-                <Col md={4} sm={12} >
+                <Col className="col-cart-item" md={3}  >
                     <img style={{ marginBottom: "10px" }} src={book.volumeInfo.imageLinks.thumbnail} alt={"imgBook"} />
                 </Col>
-                <Col md={4} sm={12} >
+                <Col className="col-cart-item" md={3}  >
                     <p>{book.volumeInfo.title}</p>
+                    <p className="description"> {book.volumeInfo.description}</p>
                 </Col>
-                <Col md={4} sm={12}>
-                    {< i onClick={this.deleteBook} className="fas fa-trash btn"></i>}
+              <Col className="col-cart-item">{book.saleInfo.listPrice.amount}ILS</Col>
+                <Col className="col-cart-item" md={3} >
+                    {/* {< i onClick={this.deleteBook} className="fas fa-trash btn"></i>} */}
+                    <button className="deleteButton" onClick={this.deleteBook} >Remove</button>
                 </Col>
             </Row>
+            </Container>
         )
     }
+    
 
 
     deleteBook = () => {
-
         let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
         axios.delete(`cart/${user._id}/${this.props.book.id}`)
             .then(res => this.props.update())

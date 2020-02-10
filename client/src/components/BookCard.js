@@ -5,12 +5,18 @@ import "./CSS/BookCard.css"
 
 import { Redirect } from "react-router-dom"
 export default class BookCard extends Component {
-    state = { flag: false }
+    state = { flag: false,rgisterBeforeAdd:false}
 
 
     changeHendler =()=>{
         this.props.moreDetails(this.props.book)
         this.setState({flag:true})
+
+    }
+    
+    rgisterBeforeAdd=()=>{
+        this.setState({rgisterBeforeAdd:true})
+      
 
     }
 
@@ -20,7 +26,10 @@ export default class BookCard extends Component {
             return <Redirect to="/ReadMore"/>
             
          }
-        
+
+         if(this.state.rgisterBeforeAdd){
+            return <Redirect to ="/login"/>
+         }
         
 
         this.addMissingDetails();
@@ -40,7 +49,7 @@ export default class BookCard extends Component {
                 <Card.Footer>
                        { JSON.parse(sessionStorage.getItem("theBookShelf_user_login"))? 
                        <Button onClick={this.addToCart} className="BookCard-addToCart-btn" variant="primary">Add to Cart</Button>
-                       :  <Button  className="BookCard-addToCart-btn" variant="primary">Add to Cart</Button>} 
+                       :  <Button  onClick={this.rgisterBeforeAdd} className="BookCard-addToCart-btn" variant="primary">Add to Cart</Button>   } 
                         
                 </Card.Footer>
                 <button onClick={this.changeHendler} >Read more</button> 
