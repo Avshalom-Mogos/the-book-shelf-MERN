@@ -1,32 +1,34 @@
 .BookCard{
     width:100%;
-    height:75%;
+    height:80%;
     box-shadow: 1px 1px 5px;
-    transition: all .10s;
+    transition: all 1s;
     padding: 5px;
 }
 
 .BookCard:hover{
-    box-shadow: 5px 5px 5px;
+    box-shadow: 3px 3px 3px;
     transform: scale(1.05);
     cursor: pointer;
 }
 
 .BookCard-img{
     width:100%;
-    height:40%;
+    max-height:40%;
 }
 
 .BookCard-title{
     line-height: 1.5em;
     height: 1.5em;       /* height is 2x line-height, so two lines will display */
     overflow: hidden;  /* prevents extra lines from being visible */
+    margin: 5px;
 }
 
 .Bookcard-authors{
     line-height: 1.5em;
-    height: 3em;       /* height is 2x line-height, so two lines will display */
+    height: 1.5em;       /* height is 2x line-height, so two lines will display */
     overflow: hidden;  /* prevents extra lines from being visible */
+    margin: 5px;
 }
 
 
@@ -37,6 +39,7 @@
 
 .BookCard-rating{
     text-align: center;
+    margin: 5px;
 }
 
 .BookCard-addToCart-btn{

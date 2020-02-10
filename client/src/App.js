@@ -16,7 +16,7 @@ import "./App.css"
 
 export default class App extends React.Component {
 
-  state = { userInfo: { userName: "Guest" },readMoreProp:{}};
+  state = { userInfo: { userName: "Guest" }, readMoreProp: {} };
 
 
 
@@ -24,8 +24,8 @@ export default class App extends React.Component {
 
 
   render() {
-   
-  
+
+
     return (
       <div className="App">
         <BrowserRouter>
@@ -37,17 +37,17 @@ export default class App extends React.Component {
             <Route exact path="/signup" render={() => <Signup />} />
             <Route exact path="/about" render={() => <About />} />
             <Route exact path="/sales" render={() => <Sales />} />
-            <Route exact path="/ReadMore" render={()=><ReadMore book={this.state.readMoreProp} 
-            triggerLogin={this.login} />}/>
-            <Route exact path="/Cart" render={() => <Cart triggerLogin={this.login}/>} />
-            <Route exact path="/PurchaseHistory" render={() => <PurchaseHistory  triggerLogin={this.login}/>} />
+            <Route exact path="/ReadMore" render={() => <ReadMore book={this.state.readMoreProp}
+              triggerLogin={this.login} />} />
+            <Route exact path="/Cart" render={() => <Cart triggerLogin={this.login} />} />
+            <Route exact path="/PurchaseHistory" render={() => <PurchaseHistory triggerLogin={this.login} />} />
 
-            <Route path="/search/:searchParam" render={(props) => <Search   {...props} user={this.state.userInfo} 
+            <Route path="/search/:searchParam" render={(props) => <Search   {...props} user={this.state.userInfo}
 
-            triggerLogin={this.login}  moreDetails={this.moreDetails}/>} />
+              triggerLogin={this.login} moreDetails={this.moreDetails} />} />
             <Route render={() => <h1>ERROR:404</h1>} />
           </Switch>
-          <Footer  />
+          <Footer />
         </BrowserRouter>
       </div>
     );
@@ -55,10 +55,10 @@ export default class App extends React.Component {
 
 
 
-  moreDetails =(book)=>{
+  moreDetails = (book) => {
 
-    this.setState({readMoreProp:book})
-  
+    this.setState({ readMoreProp: book })
+
   }
 
 
@@ -70,9 +70,9 @@ export default class App extends React.Component {
   }
 
   logout = () => {
-   
+
     sessionStorage.removeItem("theBookShelf_user_login");
-    this.setState({ userInfo: { userName: "Guest" }});
+    this.setState({ userInfo: { userName: "Guest" } });
     //redirect to home
     window.location.href = `/home`
   }
