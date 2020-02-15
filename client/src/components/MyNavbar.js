@@ -33,8 +33,12 @@ export default class MyNavbar extends React.Component {
                                             </Dropdown.Item>
                                             <Dropdown.Item as={Link} to="/PurchaseHistory" style={{ color: "black" }}>Purchase History</Dropdown.Item>
                                             <Dropdown.Item style={{ color: "black" }} onClick={this.props.triggerLogout}>Logout</Dropdown.Item>
-                                        </div> :
+                                            <Dropdown.Item style={{ color: "black" }} as={Link} to="/about">about</Dropdown.Item>
+                                        </div> : <div>  
                                         <Dropdown.Item style={{ color: "black" }} as={Link} to="/login">Login</Dropdown.Item>
+                                         <Dropdown.Item style={{ color: "black" }} as={Link} to="/about">about</Dropdown.Item>
+                                        </div>
+
                                 }
                             </DropdownButton>
                         </Navbar.Text>
