@@ -17,7 +17,7 @@ app.get("/cart/:userId", (req, res) => {
   routerHelper.getCartData(req, res);
 });
 
-app.post("/cart", (req, res) => {
+app.post("/cart", (req, res) => { 
   routerHelper.addToCart(req, res);
 });
 
@@ -25,7 +25,15 @@ app.delete("/cart/:userId/:bookId", (req, res) => {
   routerHelper.deleteFromCart(req, res);
 })
 
+// /deleteAlldatafromCart______________
+app.delete("/cart/:userId", (req,res)=>{
+  routerHelper.deleteAllDataFromCart(req,res)
+})
+
+
+
 //purchase history
+
 app.get("/purchaseHistory/:userId", (req, res) => {
   routerHelper.getPurchaseHistoryData(req, res);
 });

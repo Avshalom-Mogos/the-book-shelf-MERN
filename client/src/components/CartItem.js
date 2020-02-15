@@ -7,14 +7,14 @@ export default class cartItem extends Component {
 
         const book = this.props.book;
         return (
-            <Container>
+            <Container className="contianer">
             <Row className="text-center">
                 <Col className="col-cart-item" md={3}  >
-                    <img style={{ marginBottom: "10px" }} src={book.volumeInfo.imageLinks.thumbnail} alt={"imgBook"} />
+                    <img className="cartitem-img" src={book.volumeInfo.imageLinks.thumbnail} alt={"imgBook"} />
                 </Col>
                 <Col className="col-cart-item" md={3}  >
                     <p>{book.volumeInfo.title}</p>
-                    <p className="description"> {book.volumeInfo.description}</p>
+                    <p className="cartitem-description"> {book.volumeInfo.description}</p>
                 </Col>
               <Col className="col-cart-item">{book.saleInfo.listPrice.amount}ILS</Col>
                 <Col className="col-cart-item" md={3} >
@@ -36,4 +36,9 @@ export default class cartItem extends Component {
                 console.log(err);
             })
     }
+
+
+
+
+
 }

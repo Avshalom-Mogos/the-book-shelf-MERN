@@ -32,7 +32,7 @@ export default class BookCard extends Component {
          }
         
 
-        this.addMissingDetails();
+      
     
         return (
             <Card className="BookCard">
@@ -63,7 +63,8 @@ export default class BookCard extends Component {
         let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
         axios.post("/cart", { id: user._id, book: this.props.book })
             .then((res) => {
-                console.log(res)
+                // console.log(res)
+               
                 let newBook = JSON.parse(res.config.data)
                 this.props.Toast(newBook.book.volumeInfo.title)
 
@@ -77,6 +78,7 @@ export default class BookCard extends Component {
 
                 //update user info on App.js
                 this.props.triggerLogin()
+               
             })
     }
 

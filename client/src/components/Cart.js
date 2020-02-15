@@ -10,14 +10,12 @@ export default class Cart extends Component {
     state = { items: [], showOrderSummary: false }
 
     render() {
-     const  style={
-            color:"red"
-        }
+     
         return (
             <div className="Cart">
-  
+                <h1 className="text-info text-center">My Cart</h1>
                     <Container>   
-                    {this.state.showOrderSummary ? <OrderSummary items={this.state.items} close={this.closeOrder} /> : ""}
+                    {this.state.showOrderSummary ? <OrderSummary items={this.state.items} close={this.closeOrder} getAllCartDataFromDB={this.getAllCartDataFromDB} /> : ""}
                     <Row className="d-flex">
                         <Col className="Cart-container flex-grow-1">
                             <Row>
@@ -26,7 +24,7 @@ export default class Cart extends Component {
                                     {
                                         this.state.items.map((book, index) => {
                                             return (
-                                                <CartItem key={index} book={book} update={this.getAllCartDataFromDB}/> 
+                                                <CartItem   key={index} book={book}   update={this.getAllCartDataFromDB}/> 
                                                 
                                             )
                                         })
@@ -58,11 +56,10 @@ export default class Cart extends Component {
     }
 
     getAllCartDataFromDB = () => {
-
         let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
         axios.get(`/cart/${user._id}`)
             .then((res) => {
-                console.log(res.data);
+                // console.log(res.data);
 
                 // update myCart in Session storage
                 user.myCart = [...res.data]
@@ -77,9 +74,20 @@ export default class Cart extends Component {
             })
     }
 
-    closeOrder = () => {
 
+
+    closeOrder = () => {
+      
         this.setState({ showOrderSummary: false })
     }
+    
+
+
+
+
+
+
+
 
 }
+

@@ -20,7 +20,6 @@ export default class Login extends Component {
 
 
     login = () => {
-
         axios.post("/users/login", {
             email: this.userInfo.email,
             password: this.userInfo.password,
@@ -35,6 +34,8 @@ export default class Login extends Component {
                 //wirte user info to session storage
                 sessionStorage.setItem("theBookShelf_user_login", JSON.stringify(userInfo));
                 this.props.triggerLogin();
+
+
                 this.setState({ redirectToHome: true })
             }
 
@@ -49,9 +50,12 @@ export default class Login extends Component {
         })
     }
 
+  
+
+
+
     render() {
       
-
         if (this.state.redirectToHome) {
             return < Redirect to="/"/>
 
@@ -62,7 +66,7 @@ export default class Login extends Component {
                 <Container className="Login-from">
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control required onChange={(e) => this.userInfo.email = e.target.value} type="email" placeholder="Enter email" />
+                        <Form.Control required onChange={(e) => this.userInfo.email = e.target.value} type="email"  placeholder="Enter email" />
                         <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
                         </Form.Text>

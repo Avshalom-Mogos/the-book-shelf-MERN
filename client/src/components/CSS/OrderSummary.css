@@ -1,12 +1,32 @@
 .OrderSummary{
     position: fixed;
-    width:500px;
-    /* height:200px; */
     padding:10px;
     z-index:200;
-    margin: 5% auto;
-    left: 0;
-    right: 0;
+    margin: 8% auto;
+    left: 10px;
+    right: 10px;
     background-color:#FFF;
     border:5px solid #CCC;
+   transition-duration:inherit;
+    width:70%;
+   max-height: 50%; 
+    overflow: auto;
+
 }
+
+.amount{
+    float: right;
+}
+
+.info{
+    color: rgba(47, 0, 255, 0.788);
+  
+}
+
+
+
+
+
+
+
+

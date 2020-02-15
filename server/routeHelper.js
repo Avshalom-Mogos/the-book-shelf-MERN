@@ -18,7 +18,7 @@ function login(req, res) {
 
     //expect email , password
     const queryUser = req.body;
-    console.log(queryUser)
+   // console.log(queryUser)
 
     dbo.collection(collectionName).findOne(queryUser, function (err, user) {
       if (err) {
@@ -105,12 +105,11 @@ function getCartData(req, res) {
 }
 
 function addToCart(req, res) {
-
   let id = req.body.id;
   let book = req.body.book;
   console.log(id);
-  console.log(book);
-
+   console.log(book);
+  
   MongoClient.connect(url, function (err, db) {
     if (err){
       console.log(err)
@@ -131,6 +130,8 @@ function addToCart(req, res) {
   });
 
 }
+
+
 
 function deleteFromCart(req, res) {
 
@@ -157,7 +158,6 @@ function deleteFromCart(req, res) {
 }
 
 //Purchase History
-
 
 function getPurchaseHistoryData(req, res) {
 
@@ -198,7 +198,29 @@ function addToPurchaseHistory(req, res) {
 }
 
 
+function deleteAllDataFromCart(req,res){
 
+   let userId = req.params.userId;
+   console.log(userId);
+   
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db(dbName);
+    var myquery = { _id: new ObjectID(userId) };
+    var newvalues = { $set: { myCart: [] } };
+    dbo.collection(collectionName).updateOne(myquery, newvalues, function (err, result) {
+      if (err) throw err;
+      res.send(result)
+      console.log("1 document updated12");
+      db.close();
+    });
+  });
+  
+}
+
+
+
+module.exports.deleteAllDataFromCart = deleteAllDataFromCart;
 module.exports.register = register;
 module.exports.login = login;
 module.exports.getCartData = getCartData;

@@ -12,8 +12,10 @@ export default class PurchaseHistory extends Component {
 
         return (
             <div className="PurchaseHistory">
+                 <h1 className="text-info  text-center">Purchase History</h1>
+                 
                 <Container>
-                    <h1>Purchase History</h1>
+                   
                     {
                         this.state.items.map((item,index) => {
                             return <HistoryItem key={index} book={item} />

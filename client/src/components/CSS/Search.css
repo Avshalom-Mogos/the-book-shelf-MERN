@@ -22,7 +22,9 @@
 
 .Search-toast{
     margin: 0 auto;
-    border: 2px outset #ff8d1e;
+    padding: 10px;
+    
+
 }
 
 .Search-accordion-header{
@@ -51,9 +53,6 @@
 .Search-accordion-item-selected:hover{
     color: #ff8d1e;
 }
-
-.Search-resultsNum{
-    
-}
+ 
 
 

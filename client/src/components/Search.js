@@ -22,13 +22,14 @@ export default class Search extends Component {
 
         return (
             <div className="Search">
+                
                 {this.state.showToast ? this.Toast() : ""}
                 <Container fluid>
                     {
                         this.state.showSpinner ?
                             <Spinner animation="border" className="Search-spinner" variant="warning" />
                             : <div className="Search-resultsNum">
-                                <h3>{`${this.state.listToDisplay.length} results for "${this.searchParam}":`}</h3>
+                                <h3 className="text-info">{`${this.state.listToDisplay.length} results for "${this.searchParam}":`}</h3>
                             </div>
                     }
                     <Row>
@@ -118,13 +119,14 @@ export default class Search extends Component {
         return (
             <div className="Search-toast-container">
                 <Toast className="Search-toast" autohide
-                    delay={3000} animation
-                    onClose={() => this.setState({ showToast: false })}>
+                    delay={1050} animation
+                    onClose={() => this.setState({showToast: false })}>
+                        
                     <Toast.Header>
-                        <img src="" className="rounded mr-2" alt="brandImg" />
-                        <strong className="mr-auto">The Book Shelf</strong>
+                      <i className="fas fa-book"></i> 
+                        <strong style={{margin:"10px"}} className="mr-auto">The Book Shelf</strong>
                     </Toast.Header>
-                    <Toast.Body>"<strong>{this.toastMsg}</strong>" was added to the cart!</Toast.Body>
+                    <Toast.Body>"<strong>{this.toastMsg}</strong>"was added to the cart!</Toast.Body>
                 </Toast>
             </div>
         )
@@ -180,8 +182,9 @@ export default class Search extends Component {
 
         if (!fullDataArr[index].volumeInfo.description) {
 
-            let defaultDescription = "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s";
+            let defaultDescription = " Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
             fullDataArr[index].volumeInfo.description = defaultDescription;
+            
         }
     }
 

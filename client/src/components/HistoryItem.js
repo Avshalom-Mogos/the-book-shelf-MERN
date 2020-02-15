@@ -10,11 +10,11 @@ export default class HistoryItem extends Component {
             <Container> 
                 <Row className="HistoryItem">
                     <Col className="Col" sm={3} >
-                        <img src={book.volumeInfo.imageLinks.thumbnail} alt={"imgBook"} />
+                        <img className="historyitem-img" src={book.volumeInfo.imageLinks.thumbnail} alt={"imgBook"} />
                     </Col>
                     <Col  className="Col" sm={3} >
                         <p>{book.volumeInfo.title}</p>
-                    <p>{book.volumeInfo.description}</p>
+                    <p className="historyitem-description">{book.volumeInfo.description}</p>
                     </Col>
                     <Col className="Col">
                     <p>{book.saleInfo.listPrice.amount}ILS</p> 
