@@ -7,7 +7,6 @@
 } 
 
 
-
 .Cart-container{
     /* background: #ffffff; */
     /* border: 2px solid lightgray; */
@@ -19,29 +18,23 @@
 .Cart-checkOut{
     background-color: #ffffff; 
     padding:10px;
-    /* width: 40%;  */
     height: 20%;
     margin-right: 10px;
     border-radius: 10px;
 }
 
 
-.col-cart-item{
-    
+.col-cart-item{  
       box-shadow:  0 0.5px 2.5px 0 rgba(0,0,0,0.19); 
       background-color: white;
-  
      
-
 }
-
 
 
 .cart-text{
     text-align: center;
     color: orange;
     background-color: white;
-    
     
 }
 

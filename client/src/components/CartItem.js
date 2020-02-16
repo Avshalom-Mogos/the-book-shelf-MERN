@@ -9,10 +9,10 @@ export default class cartItem extends Component {
         return (
             <Container className="contianer">
             <Row className="text-center">
-                <Col className="col-cart-item" md={3}  >
+                <Col className="col-cart-item" md={3}>
                     <img className="cartitem-img" src={book.volumeInfo.imageLinks.thumbnail} alt={"imgBook"} />
                 </Col>
-                <Col className="col-cart-item" md={3}  >
+                <Col className="col-cart-item" md={3}>
                     <p>{book.volumeInfo.title}</p>
                     <p className="cartitem-description"> {book.volumeInfo.description}</p>
                 </Col>

@@ -30,7 +30,7 @@ export default class OrderSummary extends Component {
                  <p className="info">After you click buy all your items will be waiting for you in purchase History</p>
                
                 <button onClick={this.addToPurchaseHistory}>buy all</button>
-                <button onClick={() => this.props.close()}>X</button>
+                <button onClick={() => this.props.close()}>cancel</button>
                 
           
             </div>
