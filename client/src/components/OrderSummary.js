@@ -74,10 +74,6 @@ export default class OrderSummary extends Component {
     
 
 
-    
-
-
-
 
     addDateStamp = (itemsArray) => {
 
