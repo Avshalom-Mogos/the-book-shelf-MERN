@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
+import { Container, Col, Row, Accordion, Toast, Dropdown, Card } from 'react-bootstrap';
 import axios from "axios";
 import BookCard from './BookCard';
+import BookLoader from './BookLoader';
 import "./CSS/Search.css"
-import { Container, Col, Row, Spinner, Accordion, Toast, Dropdown, Card } from 'react-bootstrap';
 
 
 
@@ -10,7 +11,7 @@ export default class Search extends Component {
 
     state = {
         books: [],
-        showSpinner: true,
+        showLoader: true,
         showToast: false,
         listToDisplay: [],
         categories: "categories"
@@ -22,40 +23,43 @@ export default class Search extends Component {
 
         return (
             <div className="Search">
-                
-                {this.state.showToast ? this.Toast() : ""}
+
+                {this.state.showToast ? this.toast() : ""}
                 <Container fluid>
                     {
-                        this.state.showSpinner ?
-                            <Spinner animation="border" className="Search-spinner" variant="warning" />
+                        this.state.showLoader ?
+                            <BookLoader />
                             : <div className="Search-resultsNum">
-                                <h3 className="text-info">{`${this.state.listToDisplay.length} results for "${this.searchParam}":`}</h3>
+                                <h4 className="text-info">{`${this.state.listToDisplay.length} results for "${this.searchParam}":`}</h4>
                             </div>
                     }
                     <Row>
-                        <Col lg={3} md={12} style={{ marginTop: "20px" }}>
-                            <Accordion style={{ padding: "0px 15px" }}>
-                                <Card>
-                                    <Accordion.Toggle className="Search-accordion-header" as={Card.Header} eventKey="0">
-                                        {this.state.categories}
-                                    </Accordion.Toggle>
-                                    <Accordion.Collapse eventKey="0">
-                                        <div>
-                                            {this.FilterButtons()}
-                                        </div>
-                                    </Accordion.Collapse>
-                                </Card>
-                            </Accordion >
-                        </Col>
+                        {
+                            !this.state.showLoader ?
+                                <Col lg={3} md={12} style={{ marginTop: "20px" }}>
+                                    <Accordion style={{ padding: "0px 15px" }}>
+                                        <Card>
+                                            <Accordion.Toggle className="Search-accordion-header" as={Card.Header} eventKey="0">
+                                                {this.state.categories}
+                                            </Accordion.Toggle>
+                                            <Accordion.Collapse eventKey="0">
+                                                <div>
+                                                    {this.FilterButtons()}
+                                                </div>
+                                            </Accordion.Collapse>
+                                        </Card>
+                                    </Accordion >
+                                </Col> : ""
+                        }
                         <Col>
                             <Row style={{ marginTop: "20px" }}>
 
 
                                 {this.state.listToDisplay.map((book, index) => {
                                     return (
-                                        <Col key={index} sm="6" md="3" lg="3">
+                                        <Col key={index} sm="6" md="4" lg="4">
                                             <BookCard book={book}
-                                                Toast={this.ToastDisplay}
+                                                Toast={this.toastDisplay}
                                                 triggerLogin={this.props.triggerLogin}
                                                 moreDetails={this.props.moreDetails}
                                             />
@@ -76,7 +80,6 @@ export default class Search extends Component {
         const booksBtnsObj = {};
         const btns = this.state.books.map((book, index) => {
 
-            // let categories = book.volumeInfo.categories;
             if (book.volumeInfo.categories) {
 
                 if (!booksBtnsObj[book.volumeInfo.categories]) {
@@ -97,36 +100,39 @@ export default class Search extends Component {
                                 if (bookFilter.volumeInfo.categories) {
                                     return bookFilter.volumeInfo.categories[0] === booksBtnsObj[book.volumeInfo.categories]
                                 }
+                                //handle no return value warning
+                                return null
                             })
-                            console.log(tmpArr);
                             this.setState({ listToDisplay: [...tmpArr], categories: booksBtnsObj[book.volumeInfo.categories] })
                         }}
                     >{booksBtnsObj[book.volumeInfo.categories]}</Dropdown.Item>
                 }
             }
+            //handle no return value warning
+            return null
         })
         return btns
     }
 
 
-    ToastDisplay = (msg) => {
+    toastDisplay = (msg) => {
 
         this.toastMsg = msg;
         this.setState({ showToast: true })
     }
 
-    Toast = () => {
+    toast = () => {
         return (
             <div className="Search-toast-container">
                 <Toast className="Search-toast" autohide
-                    delay={1050} animation
-                    onClose={() => this.setState({showToast: false })}>
-                        
+                    delay={2500} animation
+                    onClose={() => this.setState({ showToast: false })}>
+
                     <Toast.Header>
-                      <i className="fas fa-book"></i> 
-                        <strong style={{margin:"10px"}} className="mr-auto">The Book Shelf</strong>
+                        <i className="fas fa-book"></i>
+                        <strong style={{ margin: "10px" }} className="mr-auto">The Book Shelf</strong>
                     </Toast.Header>
-                    <Toast.Body>"<strong>{this.toastMsg}</strong>"was added to the cart!</Toast.Body>
+                    <Toast.Body>"<strong>{this.toastMsg}</strong>" was added to the cart!</Toast.Body>
                 </Toast>
             </div>
         )
@@ -139,9 +145,8 @@ export default class Search extends Component {
                 fullDataArr.forEach((book, index) => {
                     this.addMissingDetails(fullDataArr, index)
                 });
-                console.log(fullDataArr);
-                console.log(res.data.items);
-                this.setState({ books: fullDataArr, showSpinner: false, listToDisplay: fullDataArr })
+
+                this.setState({ books: fullDataArr, showLoader: false, listToDisplay: fullDataArr })
             })
     }
 
@@ -184,7 +189,7 @@ export default class Search extends Component {
 
             let defaultDescription = " Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
             fullDataArr[index].volumeInfo.description = defaultDescription;
-            
+
         }
     }
 

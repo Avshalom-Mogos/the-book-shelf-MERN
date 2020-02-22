@@ -1,6 +1,6 @@
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
-const url = "mongodb://localhost:27017/";
+const url = "mongodb+srv://Avshalomogos:Aa123456@bookshelfcluster-ys4qh.mongodb.net/test?retryWrites=true&w=majority";
 const dbName = "Book_Shelf"
 collectionName = "users"
 
@@ -53,7 +53,7 @@ function register(req, res) {
     const dbo = db.db(dbName);
     //expect email , password
     const queryUser = req.body;
-    console.log(queryUser);
+    //console.log(queryUser);
 
     dbo.collection(collectionName).findOne({ email: queryUser.email }, function (err, userFound) {
       if (err) {
@@ -61,6 +61,8 @@ function register(req, res) {
       }
       if (userFound) {
         //..email found
+        console.log("#######");
+        
         return res.sendStatus(400)
       }
 

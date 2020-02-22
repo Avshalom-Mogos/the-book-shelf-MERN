@@ -1,37 +1,38 @@
 import React, { Component } from 'react'
-import { Form, Button, Container } from "react-bootstrap";
-import axios from "axios"
+import { Form, Button, Container, Spinner } from "react-bootstrap";
 import { Redirect } from "react-router-dom"
-
+import axios from "axios"
 import "./CSS/Signup.css"
+
 
 export default class Signup extends Component {
 
     state = {
-
         redirectToHome: false,
-        error: false
+        showSpinner: false,
+        error: {
+            showError: false,
+            errorDescription: ""
+        }
     }
 
     userInfo = {
-
         userName: "",
         email: "",
         password: "",
         confirmPassword: "",
         agreedEULA: false,
     }
-    
+
 
     render() {
 
         if (this.state.redirectToHome) {
             return < Redirect to="/" />
-
         }
         return (
-            <div className="signup">
-                <Container className="signup-from">
+            <div className="Signup">
+                <Container className="Signup-from">
                     <Form onSubmit={this.handleSubmit}>
                         <Form.Group controlId="formBasicName">
                             <Form.Label>Username</Form.Label>
@@ -45,24 +46,30 @@ export default class Signup extends Component {
                             </Form.Text>
                         </Form.Group>
 
-                        <Form.Group controlId="formBasicPassword">
+                        <Form.Group>
                             <Form.Label>Password</Form.Label>
                             <Form.Control required onChange={(e) => this.userInfo.password = e.target.value} type="password" minLength="6" placeholder="Password" />
                         </Form.Group>
-                        <Form.Group controlId="formBasicPassword">
+                        <Form.Group>
                             <Form.Label>Confirm Password</Form.Label>
                             <Form.Control required onChange={(e) => this.userInfo.confirmPassword = e.target.value} type="password" minLength="6" placeholder="Confirm Password" />
                         </Form.Group>
                         <Form.Group controlId="formBasicCheckbox">
                             <Form.Check onChange={(e) => this.userInfo.agreedEULA = e.target.checked} type="checkbox" label="Accept Terms & Conditions" required />
                         </Form.Group>
-                        {this.state.error ? <p style={{ color: "red" }}>passwords doesn't match</p> : ""}
                         <Button variant="primary" type="submit">Sign up</Button>
+                        <Form.Group className="Signup-feedback">
+                            {this.userFeedBack()}
+                        </Form.Group>
                     </Form>
                 </Container>
             </div>
         )
+    }
 
+    userFeedBack = () => {
+        if (this.state.error.showError) return <p style={{ color: "red" }}>{this.state.error.errorDescription}</p>
+        if (this.state.showSpinner) return <Spinner animation="border" />
     }
 
     register = () => {
@@ -73,8 +80,8 @@ export default class Signup extends Component {
             password: this.userInfo.password,
             userName: this.userInfo.userName,
             agreedEULA: this.userInfo.agreedEULA,
-            myCart:[],
-            purchaseHistory:[],
+            myCart: [],
+            purchaseHistory: [],
 
         }).then(res => {
             //res.data is user
@@ -82,38 +89,33 @@ export default class Signup extends Component {
                 this.setState({ redirectToHome: true })
             }
 
-            else {
-                this.setState({ error: true })
-                console.log(`error code : ${res.status}`);
-            }
-
         }).catch(err => {
-            this.setState({ error: true })
-            console.log(err);
+            this.setState({ error: { showError: true, errorDescription: `ERROR: ${err.response.data}` } })
+            if (err.response.status === 400) {
+                this.setState({ error: { showError: true, errorDescription: "This email is taken by another account" } })
+            }
+            console.log(err.response);
         })
     }
 
     validate = () => {
-        //if password not match to confirm password
+        //check if password not match to confirm password
         if (this.userInfo.password !== this.userInfo.confirmPassword) {
-
             return false;
         }
         return true;
     }
 
     handleSubmit = (e) => {
-
+        e.preventDefault();
+        this.setState({ showSpinner: true, error: { showError: false } })
         if (!this.validate()) {
 
             console.log("validation error");
             console.log(this.userInfo)
-            this.setState({error:true});
-            e.preventDefault();
+            this.setState({ error: { showError: true, errorDescription: "Passwords doesn't match" } });
         } else {
-
             this.register();
-            this.setState({ redirectToHome: true })
         }
 
     }

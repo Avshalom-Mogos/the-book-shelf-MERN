@@ -1,18 +1,27 @@
-
 .Cart{
     min-height:  calc(100vh - 258px); 
     background-color: #f0f0f0;
-     overflow-x: hidden; 
-    
+    overflow-x: hidden; 
+    padding: 10px;
 } 
+
+.Cart-dimBackground{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 150;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.9);
+}
+
+
 
 
 .Cart-container{
-    /* background: #ffffff; */
-    /* border: 2px solid lightgray; */
     min-height: 600px;
     border-radius: 10px;
-   
 }
 
 .Cart-checkOut{
@@ -20,55 +29,10 @@
     padding:10px;
     height: 20%;
     margin-right: 10px;
-    border-radius: 10px;
+    border: 2px solid lightgrey;
 }
 
-
-.col-cart-item{  
-      box-shadow:  0 0.5px 2.5px 0 rgba(0,0,0,0.19); 
-      background-color: white;
-     
-}
-
-
-.cart-text{
+.Cart-emptyMessage{
     text-align: center;
-    color: orange;
-    background-color: white;
-    
-}
-
-.deleteButton{
-    background-color:green;
-    border-radius: 10px;
-    color: white;
-    padding: 7px 12px;
-    text-align: center;
-    font-size: 12px;
-    margin: 4px 2px;
-    opacity: 0.6;
-    transition: 0.3s;
-    display: inline-block;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-
-.deleteButton:hover{
-    background-color:#eb3d37;
-}
-
-
-.cartitem-description{
-    line-height: 1.5em;
-    height: 7.5em;   
-    overflow: hidden;
-}
-.cartitem-img{
-    line-height: 1.5em;
-    height: 10.5em;  
-    width: 10.5em; 
-    padding: 8px;
-   
 }
 

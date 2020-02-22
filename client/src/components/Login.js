@@ -1,25 +1,71 @@
 import React, { Component } from 'react';
-import { Form, Button, Container } from "react-bootstrap";
+import { Form, Button, Container, Spinner } from "react-bootstrap";
+import { Redirect ,Link} from "react-router-dom"
 import axios from "axios"
-import { Redirect } from "react-router-dom"
 import "./CSS/Login.css"
+
+
 export default class Login extends Component {
 
     state = {
         redirectToHome: false,
-        error: false,
-
+        showError: false,
+        showSpinner: false
     }
 
-    userInfo ={
+    userInfo = {
         email: "",
         password: "",
-
     }
 
 
+    render() {
 
-    login = () => {
+        if (this.state.redirectToHome) {
+            return < Redirect to="/" />
+        }
+
+        return (
+            <div className="Login">
+                <Container className="Login-from">
+                    <Form onSubmit={(e) => this.login(e)}>
+                        <Form.Group controlId="formBasicEmail">
+                            <Form.Label>Email address</Form.Label>
+                            <Form.Control onChange={(e) => this.userInfo.email = e.target.value} type="email" placeholder="Enter email" required />
+                            <Form.Text className="text-muted">
+                                We'll never share your email with anyone else.
+                        </Form.Text>
+                        </Form.Group>
+
+                        <Form.Group controlId="formBasicPassword">
+                            <Form.Label >Password</Form.Label>
+                            <Form.Control onChange={(e) => this.userInfo.password = e.target.value} type="password" placeholder="Password" required minLength={6} />
+                        </Form.Group>
+                        <Form.Group controlId="formBasicCheckbox">
+                            <label>Don't have an account?</label>
+                            <Link to="/signup"> Sign Up</Link>
+                        </Form.Group>
+                        <Form.Group>
+                            <Button variant="primary" type="submit">Login</Button>
+                        </Form.Group>
+                        <Form.Group className="Login-feedback">
+                            {this.userFeedBack()}
+                        </Form.Group>
+                    </Form>
+                </Container>
+            </div>
+        )
+    }
+
+    userFeedBack = () => {
+        if (this.state.showError) return <p style={{ color: "red" }}> Password or Email Is Invalid</p>
+        if (this.state.showSpinner) return <Spinner animation="border" />
+    }
+
+    
+    login = (e) => {
+        e.preventDefault()
+        this.setState({ showSpinner: true, showError: false })
         axios.post("/users/login", {
             email: this.userInfo.email,
             password: this.userInfo.password,
@@ -27,7 +73,7 @@ export default class Login extends Component {
         }).then(res => {
             //res.data is user
             if (res.status === 200) {
-                
+
                 let userInfo = { ...res.data };
                 let tmpStr = userInfo.password.replace(/./g, "*");
                 userInfo.password = tmpStr;
@@ -40,53 +86,15 @@ export default class Login extends Component {
             }
 
             else {
-                this.setState({ error: true })
+                this.setState({ showError: true })
                 console.log(`error code : ${res.status}`);
             }
 
         }).catch(err => {
-            this.setState({ error: true })
+            this.setState({ showError: true })
             console.log(err);
         })
     }
 
-  
-
-
-
-    render() {
-      
-        if (this.state.redirectToHome) {
-            return < Redirect to="/"/>
-
-        }
-        return (
-            <div className="Login">
-
-                <Container className="Login-from">
-                    <Form.Group controlId="formBasicEmail">
-                        <Form.Label>Email address</Form.Label>
-                        <Form.Control required onChange={(e) => this.userInfo.email = e.target.value} type="email"  placeholder="Enter email" />
-                        <Form.Text className="text-muted">
-                            We'll never share your email with anyone else.
-                        </Form.Text>
-                    </Form.Group>
-
-                    <Form.Group controlId="formBasicPassword">
-                        <Form.Label >Password</Form.Label>
-                        <Form.Control required onChange={(e) => this.userInfo.password = e.target.value} type="password" placeholder="Password" />
-                    </Form.Group>
-                    <Form.Group controlId="formBasicCheckbox">
-                        <label>Dont have an account? </label>
-                        <a href="/signup"> sign up</a>
-
-                    </Form.Group>
-                    {this.state.error ? <p style={{ color: "red" }}> Password or Email Invalid</p> : ""}
-                    <Button onClick={this.login} variant="primary" type="submit">Submit</Button>
-                </Container>
-
-            </div>
-        )
-    }
 
 }

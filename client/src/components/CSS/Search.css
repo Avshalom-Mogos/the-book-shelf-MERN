@@ -3,7 +3,6 @@
     min-height:  calc(100vh - 258px);
 }
 
-
 .Search-spinner{ 
     position: fixed;
     margin: 10% auto;
@@ -11,6 +10,10 @@
     right: 0;
     width: 200px;
     height: 200px;
+}
+
+.Search-resultsNum{
+    margin-top: 10px;
 }
 
 .Search-toast-container{
@@ -23,8 +26,6 @@
 .Search-toast{
     margin: 0 auto;
     padding: 10px;
-    
-
 }
 
 .Search-accordion-header{
@@ -46,7 +47,6 @@
 }
 
 .Search-accordion-item-selected{
-   
     color: #ff8d1e;
 }
 

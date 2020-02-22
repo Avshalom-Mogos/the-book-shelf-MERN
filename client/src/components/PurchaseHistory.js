@@ -2,22 +2,23 @@ import React, { Component } from 'react'
 import axios from "axios"
 import { Container } from "react-bootstrap"
 import HistoryItem from "./HistoryItem.js"
+import BookLoader from "./BookLoader"
 import "./CSS/PurchaseHistory.css"
+
 
 export default class PurchaseHistory extends Component {
 
-    state = { items: [] }
+    state = { items: [], showBookLoader: false }
 
     render() {
 
         return (
             <div className="PurchaseHistory">
-                 <h1 className="text-info  text-center">Purchase History</h1>
-                 
+                <h1 className="text-info text-center">Purchase History</h1>
+                {this.state.showBookLoader ? <BookLoader /> : ""}
                 <Container>
-                   
                     {
-                        this.state.items.map((item,index) => {
+                        this.state.items.map((item, index) => {
                             return <HistoryItem key={index} book={item} />
                         })
                     }
@@ -27,7 +28,7 @@ export default class PurchaseHistory extends Component {
     }
 
     componentDidMount() {
-
+        this.setState({ showBookLoader: true })
         this.getPurchaseHistoryFromDB()
     }
 
@@ -37,18 +38,7 @@ export default class PurchaseHistory extends Component {
         axios.get(`/purchaseHistory/${user._id}`)
             .then((res) => {
                 console.log(res.data)
-
-
-                // // update myCart in Session storage
-                // user.purchaseHistory = [...res.data]
-                // let updatedUser = JSON.stringify(user)
-                // sessionStorage.setItem("theBookShelf_user_login", updatedUser);
-
-                this.setState({ items: res.data })
-
-
-                // //update user info on App.js
-                // this.props.triggerLogin()
+                this.setState({ items: res.data, showBookLoader: false })
             })
             .catch(err => console.log(err))
     }

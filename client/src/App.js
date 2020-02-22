@@ -5,23 +5,17 @@ import Search from './components/Search';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import About from './components/About';
-import Sales from './components/Sales';
 import Footer from './components/Footer';
 import Cart from "./components/Cart";
 import PurchaseHistory from "./components/PurchaseHistory";
 import ReadMore from "./components/ReadMore"
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-
 import "./App.css"
+
 
 export default class App extends React.Component {
 
   state = { userInfo: { userName: "Guest" }, readMoreProp: {} };
-
-
-
-
-
 
   render() {
 
@@ -39,10 +33,8 @@ export default class App extends React.Component {
             <Route exact path="/ReadMore" render={() => <ReadMore book={this.state.readMoreProp}
               triggerLogin={this.login} />} />
             <Route exact path="/Cart" render={() => <Cart triggerLogin={this.login} />} />
-            <Route exact path="/PurchaseHistory" render={() => <PurchaseHistory triggerLogin={this.login}/>} />
-
+            <Route exact path="/PurchaseHistory" render={() => <PurchaseHistory triggerLogin={this.login} />} />
             <Route path="/search/:searchParam" render={(props) => <Search   {...props} user={this.state.userInfo}
-
               triggerLogin={this.login} moreDetails={this.moreDetails} />} />
             <Route render={() => <h1>ERROR:404</h1>} />
           </Switch>
@@ -57,9 +49,7 @@ export default class App extends React.Component {
   moreDetails = (book) => {
 
     this.setState({ readMoreProp: book })
-
   }
-
 
 
   login = () => {
@@ -77,7 +67,6 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log("mount");
 
     let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
 
