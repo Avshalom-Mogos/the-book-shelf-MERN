@@ -9,7 +9,6 @@
     "client-install": "cd client && npm install",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run client-install && npm run build",
-    "shit":"npm run build && heroku local",
     "dev":"cd server && npm run dev"
   },
   "repository": {

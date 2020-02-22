@@ -17,7 +17,7 @@ export default class HistoryItem extends Component {
                     <p className="historyitem-description">{book.volumeInfo.description}</p>
                     </Col>
                     <Col className="Col">
-                    <p>{book.saleInfo.listPrice.amount}ILS</p> 
+                    <p>{book.saleInfo.listPrice.amount} ILS</p> 
                     </Col>
                     <Col  className="Col" sm={3} >
                         <p>{book.dateOfPurchase}</p>
