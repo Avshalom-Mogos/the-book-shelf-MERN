@@ -20,7 +20,7 @@ export default class cartItem extends Component {
                            <strong><p>{book.volumeInfo.title}</p></strong> 
                             <p className="CartItem-description">{book.volumeInfo.description}</p>
                         </Col>
-                        <Col className="col-cart-item CartItem-price">{book.saleInfo.listPrice.amount} ILS</Col>
+                        <Col className="col-cart-item CartItem-price">{book.saleInfo.listPrice.amount.toFixed(2)}ILS</Col>
                         <Col className="col-cart-item" md={3} >
                             <button className="CartItem-deleteButton" onClick={this.deleteBook}>Remove</button>
                         </Col>

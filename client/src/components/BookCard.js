@@ -42,7 +42,7 @@ export default class BookCard extends Component {
                             starSpacing="2px"
                             starRatedColor="gold"
                         />
-                    <Card.Text className="BookCard-price">{this.props.book.saleInfo.listPrice.amount}.99 ILS</Card.Text>
+                    <Card.Text className="BookCard-price">{this.props.book.saleInfo.listPrice.amount.toFixed(2)}ILS</Card.Text>
                 </Card.Body>
                 <Card.Footer>
                     {
