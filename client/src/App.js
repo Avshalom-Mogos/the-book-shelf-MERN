@@ -15,7 +15,11 @@ import "./App.css"
 
 export default class App extends React.Component {
 
-  state = { userInfo: { userName: "Guest" }, readMoreProp: {} };
+  state = {
+    userInfo: { userName: "Guest" },
+    readMoreProp: {},
+    search: ''
+  };
 
   render() {
 
@@ -30,7 +34,7 @@ export default class App extends React.Component {
             <Route exact path="/login" render={() => <Login triggerLogin={this.login} />} />
             <Route exact path="/signup" render={() => <Signup />} />
             <Route exact path="/about" render={() => <About />} />
-            <Route exact path="/ReadMore" render={() => <ReadMore book={this.state.readMoreProp}
+            <Route exact path="/ReadMore" render={() => <ReadMore book={this.state.readMoreProp} search={this.state.search}
               triggerLogin={this.login} />} />
             <Route exact path="/Cart" render={() => <Cart triggerLogin={this.login} />} />
             <Route exact path="/PurchaseHistory" render={() => <PurchaseHistory triggerLogin={this.login} />} />
@@ -46,9 +50,9 @@ export default class App extends React.Component {
 
 
 
-  moreDetails = (book) => {
+  moreDetails = (book, searchParam) => {
 
-    this.setState({ readMoreProp: book })
+    this.setState({ readMoreProp: book, search: searchParam })
   }
 
 

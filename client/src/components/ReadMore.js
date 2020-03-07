@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { Container, Card, Col, Toast, Button, Row } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 import StarRatings from 'react-star-ratings';
-import "./CSS/ReadMore.css"
 import axios from "axios"
+import "./CSS/ReadMore.css"
 
 
 export default class ReadMore extends Component {
@@ -18,8 +18,8 @@ export default class ReadMore extends Component {
 
         let book = this.props.book;
         let result = this.redirectTo(book);
-     
-        if(result.redirect){
+
+        if (result.redirect) {
             return <Redirect to={result.url} />
         }
 
@@ -95,7 +95,7 @@ export default class ReadMore extends Component {
         }
 
         if (this.state.flag) {
-            url = `/search/${book.volumeInfo.title}`
+            url = `/search/${this.props.search}`
             return { redirect: true, url: url }
         }
 
@@ -111,6 +111,7 @@ export default class ReadMore extends Component {
     BackToSearch = () => {
         this.setState({ flag: true })
     }
+
 
 
     addToCart = () => {
@@ -135,5 +136,6 @@ export default class ReadMore extends Component {
             })
 
     }
+
 }
 

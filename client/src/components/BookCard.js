@@ -11,7 +11,7 @@ export default class BookCard extends Component {
 
 
     changeHendler = () => {
-        this.props.moreDetails(this.props.book)
+        this.props.moreDetails(this.props.book, this.props.searchParam)
         this.setState({ flag: true })
     }
 
@@ -36,12 +36,12 @@ export default class BookCard extends Component {
                 <Card.Body className="BookCard-cardBody">
                     <Card.Title className="BookCard-title">{this.props.book.volumeInfo.title}</Card.Title>
                     <Card.Text className="Bookcard-authors">By {this.props.book.volumeInfo.authors[0]}</Card.Text>
-                        <StarRatings
-                            rating={Number(this.props.book.rating)}
-                            starDimension="20px"
-                            starSpacing="2px"
-                            starRatedColor="gold"
-                        />
+                    <StarRatings
+                        rating={Number(this.props.book.rating)}
+                        starDimension="20px"
+                        starSpacing="2px"
+                        starRatedColor="gold"
+                    />
                     <Card.Text className="BookCard-price">{this.props.book.saleInfo.listPrice.amount.toFixed(2)}ILS</Card.Text>
                 </Card.Body>
                 <Card.Footer>
@@ -52,7 +52,7 @@ export default class BookCard extends Component {
                     }
 
                 </Card.Footer>
-                <button className="BookCard-readMoreBtn"onClick={this.changeHendler}>Read more</button>
+                <button className="BookCard-readMoreBtn" onClick={this.changeHendler}>Read more</button>
             </Card>
         )
     }

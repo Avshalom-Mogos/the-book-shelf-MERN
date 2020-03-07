@@ -24,7 +24,7 @@ export default class Cart extends Component {
                 <h1 className="text-info text-center">My Cart</h1>
                 <Container>
 
-                    {this.state.showEmptyMessage ? <h2 className="Cart-emptyMessage">The cart is Empty</h2> : ""}
+                    {this.state.showEmptyMessage ? <h2 className="Cart-emptyMessage">The cart is empty</h2> : ""}
                     {this.state.showSpinner ? <BookLoader /> : ""}
                     <Row className="d-flex">
                         <Col className="Cart-container flex-grow-1">
@@ -42,7 +42,6 @@ export default class Cart extends Component {
                         </Col>
                         {this.checkOutDisplay()}
                         {this.clearMycart()}
-
                     </Row>
                 </Container>
             </div>
@@ -52,8 +51,9 @@ export default class Cart extends Component {
     clearMycart = () => {
         return (
             <div>
-                {this.state.items.length === 0 ? <button disabled className="btn-lg" >ClearMyCart</button> :
-                    <button className="btn" onClick={this.deleteAlldataFromCart}>ClearMyCart</button>
+                {
+                    this.state.items.length === 0 ? <button disabled className="btn-lg" >Clear Cart</button> :
+                    <button className="btn" onClick={this.deleteAlldataFromCart}>Clear Cart</button>
                 }
             </div>
         )
@@ -85,7 +85,6 @@ export default class Cart extends Component {
                 console.log(err);
             })
 
-        // this.setState({items:[]})
         this.getAllCartDataFromDB()
 
     }
