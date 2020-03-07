@@ -1,2 +1,2 @@
 # the-book-shelf-MERN
-Onilne store for buying books
+Online store for buying books
