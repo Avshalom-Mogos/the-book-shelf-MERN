@@ -1,18 +1,18 @@
 import React from 'react'
 import { Navbar, Form, FormControl, Dropdown, Badge, DropdownButton } from "react-bootstrap"
-import { Redirect,Link } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import "./CSS/MyNavbar.css";
 
 
 
 export default class MyNavbar extends React.Component {
-  
+
     searchParams = "";
 
-    render() {    
+    render() {
         return (
             <div className="MyNavbar">
-                <Navbar bg="dark" variant="dark" expand={false}  className="MyNavbar-topnav">
+                <Navbar bg="dark" variant="dark" expand={false} className="MyNavbar-topnav">
                     <Navbar.Brand className="MyNavbar-title" as={Link} to="/home">
                         The Book Shelf
                     </Navbar.Brand>
@@ -47,28 +47,28 @@ export default class MyNavbar extends React.Component {
 
                     <Form className="MyNavbar-form" onSubmit={(e) => this.redirectToSearch(e)}>
 
-                        <FormControl  onChange={(e) => this.searchParams = e.target.value} type="text"
-                            
-                         placeholder="Search" className="MyNavbar-search-input" required maxLength="10"/>
-                                    
+                        <FormControl onChange={(e) => this.searchParams = e.target.value} type="text"
+
+                            placeholder="Search" className="MyNavbar-search-input" required maxLength="10" />
+
                         <button className="fas fa-search btn"></button>
                     </Form>
                 </Navbar>
-                
+
             </div>
         )
-       
-    } 
-    
-   
-    
+
+    }
+
+
+
     redirectToSearch = (e) => {
         e.preventDefault();
-        if(this.searchParams==="#"){
+        if (this.searchParams === "#") {
             alert("try again without #")
-        return;
+            return;
         }
-      return  window.location.href = `/search/${this.searchParams}`
+        return window.location.href = `/search/${this.searchParams}`
     }
-   
+
 }

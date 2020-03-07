@@ -30,7 +30,7 @@ export default class OrderSummary extends Component {
                     <h5>Total:{items.reduce((total, book) => {
                         return total + book.saleInfo.listPrice.amount
                     }, 0).toFixed(2)} ILS</h5>
-                    
+
                     <p className="info">After you click buy all your items will be waiting for you in purchase History</p>
                     <button className="OrderSummary-btn" onClick={this.addToPurchaseHistory}>Buy all</button>
                     <button className="OrderSummary-btn-Cancel" onClick={() => this.props.close()}>Cancel</button>
@@ -62,7 +62,7 @@ export default class OrderSummary extends Component {
         this.props.getAllCartDataFromDB()
 
     }
-    
+
 
     addDateStamp = (itemsArray) => {
 

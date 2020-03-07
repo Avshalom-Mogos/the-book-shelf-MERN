@@ -8,21 +8,22 @@ import "./CSS/Cart.css";
 
 export default class Cart extends Component {
 
-    state = { items: [],
-         showOrderSummary: false,
-          showSpinner: false,
-           showEmptyMessage: false,   
-        }
+    state = {
+        items: [],
+        showOrderSummary: false,
+        showSpinner: false,
+        showEmptyMessage: false,
+    }
 
     render() {
 
         return (
             <div className="Cart">
-               {this.state.showOrderSummary ? <div className="Cart-dimBackground"></div>:""}
+                {this.state.showOrderSummary ? <div className="Cart-dimBackground"></div> : ""}
                 {this.state.showOrderSummary ? <OrderSummary items={this.state.items} close={this.closeOrder} getAllCartDataFromDB={this.getAllCartDataFromDB} /> : ""}
                 <h1 className="text-info text-center">My Cart</h1>
                 <Container>
-             
+
                     {this.state.showEmptyMessage ? <h2 className="Cart-emptyMessage">The cart is Empty</h2> : ""}
                     {this.state.showSpinner ? <BookLoader /> : ""}
                     <Row className="d-flex">
@@ -39,24 +40,24 @@ export default class Cart extends Component {
                                 </Col>
                             </Row>
                         </Col>
-                         {this.checkOutDisplay()}
-                         {this.clearMycart()}
-                       
+                        {this.checkOutDisplay()}
+                        {this.clearMycart()}
+
                     </Row>
                 </Container>
             </div>
         )
     }
 
-        clearMycart = () =>{
-            return(
-     <div>
-           {this.state.items.length === 0 ?  <button disabled className="btn-lg" >ClearMyCart</button> :
-          <button className="btn" onClick={this.deleteAlldataFromCart}>ClearMyCart</button> 
-             }
-     </div>
-            ) 
-        }
+    clearMycart = () => {
+        return (
+            <div>
+                {this.state.items.length === 0 ? <button disabled className="btn-lg" >ClearMyCart</button> :
+                    <button className="btn" onClick={this.deleteAlldataFromCart}>ClearMyCart</button>
+                }
+            </div>
+        )
+    }
 
     checkOutDisplay = () => {
         if (!this.state.showSpinner) {
@@ -69,7 +70,7 @@ export default class Cart extends Component {
                     {this.state.items.length === 0 ? <button disabled className="btn-lg">CHECKOUT</button> :
                         <button onClick={() => this.setState({ showOrderSummary: true })} style={{ marginBottom: "10px" }} className="btn btn-lg">CHECKOUT</button>}
                 </div>
-                        
+
             )
         }
     }
@@ -78,7 +79,7 @@ export default class Cart extends Component {
     deleteAlldataFromCart = () => {
         let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
         axios.delete(`cart/${user._id}`)
-            .then(res =>console.log(res)
+            .then(res => console.log(res)
             )
             .catch(err => {
                 console.log(err);
@@ -92,7 +93,7 @@ export default class Cart extends Component {
     componentDidMount() {
         this.setState({ showSpinner: true })
         this.getAllCartDataFromDB();
-       
+
     }
 
     getAllCartDataFromDB = () => {
@@ -129,6 +130,6 @@ export default class Cart extends Component {
 
 
 
-    
+
 }
 
