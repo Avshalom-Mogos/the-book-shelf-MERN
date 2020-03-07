@@ -30,7 +30,7 @@ export default class MyNavbar extends React.Component {
                                                 <span className="mr-3">Shopping Cart</span>
                                                 <Badge pill variant="danger">{this.props.userInfo.myCart.length}</Badge>
                                             </Dropdown.Item>
-                                            <Dropdown.Item as={Link} to="/PurchaseHistory">Purchase History</Dropdown.Item>
+                                            <Dropdown.Item as={Link} to="/purchaseHistory">Purchase History</Dropdown.Item>
                                             <Dropdown.Item as={Link} to="/about">About</Dropdown.Item>
                                             <Dropdown.Item onClick={this.props.triggerLogout}>Logout</Dropdown.Item>
                                         </div>

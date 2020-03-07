@@ -23,7 +23,7 @@ export default class BookCard extends Component {
     render() {
 
         if (this.state.flag) {
-            return <Redirect to="/ReadMore" />
+            return <Redirect to="/readMore" />
         }
 
         if (this.state.rgisterBeforeAdd) {
@@ -42,7 +42,7 @@ export default class BookCard extends Component {
                         starSpacing="2px"
                         starRatedColor="gold"
                     />
-                    <Card.Text className="BookCard-price">{this.props.book.saleInfo.listPrice.amount.toFixed(2)}ILS</Card.Text>
+                    <Card.Text className="BookCard-price">{this.props.book.saleInfo.listPrice.amount.toFixed(2)} ILS</Card.Text>
                 </Card.Body>
                 <Card.Footer>
                     {

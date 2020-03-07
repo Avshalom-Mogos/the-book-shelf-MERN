@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { Container, Col, Row, Badge } from 'react-bootstrap';
 import axios from "axios";
 import CartItem from './CartItem';
 import OrderSummary from "./OrderSummary"
-import { Container, Col, Row, Badge } from 'react-bootstrap';
 import BookLoader from "./BookLoader"
 import "./CSS/Cart.css";
+
 
 export default class Cart extends Component {
 
@@ -23,7 +24,6 @@ export default class Cart extends Component {
                 {this.state.showOrderSummary ? <OrderSummary items={this.state.items} close={this.closeOrder} getAllCartDataFromDB={this.getAllCartDataFromDB} /> : ""}
                 <h1 className="text-info text-center">My Cart</h1>
                 <Container>
-
                     {this.state.showEmptyMessage ? <h2 className="Cart-emptyMessage">The cart is empty</h2> : ""}
                     {this.state.showSpinner ? <BookLoader /> : ""}
                     <Row className="d-flex">
@@ -70,7 +70,6 @@ export default class Cart extends Component {
                     {this.state.items.length === 0 ? <button disabled className="btn-lg">CHECKOUT</button> :
                         <button onClick={() => this.setState({ showOrderSummary: true })} style={{ marginBottom: "10px" }} className="btn btn-lg">CHECKOUT</button>}
                 </div>
-
             )
         }
     }
@@ -92,7 +91,6 @@ export default class Cart extends Component {
     componentDidMount() {
         this.setState({ showSpinner: true })
         this.getAllCartDataFromDB();
-
     }
 
     getAllCartDataFromDB = () => {
@@ -105,7 +103,6 @@ export default class Cart extends Component {
                 if (res.data.length === 0) {
                     this.setState({ showEmptyMessage: true })
                 }
-                // console.log(res.data);
 
                 // update myCart in Session storage
                 user.myCart = [...res.data]
@@ -120,15 +117,8 @@ export default class Cart extends Component {
             })
     }
 
-
-
     closeOrder = () => {
         this.setState({ showOrderSummary: false })
     }
-
-
-
-
-
 }
 
