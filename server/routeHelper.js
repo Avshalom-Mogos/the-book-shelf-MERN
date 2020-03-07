@@ -1,15 +1,17 @@
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
 const url = "mongodb+srv://Avshalomogos:Aa123456@bookshelfcluster-ys4qh.mongodb.net/test?retryWrites=true&w=majority";
+const ignoreWarning = { useNewUrlParser: true, useUnifiedTopology: true };
+
 const dbName = "Book_Shelf"
-collectionName = "users"
+const collectionName = "users"
 
 
 
 
 function login(req, res) {
   console.log("/users/login")
-  MongoClient.connect(url, function (err, db) {
+  MongoClient.connect(url, ignoreWarning, function (err, db) {
     if (err) {
       console.log(err);
       return res.sendStatus(500);
@@ -18,7 +20,7 @@ function login(req, res) {
 
     //expect email , password
     const queryUser = req.body;
-   // console.log(queryUser)
+    // console.log(queryUser)
 
     dbo.collection(collectionName).findOne(queryUser, function (err, user) {
       if (err) {
@@ -43,7 +45,7 @@ function login(req, res) {
 function register(req, res) {
   console.log("/users/register")
 
-  MongoClient.connect(url, function (err, db) {
+  MongoClient.connect(url, ignoreWarning, function (err, db) {
     if (err) {
       console.log(err)
       return res.sendStatus(500);
@@ -62,7 +64,7 @@ function register(req, res) {
       if (userFound) {
         //..email found
         console.log("#######");
-        
+
         return res.sendStatus(400)
       }
 
@@ -88,12 +90,12 @@ function getCartData(req, res) {
 
   let id = req.params.userId;
 
-  MongoClient.connect(url, function (err, db) {
-    if (err){
+  MongoClient.connect(url, ignoreWarning, function (err, db) {
+    if (err) {
       console.log(err)
       return res.sendStatus(500);
     }
-    
+
     var dbo = db.db(dbName);
     dbo.collection(collectionName).findOne({ _id: new ObjectID(id) }, function (err, user) {
       if (err) {
@@ -110,10 +112,10 @@ function addToCart(req, res) {
   let id = req.body.id;
   let book = req.body.book;
   console.log(id);
-   console.log(book);
-  
-  MongoClient.connect(url, function (err, db) {
-    if (err){
+  console.log(book);
+
+  MongoClient.connect(url, ignoreWarning, function (err, db) {
+    if (err) {
       console.log(err)
       return res.sendStatus(500)
     }
@@ -141,7 +143,7 @@ function deleteFromCart(req, res) {
   let bookId = req.params.bookId;
 
 
-  MongoClient.connect(url, function (err, db) {
+  MongoClient.connect(url, ignoreWarning, function (err, db) {
     if (err) {
       return res.sendStatus(500);
     }
@@ -164,7 +166,7 @@ function deleteFromCart(req, res) {
 function getPurchaseHistoryData(req, res) {
 
   let userId = req.params.userId;
-  MongoClient.connect(url, function (err, db) {
+  MongoClient.connect(url, ignoreWarning, function (err, db) {
     if (err) throw err;
     var dbo = db.db(dbName);
     dbo.collection(collectionName).findOne({ _id: new ObjectID(userId) }, function (err, user) {
@@ -185,7 +187,7 @@ function addToPurchaseHistory(req, res) {
   console.log(items);
   console.log("######################");
 
-  MongoClient.connect(url, function (err, db) {
+  MongoClient.connect(url, ignoreWarning, function (err, db) {
     if (err) throw err;
     var dbo = db.db(dbName);
     var myquery = { _id: new ObjectID(userId) };
@@ -193,19 +195,19 @@ function addToPurchaseHistory(req, res) {
     dbo.collection(collectionName).updateOne(myquery, newvalues, function (err, result) {
       if (err) throw err;
       res.send(result)
-      console.log("1 document updated");  
+      console.log("1 document updated");
       db.close();
     });
   });
 }
 
 
-function deleteAllDataFromCart(req,res){
+function deleteAllDataFromCart(req, res) {
 
-   let userId = req.params.userId;
-   console.log(userId);
-   
-  MongoClient.connect(url, function (err, db) {
+  let userId = req.params.userId;
+  console.log(userId);
+
+  MongoClient.connect(url, ignoreWarning, function (err, db) {
     if (err) throw err;
     var dbo = db.db(dbName);
     var myquery = { _id: new ObjectID(userId) };
@@ -217,7 +219,7 @@ function deleteAllDataFromCart(req,res){
       db.close();
     });
   });
-  
+
 }
 
 
