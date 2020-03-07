@@ -74,10 +74,8 @@ export default class Login extends Component {
             //res.data is user
             if (res.status === 200) {
 
-                let userInfo = { ...res.data };
-                let tmpStr = userInfo.password.replace(/./g, "*");
-                userInfo.password = tmpStr;
                 //wirte user info to session storage
+                let userInfo = { ...res.data };
                 sessionStorage.setItem("theBookShelf_user_login", JSON.stringify(userInfo));
                 this.props.triggerLogin();
 

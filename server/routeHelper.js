@@ -29,7 +29,11 @@ function login(req, res) {
       }
 
       if (user) {
-        //..this is post but no document is created so retrun 200
+        //dont return to user flowing values
+        delete user.password
+        delete user.agreedEULA
+        
+        //..this is post but no document is created so retrun 200    
         return res.status(200).send(user);
 
       }
@@ -78,8 +82,6 @@ function register(req, res) {
 
       });
     });
-
-
   });
 
 }

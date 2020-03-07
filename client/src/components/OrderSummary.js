@@ -27,7 +27,7 @@ export default class OrderSummary extends Component {
                         })
                     }
 
-                    <h5>Total:{items.reduce((total, book) => {
+                    <h5>Total: {items.reduce((total, book) => {
                         return total + book.saleInfo.listPrice.amount
                     }, 0).toFixed(2)} ILS</h5>
 
@@ -53,12 +53,15 @@ export default class OrderSummary extends Component {
     deleteAlldataFromCart = () => {
         let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
         axios.delete(`cart/${user._id}`)
-            .then(res => alert("Thank you for your purchase!"))
+            .then(res => {
+                alert("Thank you for your purchase!");
+                //close popup
+                this.props.close();
+            })
             .catch(err => {
                 console.log(err);
             })
 
-        // this.setState({items:[]})
         this.props.getAllCartDataFromDB()
 
     }
