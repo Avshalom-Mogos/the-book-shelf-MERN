@@ -9,7 +9,7 @@
 }
 
 .CartItem-deleteButton{
-    background-color:green;
+    background-color:#eb3d37;
     border-radius: 10px;
     color: white;
     padding: 7px 12px;
@@ -23,9 +23,6 @@
     cursor: pointer;
 }
 
-.CartItem-deleteButton:hover{
-    background-color:#eb3d37;
-}
 
 .CartItem-description{
     line-height: 1.5em;

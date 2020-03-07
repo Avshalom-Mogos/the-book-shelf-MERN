@@ -47,6 +47,15 @@
     margin:3px;
 }
 
+.OrderSummary-btn-Cancel{
+    background-color: white;
+    color:red;
+    outline: none;
+    border: 1px solid;
+    margin:3px;
+}
+
+
 
 
 

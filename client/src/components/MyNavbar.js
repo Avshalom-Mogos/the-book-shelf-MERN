@@ -1,15 +1,15 @@
 import React from 'react'
 import { Navbar, Form, FormControl, Dropdown, Badge, DropdownButton } from "react-bootstrap"
-import { Link } from "react-router-dom";
-import "./CSS/MyNavbar.css"
+import { Redirect,Link } from "react-router-dom";
+import "./CSS/MyNavbar.css";
+
 
 
 export default class MyNavbar extends React.Component {
-
+  
     searchParams = "";
 
-    render() {
-
+    render() {    
         return (
             <div className="MyNavbar">
                 <Navbar bg="dark" variant="dark" expand={false}  className="MyNavbar-topnav">
@@ -44,19 +44,31 @@ export default class MyNavbar extends React.Component {
                     </Form>
                 </Navbar>
                 <Navbar className="MyNavbar-search-navbar">
+
                     <Form className="MyNavbar-form" onSubmit={(e) => this.redirectToSearch(e)}>
-                        <FormControl onChange={(e) => this.searchParams = e.target.value} type="text" placeholder="Search" className="MyNavbar-search-input" required />
+
+                        <FormControl  onChange={(e) => this.searchParams = e.target.value} type="text"
+                            
+                         placeholder="Search" className="MyNavbar-search-input" required maxLength="10"/>
+                                    
                         <button className="fas fa-search btn"></button>
                     </Form>
                 </Navbar>
+                
             </div>
         )
-    }
-
+       
+    } 
+    
+   
+    
     redirectToSearch = (e) => {
-
         e.preventDefault();
-        window.location.href = `/search/${this.searchParams}`
+        if(this.searchParams==="#"){
+            alert("try again without #")
+        return;
+        }
+      return  window.location.href = `/search/${this.searchParams}`
     }
-
+   
 }
