@@ -49,7 +49,7 @@ export default class MyNavbar extends React.Component {
 
                         <FormControl onChange={(e) => this.searchParams = e.target.value} type="text"
 
-                            placeholder="Search for books by keyword / title / author" className="MyNavbar-search-input" required maxLength="10" />
+                            placeholder="Search for books by title / author" className="MyNavbar-search-input" required maxLength="10" />
 
                         <button className="fas fa-search btn"></button>
                     </Form>

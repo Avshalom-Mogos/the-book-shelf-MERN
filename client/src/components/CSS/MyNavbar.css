@@ -56,3 +56,9 @@
     height: 1.5%;
     margin-top: 2px;
 }
+  
+  @media screen and (max-width: 600px) {
+    .MyNavbar-search-input::placeholder {
+        font-size: 14.5px;
+    }
+  }
