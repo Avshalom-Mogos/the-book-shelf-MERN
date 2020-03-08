@@ -1,5 +1,5 @@
 # Introduction
-Online store for buying books.
+Online store for buying books.  
 live link: https://the-book-shelf-project.herokuapp.com
 
 ## Technologies
