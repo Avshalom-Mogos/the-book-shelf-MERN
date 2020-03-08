@@ -1,0 +1,68 @@
+.OrderSummary{
+    position: fixed;
+    z-index:200;
+    margin: 0 auto;
+    left: 10px;
+    right: 10px;
+    background-color:#FFF;
+    border:2px outset #CCC;
+    width:70%;
+    max-width: 600px;
+    height: 400px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+}
+
+.OrderSummary-header{
+    background-color: #ff8d1e;
+    color: white;
+    text-align: center;
+    padding: 7px;
+    font-size: 20px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.OrderSummary-header p{
+    margin: 0;
+}
+
+.OrderSummary-body{
+    padding: 10px;
+    height:340px;
+    overflow-y: auto;
+}
+
+.amount{
+    float: right;
+}
+
+.info{
+    color: rgba(47, 0, 255, 0.788);
+}
+
+.OrderSummary-btn{
+    background-color: white;
+    color:green;
+    outline: none;
+    border: 1px solid;
+    margin:3px;
+}
+
+.OrderSummary-btn-Cancel{
+    background-color: white;
+    color:red;
+    outline: none;
+    border: 1px solid;
+    margin:3px;
+}
+
+
+
+
+
+
+
+
+

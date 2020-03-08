@@ -1,0 +1,64 @@
+.MyNavbar-topnav {
+    padding: 0px 10px;
+}
+
+.MyNavbar-title{
+    margin: 0;
+}
+
+.MyNavbar-search-navbar{
+    padding: 4px 0;
+    background-color: #80808066;
+}
+
+
+.MyNavbar-form{
+    display: flex;
+    justify-content: space-evenly;
+    width: 75%;
+    margin: 0 auto;
+}
+
+.MyNavbar-search-input{
+    display: inline-block;
+    width: 90%
+}
+
+.MyNavbar-search-btn{
+    width: 3%;
+    padding: 9px;
+    background-color: orange;
+    cursor: pointer;
+}
+
+.MyNavbar #dropdown-basic-button{
+    width: 188px; 
+    padding: 4px;
+    margin: 0px 4px;
+}
+
+.MyNavbar .dropdown-menu{
+    width: 188px; 
+    padding: 4px;
+    margin: 0px 4px;
+}
+
+.MyNavbar .dropdown-item, .dropdown-header{
+    color: black !important; 
+}
+
+.MyNavbar .dropdown-item:hover{
+    background-color: lightgrey !important; 
+}
+
+.MyNavbar .fa-search{
+    padding-top: 10px;
+    height: 1.5%;
+    margin-top: 2px;
+}
+  
+  @media screen and (max-width: 600px) {
+    .MyNavbar-search-input::placeholder {
+        font-size: 14.5px;
+    }
+  }

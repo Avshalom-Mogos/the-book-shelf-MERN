@@ -1,0 +1,52 @@
+.BookCard{
+    
+    width:80%;
+    height:426px;
+    margin:10px auto;
+    padding:0;
+    box-shadow: 1px 1px 5px;
+    transition: all 1s;
+    padding: 5px;
+}
+
+.BookCard:hover{
+    box-shadow: 3px 3px 3px;
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.BookCard-img{
+    width:100%;
+    max-height:40%;
+}
+
+.BookCard-title{
+    line-height: 1.5em;
+    height: 1.5em;       
+    overflow: hidden;  
+    margin: 5px;
+}
+
+.Bookcard-authors{
+    line-height: 1.5em;
+    height: 1.5em;      
+    overflow: hidden;
+    margin: 5px;
+}
+
+
+.BookCard-cardBody{
+    height: auto;
+    padding: 10px;
+}
+
+.BookCard-price{
+    margin-top: 10px;
+    color: fuchsia;
+    font-weight: 500;
+}
+
+.BookCard-addToCart-btn{
+    width:100%
+}
+
