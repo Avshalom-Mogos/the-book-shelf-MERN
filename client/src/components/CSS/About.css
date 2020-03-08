@@ -1,10 +1,15 @@
 .about-container{
     min-height:  calc(100vh - (50px + 46px + 140px + 30px));
     padding: 10px;
+    display: flex;
+}
+
+.about-container .container{
+    margin: auto auto;
 }
 
 .about-card{
-    margin: 5px auto;
+    margin: auto auto;
     padding: 10px;
     background-color: rgba(0,0,0,.2);
     width: 300px;
