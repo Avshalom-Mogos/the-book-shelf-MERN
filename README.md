@@ -16,6 +16,6 @@ live link: https://the-book-shelf-project.herokuapp.com
 
 ## Functionalities
 - Login, Logout
-- add / remove from the shopping cart
-- buy books
-- view PurchaseHistory
+- Add / remove from the shopping cart
+- Buy books
+- View purchase history
