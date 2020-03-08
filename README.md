@@ -1,6 +1,6 @@
 # Introduction
-Online store for buying books
-live link: https://the-book-shelf-project.herokuapp.com/
+Online store for buying books.
+live link: https://the-book-shelf-project.herokuapp.com
 
 ## Technologies
 - HTML
@@ -15,5 +15,7 @@ live link: https://the-book-shelf-project.herokuapp.com/
 <img src="https://raw.githubusercontent.com/Avshalom-Mogos/the-book-shelf-MERN/master/readmeIMG.JPG" width="500"/>
 
 ## Functionalities
-Restet the game, start the game, make the bird fly
-
+- Login, Logout
+- add / remove from the shopping cart
+- buy books
+- view PurchaseHistory
