@@ -35,7 +35,7 @@ export default class BookCard extends Component {
                 <Card.Img className="BookCard-img" src={this.props.book.volumeInfo.imageLinks.thumbnail} />
                 <Card.Body className="BookCard-cardBody">
                     <Card.Title className="BookCard-title">{this.props.book.volumeInfo.title}</Card.Title>
-                    <Card.Text className="Bookcard-authors">By {this.props.book.volumeInfo.authors[0]}</Card.Text>
+                    <Card.Text className="Bookcard-authors text-muted">By {this.props.book.volumeInfo.authors[0]}</Card.Text>
                     <StarRatings
                         rating={Number(this.props.book.rating)}
                         starDimension="20px"
