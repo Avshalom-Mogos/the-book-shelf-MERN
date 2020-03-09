@@ -30,7 +30,7 @@ export default class Search extends Component {
                         this.state.showLoader ?
                             <BookLoader />
                             : <div className="Search-resultsNum">
-                                <h4 className="text-info">{`${this.state.listToDisplay.length} results for "${this.searchParam}":`}</h4>
+                                <h4 className="text-info">{`${this.state.listToDisplay.length} results for "${this.display()}":`}</h4>
                             </div>
                     }
                     <Row>
@@ -140,8 +140,15 @@ export default class Search extends Component {
     }
 
     componentDidMount() {
-        axios.get(`https://www.googleapis.com/books/v1/volumes?q=:${this.searchParam}&maxResults=40&projection=full&key=AIzaSyDhshslNH7uBtbjyb_AXtPz2vlYOFTF6pI`)
+
+        let url = `https://www.googleapis.com/books/v1/volumes?q=:${this.searchParam}&maxResults=40&projection=full&key=AIzaSyDhshslNH7uBtbjyb_AXtPz2vlYOFTF6pI`;
+        console.log(this.searchParam);
+        console.log(url);
+
+        axios.get(url)
             .then((res) => {
+                console.log(res);
+
                 let fullDataArr = [...res.data.items]
                 fullDataArr.forEach((book, index) => {
                     this.addMissingDetails(fullDataArr, index)
@@ -192,6 +199,16 @@ export default class Search extends Component {
             fullDataArr[index].volumeInfo.description = defaultDescription;
 
         }
+    }
+
+    display =()=>{
+        try {
+           decodeURIComponent(this.searchParam)  
+        } catch (err) {
+            console.log(err);
+            return this.searchParam
+        }
+        return decodeURIComponent(this.searchParam);
     }
 
 }

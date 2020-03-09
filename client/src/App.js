@@ -40,7 +40,7 @@ export default class App extends React.Component {
             <Route exact path="/purchaseHistory" render={() => <PurchaseHistory triggerLogin={this.login} />} />
             <Route path="/search/:searchParam" render={(props) => <Search   {...props} user={this.state.userInfo}
               triggerLogin={this.login} moreDetails={this.moreDetails} />} />
-            <Route render={() => <h1>ERROR:404</h1>} />
+            <Route render={() => <h1>ERROR:404 page not pound</h1>} />
           </Switch>
           <Footer />
         </BrowserRouter>

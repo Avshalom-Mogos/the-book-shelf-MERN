@@ -48,9 +48,7 @@ export default class MyNavbar extends React.Component {
                     <Form className="MyNavbar-form" onSubmit={(e) => this.redirectToSearch(e)}>
 
                         <FormControl onChange={(e) => this.searchParams = e.target.value} type="text"
-
                             placeholder="Search for books by title / author" className="MyNavbar-search-input" required maxLength="40" />
-
                         <button className="fas fa-search btn"></button>
                     </Form>
                 </Navbar>
@@ -64,11 +62,9 @@ export default class MyNavbar extends React.Component {
 
     redirectToSearch = (e) => {
         e.preventDefault();
-        if (this.searchParams === "#") {
-            alert("try again without #")
-            return;
-        }
-        return window.location.href = `/search/${this.searchParams}`
+
+        let encodedParam = encodeURIComponent(this.searchParams);
+        window.location.href = "/search/" + encodedParam;
     }
 
 }
