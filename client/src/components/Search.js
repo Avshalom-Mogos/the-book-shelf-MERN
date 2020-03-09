@@ -205,7 +205,7 @@ export default class Search extends Component {
         try {
            decodeURIComponent(this.searchParam)  
         } catch (err) {
-            console.log(err);
+            //console.log(err);
             return this.searchParam
         }
         return decodeURIComponent(this.searchParam);
