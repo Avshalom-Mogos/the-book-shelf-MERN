@@ -15,7 +15,7 @@ live link: https://the-book-shelf-project.herokuapp.com
 <img src="https://raw.githubusercontent.com/Avshalom-Mogos/the-book-shelf-MERN/master/readmeIMG.JPG" width="500"/>
 
 ## Functionalities
-- Login, Logout
+- Login, Logout, register
 - Add / remove from the shopping cart
 - Buy books
 - View purchase history
