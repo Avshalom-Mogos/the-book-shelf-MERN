@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Container, Col, Row, Badge } from 'react-bootstrap';
 import axios from "axios";
-import CartItem from './CartItem';
-import OrderSummary from "./OrderSummary"
-import BookLoader from "./BookLoader"
-import "./CSS/Cart.css";
+import CartItem from '../cartItem/CartItem';
+import OrderSummary from "../orderSummary/OrderSummary"
+import BookLoader from '../bookLoader/BookLoader';
+import "./Cart.css";
 
 
 export default class Cart extends Component {

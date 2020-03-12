@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { Container, Col, Row, Accordion, Toast, Dropdown, Card } from 'react-bootstrap';
 import axios from "axios";
-import BookCard from './BookCard';
-import BookLoader from './BookLoader';
-import "./CSS/Search.css"
-
+import BookCard from '../bookcard/BookCard';
+import BookLoader from '../bookLoader/BookLoader';
+import "./Search.css"
 
 
 export default class Search extends Component {

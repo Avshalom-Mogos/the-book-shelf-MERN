@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Row, Col, Container } from "react-bootstrap"
-import "./CSS/HistoryItem.css"
+import "./HistoryItem.css"
 
 
 export default class HistoryItem extends Component {

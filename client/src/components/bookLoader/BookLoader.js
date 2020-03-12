@@ -1,5 +1,5 @@
 import React from 'react'
-import "./CSS/BookLoader.css"
+import "./BookLoader.css"
 
 const BookLoader = () => {
     return (

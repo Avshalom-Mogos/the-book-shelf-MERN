@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Form, Button, Container, Spinner } from "react-bootstrap";
 import { Redirect } from "react-router-dom"
 import axios from "axios"
-import "./CSS/Signup.css"
+import "./Signup.css"
 
 
 export default class Signup extends Component {

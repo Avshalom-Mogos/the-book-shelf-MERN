@@ -3,7 +3,7 @@ import StarRatings from 'react-star-ratings';
 import { Card, Button } from "react-bootstrap"
 import { Redirect } from "react-router-dom"
 import axios from "axios"
-import "./CSS/BookCard.css"
+import "./BookCard.css"
 
 export default class BookCard extends Component {
 

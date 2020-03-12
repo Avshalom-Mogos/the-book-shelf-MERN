@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Col, Container } from 'react-bootstrap'
-import './CSS/About.css';
+import './About.css';
 
 export const About = () => {
 

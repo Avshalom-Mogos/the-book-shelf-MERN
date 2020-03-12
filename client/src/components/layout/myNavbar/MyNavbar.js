@@ -1,7 +1,7 @@
 import React from 'react'
 import { Navbar, Form, FormControl, Dropdown, Badge, DropdownButton } from "react-bootstrap"
 import { Link } from "react-router-dom";
-import "./CSS/MyNavbar.css";
+import "./MyNavbar.css";
 
 
 

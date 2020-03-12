@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import axios from "axios"
 import { Container } from "react-bootstrap"
-import HistoryItem from "./HistoryItem.js"
-import BookLoader from "./BookLoader"
-import "./CSS/PurchaseHistory.css"
+import HistoryItem from "../historyItem/HistoryItem"
+import BookLoader from "../bookLoader/BookLoader"
+import "./PurchaseHistory.css"
 
 
 export default class PurchaseHistory extends Component {

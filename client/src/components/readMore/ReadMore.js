@@ -3,7 +3,7 @@ import { Container, Card, Col, Toast, Button, Row } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 import StarRatings from 'react-star-ratings';
 import axios from "axios"
-import "./CSS/ReadMore.css"
+import "./ReadMore.css"
 
 
 export default class ReadMore extends Component {

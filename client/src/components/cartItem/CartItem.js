@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Col, Row, Container } from 'react-bootstrap';
 import axios from "axios";
-import "./CSS/CartItem.css";
+import "./CartItem.css";
 
 
 export default class cartItem extends Component {

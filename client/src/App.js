@@ -1,14 +1,14 @@
 import React from 'react';
-import Home from './components/Home';
-import MyNavbar from './components/MyNavbar';
-import Search from './components/Search';
-import Login from './components/Login';
-import Signup from './components/Signup';
-import About from './components/About';
-import Footer from './components/Footer';
-import Cart from "./components/Cart";
-import PurchaseHistory from "./components/PurchaseHistory";
-import ReadMore from "./components/ReadMore"
+import Home from './components/home/Home';
+import MyNavbar from './components/layout/myNavbar/MyNavbar';
+import Search from './components/search/Search';
+import Login from './components/login/Login';
+import Signup from './components/signup/Signup';
+import About from './components/about/About';
+import Footer from './components/layout/footer/Footer';
+import Cart from "./components/cart/Cart";
+import PurchaseHistory from "./components/purchaseHistory/PurchaseHistory";
+import ReadMore from "./components/readMore/ReadMore"
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css"
 

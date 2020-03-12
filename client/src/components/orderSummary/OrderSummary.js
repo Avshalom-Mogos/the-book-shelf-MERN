@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import axios from "axios"
-import "./CSS/OrderSummary.css"
+import "./OrderSummary.css"
 
 
 export default class OrderSummary extends Component {
