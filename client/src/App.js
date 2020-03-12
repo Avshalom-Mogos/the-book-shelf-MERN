@@ -11,6 +11,7 @@ import Footer from './components/layout/footer/Footer';
 import Cart from "./components/cart/Cart";
 import PurchaseHistory from "./components/purchaseHistory/PurchaseHistory";
 import ReadMore from "./components/readMore/ReadMore"
+import ScrollToTop from "./ScrollToTop "
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css"
 
@@ -29,6 +30,7 @@ export default class App extends React.Component {
     return (
       <div className="App">
         <BrowserRouter>
+        <ScrollToTop/>
           <MyNavbar userInfo={this.state.userInfo} triggerLogout={this.logout} />
           <Switch>
             <Route exact path="/" render={() => <Home />} />
