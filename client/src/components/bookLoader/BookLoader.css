@@ -1,6 +1,6 @@
 .BookLoader{
   display: flex;
-  min-height:  calc(100vh - 284px); 
+  min-height:  calc(100vh - (50px + 46px + 140px + 36px)); 
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
 }

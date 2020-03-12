@@ -1,5 +1,5 @@
 .Cart{
-    min-height:  calc(100vh - 258px); 
+    min-height:  calc(100vh - (50px + 46px + 140px + 36px)); 
     background-color: #f0f0f0;
     overflow-x: hidden; 
     padding: 10px;

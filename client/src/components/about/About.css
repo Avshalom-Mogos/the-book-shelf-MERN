@@ -1,5 +1,5 @@
 .about-container{
-    min-height:  calc(100vh - (50px + 46px + 140px + 30px));
+    min-height:  calc(100vh - (50px + 46px + 140px + 36px)); 
     padding: 10px;
     display: flex;
 }

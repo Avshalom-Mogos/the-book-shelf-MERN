@@ -1,10 +1,12 @@
 import React from 'react';
 import Home from './components/home/Home';
+import About from './components/about/About';
+import PrivacyPolicy from './components/privacyPolicy/PrivacyPolicy';
+import TermsAndConditions from './components/termsAndConditions/TermsAndConditions';
 import MyNavbar from './components/layout/myNavbar/MyNavbar';
 import Search from './components/search/Search';
 import Login from './components/login/Login';
 import Signup from './components/signup/Signup';
-import About from './components/about/About';
 import Footer from './components/layout/footer/Footer';
 import Cart from "./components/cart/Cart";
 import PurchaseHistory from "./components/purchaseHistory/PurchaseHistory";
@@ -30,7 +32,8 @@ export default class App extends React.Component {
           <MyNavbar userInfo={this.state.userInfo} triggerLogout={this.logout} />
           <Switch>
             <Route exact path="/" render={() => <Home />} />
-            <Route exact path="/home" render={() => <Home />} />
+            <Route exact path="/privacyPolicy" render={() => <PrivacyPolicy />} />
+            <Route exact path="/termsAndConditions" render={() => <TermsAndConditions />} />
             <Route exact path="/login" render={() => <Login triggerLogin={this.login} />} />
             <Route exact path="/signup" render={() => <Signup />} />
             <Route exact path="/about" render={() => <About />} />
@@ -67,7 +70,7 @@ export default class App extends React.Component {
     sessionStorage.removeItem("theBookShelf_user_login");
     this.setState({ userInfo: { userName: "Guest" } });
     //redirect to home
-    window.location.href = `/home`
+    window.location.href = `/`
   }
 
   componentDidMount() {

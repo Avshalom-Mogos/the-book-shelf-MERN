@@ -26,6 +26,8 @@ footer ul {
 .footer-copyright p {
 	color: #969696;
 	margin: 0;
+	vertical-align: middle;
+	line-height: 30px;   
 }
 
 /*==================== 

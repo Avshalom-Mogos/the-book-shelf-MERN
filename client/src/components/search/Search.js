@@ -141,12 +141,8 @@ export default class Search extends Component {
     componentDidMount() {
 
         let url = `https://www.googleapis.com/books/v1/volumes?q=:${this.searchParam}&maxResults=40&projection=full&key=AIzaSyDhshslNH7uBtbjyb_AXtPz2vlYOFTF6pI`;
-        console.log(this.searchParam);
-        console.log(url);
-
         axios.get(url)
             .then((res) => {
-                console.log(res);
 
                 let fullDataArr = [...res.data.items]
                 fullDataArr.forEach((book, index) => {
@@ -204,7 +200,6 @@ export default class Search extends Component {
         try {
            decodeURIComponent(this.searchParam)  
         } catch (err) {
-            //console.log(err);
             return this.searchParam
         }
         return decodeURIComponent(this.searchParam);

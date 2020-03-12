@@ -23,13 +23,13 @@ export default class Footer extends Component {
                                         <h5 className="widget-title">Quick Links<span></span></h5>
                                         <ul className="thumbnail-widget">
                                             <li>
-                                                <div className="thumb-content"><a href="#.">Return Policy</a></div>
+                                                <div className="thumb-content"><Link to="/privacyPolicy">Privacy Policy</Link></div>
                                             </li>
                                             <li>
-                                                <div className="thumb-content"><a href="#.">Terms & Conditions</a></div>
+                                                <div className="thumb-content"><Link to="/termsAndConditions">Terms & Conditions</Link></div>
                                             </li>
                                             <li>
-                                                <div className="thumb-content"><a href="/about">About us</a></div>
+                                                <div className="thumb-content"><Link to="/about">About us</Link></div>
                                             </li>
                                         </ul>
                                     </div>

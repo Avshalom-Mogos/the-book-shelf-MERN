@@ -13,7 +13,7 @@ export default class MyNavbar extends React.Component {
         return (
             <div className="MyNavbar">
                 <Navbar bg="dark" variant="dark" expand={false} className="MyNavbar-topnav">
-                    <Navbar.Brand className="MyNavbar-title" as={Link} to="/home">
+                    <Navbar.Brand className="MyNavbar-title" as={Link} to="/">
                         The Book Shelf
                     </Navbar.Brand>
                     <Form inline>
