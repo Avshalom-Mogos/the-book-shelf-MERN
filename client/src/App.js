@@ -30,7 +30,7 @@ export default class App extends React.Component {
     return (
       <div className="App">
         <BrowserRouter>
-        <ScrollToTop/>
+          <ScrollToTop />
           <MyNavbar userInfo={this.state.userInfo} triggerLogout={this.logout} />
           <Switch>
             <Route exact path="/" render={() => <Home />} />

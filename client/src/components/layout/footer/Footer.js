@@ -34,10 +34,10 @@ export default class Footer extends Component {
                                         </ul>
                                     </div>
                                 </div>
-                                <div className="col-xs-12 col-sm-6 col-md-3">
+                                <div className="col-xs-12 col-sm-6 col-md-3 mb-3">
                                     <div className="widget no-box">
                                         <h5 className="widget-title">Get Started<span></span></h5>
-                                        <p>Access your cart and more.</p>
+                                        <p className="get-started-p">Access your cart and more.</p>
                                         <Button as={Link} className="btn" to="/signup">Sign Up Now</Button>
                                     </div>
                                 </div>

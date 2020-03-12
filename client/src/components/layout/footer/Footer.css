@@ -70,6 +70,10 @@ footer ul {
 	margin-bottom: 7px;
 }
 
+.get-started-p{
+	margin: 5px;
+}
+
 .widget-title span {
 	background: #839FAD none repeat scroll 0 0;
 	display: block;
@@ -94,6 +98,7 @@ footer ul {
 	margin-right: auto;
 	left: 0;
 	right: 0;
+	
 }
 
 .widget .badge {
