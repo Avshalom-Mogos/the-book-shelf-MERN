@@ -8,7 +8,7 @@ import "./ReadMore.css"
 
 export default class ReadMore extends Component {
 
-    state = { flag: false, showToast: false, rgisterBeforeAdd: false }
+    state = { showToast: false, rgisterBeforeAdd: false }
 
     rgisterBeforeAdd = () => {
         this.setState({ rgisterBeforeAdd: true })
@@ -17,11 +17,9 @@ export default class ReadMore extends Component {
     render() {
 
         let book = this.props.book;
-        let result = this.redirectTo(book);
-
-        if (result.redirect) {
-            return <Redirect to={result.url} />
-        }
+        
+        if (!book.id) return <Redirect to="/" />;
+        if (this.state.rgisterBeforeAdd) return <Redirect to="/login" />;
 
         return (
 
@@ -59,14 +57,13 @@ export default class ReadMore extends Component {
                             {JSON.parse(sessionStorage.getItem("theBookShelf_user_login")) ?
                                 <Button className="Add" onClick={this.addToCart}>Add To Cart</Button>
                                 : <Button onClick={this.rgisterBeforeAdd} className="Add">Add To Cart</Button>}
-                            <Button className="search" onClick={this.BackToSearch} >Back to search</Button>
+                            <Button className="search" onClick={this.props.history.goBack} >Back to search</Button>
                         </Col>
                     </Container>
                 </Card>
             </div>
         )
     }
-
 
 
     toast = () => {
@@ -82,34 +79,7 @@ export default class ReadMore extends Component {
                     <Toast.Body>"<strong>{this.props.book.volumeInfo.title}</strong>" was added to the cart!</Toast.Body>
                 </Toast>
             </div>
-
         )
-    }
-
-    redirectTo = (book) => {
-        let url = ""
-
-        if (!book.id) {
-            url = "/"
-            return { redirect: true, url: url }
-        }
-
-        if (this.state.flag) {
-            url = `/search/${this.props.search}`
-            return { redirect: true, url: url }
-        }
-
-        if (this.state.rgisterBeforeAdd) {
-            url = "/login"
-            return { redirect: true, url: url }
-        }
-
-        return { redirect: false, url: url }
-
-    }
-
-    BackToSearch = () => {
-        this.setState({ flag: true })
     }
 
 

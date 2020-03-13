@@ -1,15 +1,16 @@
 import React from 'react'
 import { Navbar, Form, FormControl, Dropdown, Badge, DropdownButton } from "react-bootstrap"
-import { Link } from "react-router-dom";
+import { Link ,withRouter} from "react-router-dom";
 import "./MyNavbar.css";
 
 
 
-export default class MyNavbar extends React.Component {
+class MyNavbar extends React.Component {
 
     searchParams = "";
 
     render() {
+  
         return (
             <div className="MyNavbar">
                 <Navbar bg="dark" variant="dark" expand={false} className="MyNavbar-topnav">
@@ -32,7 +33,7 @@ export default class MyNavbar extends React.Component {
                                             </Dropdown.Item>
                                             <Dropdown.Item as={Link} to="/purchaseHistory">Purchase History</Dropdown.Item>
                                             <Dropdown.Item as={Link} to="/about">About</Dropdown.Item>
-                                            <Dropdown.Item onClick={this.props.triggerLogout}>Logout</Dropdown.Item>
+                                            <Dropdown.Item as={Link} to="/" onClick={this.props.triggerLogout}>Logout</Dropdown.Item>
                                         </div>
                                         : <div>
                                             <Dropdown.Item as={Link} to="/login">Login</Dropdown.Item>
@@ -55,16 +56,18 @@ export default class MyNavbar extends React.Component {
 
             </div>
         )
-
     }
-
 
 
     redirectToSearch = (e) => {
         e.preventDefault();
 
         let encodedParam = encodeURIComponent(this.searchParams);
-        window.location.href = "/search/" + encodedParam;
+        this.props.history.push("/search/" + encodedParam);
+        
+        //clear form input fileds
+        document.querySelector(".MyNavbar-form").reset();
     }
 
 }
+export default withRouter (MyNavbar);

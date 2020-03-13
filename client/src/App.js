@@ -11,26 +11,21 @@ import Footer from './components/layout/footer/Footer';
 import Cart from "./components/cart/Cart";
 import PurchaseHistory from "./components/purchaseHistory/PurchaseHistory";
 import ReadMore from "./components/readMore/ReadMore"
-import ScrollToTop from "./ScrollToTop "
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import {Route, Switch } from "react-router-dom";
 import "./App.css"
 
 
 export default class App extends React.Component {
 
   state = {
-    userInfo: { userName: "Guest" },
-    readMoreProp: {},
-    search: ''
+    userInfo: { userName: '' },
+    readMoreProp: {}
   };
 
   render() {
 
-
     return (
-      <div className="App">
-        <BrowserRouter>
-          <ScrollToTop />
+        <div className="App">
           <MyNavbar userInfo={this.state.userInfo} triggerLogout={this.logout} />
           <Switch>
             <Route exact path="/" render={() => <Home />} />
@@ -39,25 +34,23 @@ export default class App extends React.Component {
             <Route exact path="/login" render={() => <Login triggerLogin={this.login} />} />
             <Route exact path="/signup" render={() => <Signup />} />
             <Route exact path="/about" render={() => <About />} />
-            <Route exact path="/readMore" render={() => <ReadMore book={this.state.readMoreProp} search={this.state.search}
-              triggerLogin={this.login} />} />
+            <Route exact path="/readMore" render={(props) => <ReadMore book={this.state.readMoreProp} search={this.state.search}
+              triggerLogin={this.login} {...props} />} />
             <Route exact path="/Cart" render={() => <Cart triggerLogin={this.login} />} />
             <Route exact path="/purchaseHistory" render={() => <PurchaseHistory triggerLogin={this.login} />} />
-            <Route path="/search/:searchParam" render={(props) => <Search   {...props} user={this.state.userInfo}
+            <Route path="/search/:searchParam" render={(props) => <Search user={this.state.userInfo} {...props}
               triggerLogin={this.login} moreDetails={this.moreDetails} />} />
             <Route render={() => <h1>ERROR:404 page not pound</h1>} />
           </Switch>
           <Footer />
-        </BrowserRouter>
-      </div>
+        </div>
     );
   }
 
 
+  moreDetails = (book) => {
 
-  moreDetails = (book, searchParam) => {
-
-    this.setState({ readMoreProp: book, search: searchParam })
+    this.setState({ readMoreProp: book })
   }
 
 
@@ -71,8 +64,6 @@ export default class App extends React.Component {
 
     sessionStorage.removeItem("theBookShelf_user_login");
     this.setState({ userInfo: { userName: "Guest" } });
-    //redirect to home
-    window.location.href = `/`
   }
 
   componentDidMount() {

@@ -8,7 +8,7 @@ export const About = () => {
         <div className="about-container">
             <Container>
                 <Row>
-                    <Col sm={6}>
+                    <Col md={6} sm={12}>
                         <div className="about-card">
                             <div className="card-image-ardato">
                             </div>
@@ -23,7 +23,7 @@ export const About = () => {
                             </div>
                         </div>
                     </Col>
-                    <Col sm={6}>
+                    <Col md={6} sm={12}>
                         <div className="about-card">
                             <div className="card-image-avshalom">
                             </div>

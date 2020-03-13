@@ -1,18 +1,18 @@
 import React, { Component } from 'react'
-import StarRatings from 'react-star-ratings';
 import { Card, Button } from "react-bootstrap"
-import { Redirect } from "react-router-dom"
+import { Redirect, withRouter } from "react-router-dom"
+import StarRatings from 'react-star-ratings';
 import axios from "axios"
 import "./BookCard.css"
 
-export default class BookCard extends Component {
+class BookCard extends Component {
 
-    state = { flag: false, rgisterBeforeAdd: false }
-
+    state = { rgisterBeforeAdd: false };
 
     changeHendler = () => {
-        this.props.moreDetails(this.props.book, this.props.searchParam)
-        this.setState({ flag: true })
+        
+        this.props.moreDetails(this.props.book);
+        this.props.history.push("/readMore");
     }
 
     rgisterBeforeAdd = () => {
@@ -22,13 +22,7 @@ export default class BookCard extends Component {
 
     render() {
 
-        if (this.state.flag) {
-            return <Redirect to="/readMore" />
-        }
-
-        if (this.state.rgisterBeforeAdd) {
-            return <Redirect to="/login" />
-        }
+        if (this.state.rgisterBeforeAdd) return <Redirect to="/login" />;
 
         return (
             <Card className="BookCard">
@@ -81,3 +75,4 @@ export default class BookCard extends Component {
     }
 
 }
+export default withRouter(BookCard);

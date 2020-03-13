@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Container, Col, Row, Badge } from 'react-bootstrap';
-import axios from "axios";
 import CartItem from '../cartItem/CartItem';
 import OrderSummary from "../orderSummary/OrderSummary"
 import BookLoader from '../bookLoader/BookLoader';
+import axios from "axios";
 import "./Cart.css";
 
 
@@ -53,7 +53,7 @@ export default class Cart extends Component {
             <div>
                 {
                     this.state.items.length === 0 ? <button disabled className="btn-lg" >Clear Cart</button> :
-                    <button className="btn" onClick={this.deleteAlldataFromCart}>Clear Cart</button>
+                        <button className="btn" onClick={this.deleteAlldataFromCart}>Clear Cart</button>
                 }
             </div>
         )

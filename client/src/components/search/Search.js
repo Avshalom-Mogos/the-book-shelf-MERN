@@ -10,7 +10,7 @@ export default class Search extends Component {
 
     state = {
         books: [],
-        showLoader: true,
+        showLoader: false,
         showToast: false,
         listToDisplay: [],
         categories: "categories"
@@ -138,9 +138,24 @@ export default class Search extends Component {
         )
     }
 
-    componentDidMount() {
+    componentDidMount() { this.getBooks(this.searchParam); }
 
-        let url = `https://www.googleapis.com/books/v1/volumes?q=:${this.searchParam}&maxResults=40&projection=full&key=AIzaSyDhshslNH7uBtbjyb_AXtPz2vlYOFTF6pI`;
+    componentDidUpdate(prevProps) {
+        prevProps = prevProps.match.params.searchParam;
+        let currentProps = this.props.match.params.searchParam;
+
+        //get new books on search params change
+        if (currentProps !== prevProps) {
+            this.getBooks(currentProps);
+        }
+    }
+
+    getBooks = (query) => {
+
+        // show loader and clear book list
+        this.setState({ showLoader: true, listToDisplay: [] })
+
+        let url = `https://www.googleapis.com/books/v1/volumes?q=:${query}&maxResults=40&projection=full&key=AIzaSyDhshslNH7uBtbjyb_AXtPz2vlYOFTF6pI`;
         axios.get(url)
             .then((res) => {
 
@@ -151,7 +166,11 @@ export default class Search extends Component {
 
                 this.setState({ books: fullDataArr, showLoader: false, listToDisplay: fullDataArr })
             })
+            .catch((err) => console.log(err));
     }
+
+
+
 
     addMissingDetails = (fullDataArr, index) => {
 
@@ -196,13 +215,15 @@ export default class Search extends Component {
         }
     }
 
-    display =()=>{
+    display = () => {
+
+        let searchParam = this.props.match.params.searchParam;
         try {
-           decodeURIComponent(this.searchParam)  
+            decodeURIComponent(searchParam)
         } catch (err) {
-            return this.searchParam
+            return searchParam
         }
-        return decodeURIComponent(this.searchParam);
+        return decodeURIComponent(searchParam);
     }
 
 }

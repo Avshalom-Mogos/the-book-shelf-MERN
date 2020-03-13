@@ -37,7 +37,6 @@ export default class PurchaseHistory extends Component {
         let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
         axios.get(`/purchaseHistory/${user._id}`)
             .then((res) => {
-                console.log(res.data)
                 this.setState({ items: res.data, showBookLoader: false })
             })
             .catch(err => console.log(err))

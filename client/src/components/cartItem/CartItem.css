@@ -2,7 +2,6 @@
     margin-bottom: 10px;
 }
 
-
 .col-cart-item{  
     box-shadow:  0 0.5px 2.5px 0 rgba(0,0,0,0.19); 
     background-color: white;
@@ -13,14 +12,12 @@
     border-radius: 10px;
     color: white;
     padding: 7px 12px;
-    text-align: center;
     font-size: 12px;
     margin: 4px 2px;
-    opacity: 0.6;
-    transition: 0.3s;
-    display: inline-block;
-    text-decoration: none;
-    cursor: pointer;
+}
+
+.CartItem-deleteButton:hover{
+    color: black;
 }
 
 .CartItem-description{
