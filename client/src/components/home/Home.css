@@ -1,0 +1,26 @@
+.Home{
+    background-image: url("../../images/home-background.jpg");
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    min-height:  calc(100vh - (50px + 46px + 140px + 36px)); 
+}
+  
+.Home h1{
+    color: white;
+    margin: auto auto;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+@media screen and (min-width: 601px) {
+    .Home h1 {
+      font-size: 80px;
+    }
+  }
+  
+  @media screen and (max-width: 600px) {
+    .Home h1 {
+      font-size: 45px;
+    }
+  }

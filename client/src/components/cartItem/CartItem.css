@@ -1,0 +1,39 @@
+.CartItem{
+    margin-bottom: 10px;
+}
+
+.col-cart-item{  
+    box-shadow:  0 0.5px 2.5px 0 rgba(0,0,0,0.19); 
+    background-color: white;
+}
+
+.CartItem-deleteButton{
+    background-color:#eb3d37;
+    border-radius: 10px;
+    color: white;
+    padding: 7px 12px;
+    font-size: 12px;
+    margin: 4px 2px;
+}
+
+.CartItem-deleteButton:hover{
+    color: black;
+}
+
+.CartItem-description{
+    line-height: 1.5em;
+    height: 7.5em;   
+    overflow: hidden;
+}
+
+.CartItem-price{
+    color: fuchsia;
+    font-weight: 500;
+}
+
+.CartItem-img{
+    line-height: 1.5em;
+    height: 80%;  
+    width: 100%; 
+    padding: 8px;
+}

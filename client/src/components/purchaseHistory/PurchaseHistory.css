@@ -1,0 +1,4 @@
+.PurchaseHistory{
+    background-color: #f0f0f0;
+    min-height:  calc(100vh - (50px + 46px + 140px + 36px)); 
+}

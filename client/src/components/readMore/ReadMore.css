@@ -1,0 +1,28 @@
+.ReadMore{
+    min-height:  calc(100vh - (50px + 46px + 140px + 36px)); 
+    background-color: #f0f0f0;
+    padding: 10px;
+}
+
+.ReadMore-pic{
+    width:100%;
+    height: 100%;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.ReadMore .star-ratings{
+    padding-bottom: 16px;
+}
+
+.ReadMore .price{
+    color: fuchsia;
+}
+
+.ReadMore .search, .Add{
+    margin: 5px;
+    float: right; 
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); 
+} 
+
+
