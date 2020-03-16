@@ -19,7 +19,7 @@ export const About = () => {
                             <div className="social-links">
                                 <a href="https://il.linkedin.com/in/ardato-belay-141606194" rel="noopener noreferrer" target="_blank"><i className="fab fa-linkedin"></i></a>
                                 <a href="https://github.com/ardato" rel="noopener noreferrer" target="_blank"><i className="fab fa-github-square"></i></a>
-                                <a href="mailto:example@gmail.com" rel="noopener noreferrer" target="_blank"><i className="fas fa-envelope-square" rel="noopener noreferrer" target="_blank"></i></a>
+                                <a href="mailto:adato22345@gmail.com" rel="noopener noreferrer" target="_blank"><i className="fas fa-envelope-square" rel="noopener noreferrer" target="_blank"></i></a>
                             </div>
                         </div>
                     </Col>
