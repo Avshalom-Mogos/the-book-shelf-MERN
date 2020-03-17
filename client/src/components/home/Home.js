@@ -3,7 +3,6 @@ import "./Home.css";
 
 
 const Home = () => {
-    console.log(process.env);
     return (
         <div className="Home">
             <h1>The Book Shelf</h1>
