@@ -1,16 +1,16 @@
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
-const url = "mongodb+srv://Avshalomogos:Aa123456@bookshelfcluster-ys4qh.mongodb.net/test?retryWrites=true&w=majority";
+const url = process.env.DATABASEURL;
 const ignoreWarning = { useNewUrlParser: true, useUnifiedTopology: true };
-
-const dbName = "Book_Shelf"
-const collectionName = "users"
-
-
+const dbName = "Book_Shelf";
+const collectionName = "users";
 
 
 function login(req, res) {
-  console.log("/users/login")
+
+  console.log("process.env.DATABASEURL".toUpperCase());
+  console.log(process.env);
+  
   MongoClient.connect(url, ignoreWarning, function (err, db) {
     if (err) {
       console.log(err);
@@ -20,7 +20,6 @@ function login(req, res) {
 
     //expect email , password
     const queryUser = req.body;
-    // console.log(queryUser)
 
     dbo.collection(collectionName).findOne(queryUser, function (err, user) {
       if (err) {
@@ -29,13 +28,12 @@ function login(req, res) {
       }
 
       if (user) {
-        //dont return to user flowing values
+        //don't return to user these values
         delete user.password
         delete user.agreedEULA
-        
+
         //..this is post but no document is created so retrun 200    
         return res.status(200).send(user);
-
       }
 
       //user not found
@@ -59,7 +57,6 @@ function register(req, res) {
     const dbo = db.db(dbName);
     //expect email , password
     const queryUser = req.body;
-    //console.log(queryUser);
 
     dbo.collection(collectionName).findOne({ email: queryUser.email }, function (err, userFound) {
       if (err) {
@@ -67,11 +64,10 @@ function register(req, res) {
       }
       if (userFound) {
         //..email found
-        console.log("#######");
         return res.sendStatus(400)
       }
 
-      //no email mathed => insert user
+      //no email matched => insert user
       dbo.collection(collectionName).insertOne(queryUser, function (err, result) {
         if (err) {
           console.log(err)
@@ -85,7 +81,6 @@ function register(req, res) {
 
 }
 
-//refactor find user (DO THIS LATER)
 
 function getCartData(req, res) {
 
@@ -112,8 +107,6 @@ function getCartData(req, res) {
 function addToCart(req, res) {
   let id = req.body.id;
   let book = req.body.book;
-  console.log(id);
-  console.log(book);
 
   MongoClient.connect(url, ignoreWarning, function (err, db) {
     if (err) {
@@ -156,7 +149,7 @@ function deleteFromCart(req, res) {
         return res.sendStatus(500);
       }
       res.send(result)
-      console.log("1 document deleted!!!");
+      console.log("1 document deleted");
 
     });
   });
@@ -183,11 +176,6 @@ function addToPurchaseHistory(req, res) {
   let userId = req.body.id;
   let items = req.body.items;
 
-  console.log("######################");
-  console.log(userId);
-  console.log(items);
-  console.log("######################");
-
   MongoClient.connect(url, ignoreWarning, function (err, db) {
     if (err) throw err;
     var dbo = db.db(dbName);
@@ -206,7 +194,6 @@ function addToPurchaseHistory(req, res) {
 function deleteAllDataFromCart(req, res) {
 
   let userId = req.params.userId;
-  console.log(userId);
 
   MongoClient.connect(url, ignoreWarning, function (err, db) {
     if (err) throw err;
@@ -216,7 +203,7 @@ function deleteAllDataFromCart(req, res) {
     dbo.collection(collectionName).updateOne(myquery, newvalues, function (err, result) {
       if (err) throw err;
       res.send(result)
-      console.log("1 document updated12");
+      console.log("1 document updated");
       db.close();
     });
   });

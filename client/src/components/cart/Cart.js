@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Col, Row, Badge } from 'react-bootstrap';
 import CartItem from '../cartItem/CartItem';
-import OrderSummary from "../orderSummary/OrderSummary"
+import OrderSummary from "../orderSummary/OrderSummary";
 import BookLoader from '../bookLoader/BookLoader';
 import axios from "axios";
 import "./Cart.css";

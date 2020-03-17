@@ -1,24 +1,14 @@
-import React, { Component } from 'react'
-import { Card, Button } from "react-bootstrap"
-import { Redirect, withRouter } from "react-router-dom"
+import React, { Component } from 'react';
+import { Card, Button } from "react-bootstrap";
+import { Redirect, withRouter } from "react-router-dom";
 import StarRatings from 'react-star-ratings';
-import axios from "axios"
-import "./BookCard.css"
+import axios from "axios";
+import "./BookCard.css";
+
 
 class BookCard extends Component {
 
     state = { rgisterBeforeAdd: false };
-
-    changeHendler = () => {
-        
-        this.props.moreDetails(this.props.book);
-        this.props.history.push("/readMore");
-    }
-
-    rgisterBeforeAdd = () => {
-        this.setState({ rgisterBeforeAdd: true })
-    }
-
 
     render() {
 
@@ -51,8 +41,18 @@ class BookCard extends Component {
         )
     }
 
+    changeHendler = () => {
+
+        this.props.moreDetails(this.props.book);
+        this.props.history.push("/readMore");
+    }
+
+    rgisterBeforeAdd = () => {
+        this.setState({ rgisterBeforeAdd: true })
+    }
 
 
+    
     addToCart = () => {
         let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
         axios.post("/cart", { id: user._id, book: this.props.book })

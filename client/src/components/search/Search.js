@@ -3,10 +3,13 @@ import { Container, Col, Row, Accordion, Toast, Dropdown, Card } from 'react-boo
 import axios from "axios";
 import BookCard from '../bookcard/BookCard';
 import BookLoader from '../bookLoader/BookLoader';
-import "./Search.css"
+import "./Search.css";
 
 
 export default class Search extends Component {
+
+    searchParam = this.props.match.params.searchParam;
+    toastMsg = "";
 
     state = {
         books: [],
@@ -15,8 +18,6 @@ export default class Search extends Component {
         listToDisplay: [],
         categories: "categories"
     };
-    searchParam = this.props.match.params.searchParam;
-    toastMsg = "";
 
     render() {
 
@@ -168,8 +169,6 @@ export default class Search extends Component {
             })
             .catch((err) => console.log(err));
     }
-
-
 
 
     addMissingDetails = (fullDataArr, index) => {

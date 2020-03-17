@@ -2,8 +2,8 @@ import React from 'react';
 import { Row, Col, Container } from 'react-bootstrap'
 import './About.css';
 
-export const About = () => {
 
+export const About = () => {
     return (
         <div className="about-container">
             <Container>
@@ -43,5 +43,4 @@ export const About = () => {
         </div>
     )
 }
-
 export default About;

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Form, Button, Container, Spinner } from "react-bootstrap";
-import { Redirect ,Link} from "react-router-dom"
-import axios from "axios"
-import "./Login.css"
+import { Redirect ,Link} from "react-router-dom";
+import axios from "axios";
+import "./Login.css";
 
 
 export default class Login extends Component {
@@ -11,19 +11,16 @@ export default class Login extends Component {
         redirectToHome: false,
         showError: false,
         showSpinner: false
-    }
+    };
 
     userInfo = {
         email: "",
         password: "",
-    }
-
+    };
 
     render() {
 
-        if (this.state.redirectToHome) {
-            return < Redirect to="/" />
-        }
+        if (this.state.redirectToHome) return < Redirect to="/" />;
 
         return (
             <div className="Login">
@@ -90,7 +87,6 @@ export default class Login extends Component {
 
         }).catch(err => {
             this.setState({ showError: true })
-            console.log(err);
         })
     }
 

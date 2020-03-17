@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { Form, Button, Container, Spinner } from "react-bootstrap";
-import { Redirect } from "react-router-dom"
-import axios from "axios"
-import "./Signup.css"
+import { Redirect } from "react-router-dom";
+import axios from "axios";
+import "./Signup.css";
 
 
 export default class Signup extends Component {
@@ -27,9 +27,8 @@ export default class Signup extends Component {
 
     render() {
 
-        if (this.state.redirectToHome) {
-            return < Redirect to="/" />
-        }
+        if (this.state.redirectToHome) return < Redirect to="/" />
+        
         return (
             <div className="Signup">
                 <Container className="Signup-from">

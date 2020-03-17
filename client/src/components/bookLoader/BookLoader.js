@@ -1,5 +1,6 @@
-import React from 'react'
-import "./BookLoader.css"
+import React from 'react';
+import "./BookLoader.css";
+
 
 const BookLoader = () => {
     return (
@@ -34,5 +35,4 @@ const BookLoader = () => {
         </div>
     )
 }
-
 export default BookLoader;

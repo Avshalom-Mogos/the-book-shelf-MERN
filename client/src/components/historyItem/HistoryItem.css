@@ -11,7 +11,7 @@
 .historyitem-img{
     line-height: 1.5em;
     height: 10.5em;  
-    width: 10.5em; 
+    width: 100%; 
     padding: 8px;
 }
 

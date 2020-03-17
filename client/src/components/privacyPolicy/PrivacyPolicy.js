@@ -1,6 +1,7 @@
-import React from 'react'
-import { Container } from 'react-bootstrap'
-import "./PrivacyPolicy.css"
+import React from 'react';
+import { Container } from 'react-bootstrap';
+import "./PrivacyPolicy.css";
+
 
 const privacyPolicy = () => {
     return (
@@ -91,5 +92,4 @@ const privacyPolicy = () => {
         </div>
     )
 }
-
 export default privacyPolicy;

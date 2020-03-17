@@ -1,6 +1,6 @@
-import React from 'react'
-import './TermsAndConditions.css'
-import { Container } from 'react-bootstrap'
+import React from 'react';
+import './TermsAndConditions.css';
+import { Container } from 'react-bootstrap';
 
 
 const TermsAndConditions = () => {
@@ -83,5 +83,4 @@ const TermsAndConditions = () => {
         </div>
     )
 }
-
 export default TermsAndConditions

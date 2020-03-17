@@ -5,6 +5,9 @@ const PORT = process.env.PORT || 5000;
 const routerHelper = require("./routeHelper")
 app.use(express.json());
 
+
+// authentication
+
 app.post("/users/register", (req, res) => {
   routerHelper.register(req, res);
 });
@@ -13,7 +16,9 @@ app.post("/users/login", (req, res) => {
   routerHelper.login(req, res);
 });
 
+
 //cart
+
 app.get("/cart/:userId", (req, res) => {
   routerHelper.getCartData(req, res);
 });
@@ -26,7 +31,7 @@ app.delete("/cart/:userId/:bookId", (req, res) => {
   routerHelper.deleteFromCart(req, res);
 })
 
-// /deleteAlldatafromCart______________
+
 app.delete("/cart/:userId", (req, res) => {
   routerHelper.deleteAllDataFromCart(req, res)
 })
