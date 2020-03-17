@@ -7,9 +7,6 @@ const collectionName = "users";
 
 
 function login(req, res) {
-
-  console.log("process.env.DATABASEURL".toUpperCase());
-  console.log(process.env);
   
   MongoClient.connect(url, ignoreWarning, function (err, db) {
     if (err) {

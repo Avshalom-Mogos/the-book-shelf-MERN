@@ -156,8 +156,7 @@ export default class Search extends Component {
         // show loader and clear book list
         this.setState({ showLoader: true, listToDisplay: [] })
 
-        const apiKey = procces.env.APIKEY;
-        const url = `https://www.googleapis.com/books/v1/volumes?q=:${query}&maxResults=40&projection=full&key=${apiKey}`;
+        let url = `https://www.googleapis.com/books/v1/volumes?q=:${query}&maxResults=40&projection=full&key=AIzaSyDhshslNH7uBtbjyb_AXtPz2vlYOFTF6pI`;
         axios.get(url)
             .then((res) => {
 
