@@ -94,7 +94,6 @@ function deleteFromCart(req, res) {
         console.log("1 document deleted");
       });
   });
-}
 
 module.exports.deleteAllDataFromCart = deleteAllDataFromCart;
 module.exports.getCartData = getCartData;
