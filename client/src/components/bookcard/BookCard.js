@@ -39,20 +39,20 @@ class BookCard extends Component {
                 <button className="BookCard-readMoreBtn" onClick={this.changeHendler}>Read more</button>
             </Card>
         )
-    }
+    };
 
     changeHendler = () => {
 
         this.props.moreDetails(this.props.book);
         this.props.history.push("/readMore");
-    }
+    };
 
     rgisterBeforeAdd = () => {
         this.setState({ rgisterBeforeAdd: true })
-    }
+    };
 
 
-    
+
     addToCart = () => {
         let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
         axios.post("/cart", { id: user._id, book: this.props.book })
@@ -72,7 +72,7 @@ class BookCard extends Component {
 
             })
             .catch((err) => console.log(err));
-    }
+    };
 
-}
+};
 export default withRouter(BookCard);

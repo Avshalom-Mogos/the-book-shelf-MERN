@@ -2,14 +2,13 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 5000;
-const routerHelper = require("./routeHelper");
-const authentication = require("./Modules/authentication");
-const cart = require("./Modules/cart");
-const purchaseHistory = require("./Modules/purchaseHistory");
+const authentication = require("./modules/authentication");
+const purchaseHistory = require("./modules/purchaseHistory");
+const cart = require("./modules/cart");
 app.use(express.json());
 
-// authentication
 
+// authentication
 app.post("/users/register", (req, res) => {
   authentication.register(req, res);
 });
@@ -18,8 +17,8 @@ app.post("/users/login", (req, res) => {
   authentication.login(req, res);
 });
 
-//cart
 
+//cart
 app.get("/cart/:userId", (req, res) => {
   cart.getCartData(req, res);
 });
@@ -36,8 +35,8 @@ app.delete("/cart/:userId", (req, res) => {
   cart.deleteAllDataFromCart(req, res);
 });
 
-//purchase history
 
+//purchase history
 app.get("/purchaseHistory/:userId", (req, res) => {
   purchaseHistory.getPurchaseHistoryData(req, res);
 });
@@ -53,6 +52,6 @@ if (process.env.NODE_ENV == "production") {
   app.get("*", (req, res) => {
     res.sendFile("index.html", { root });
   });
-}
+};
 
 app.listen(PORT, () => console.log("Server is up on port: " + PORT));

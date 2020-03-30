@@ -6,36 +6,36 @@ const dbName = "Book_Shelf";
 const collectionName = "users";
 
 function login(req, res) {
-    MongoClient.connect(url, ignoreWarning, function(err, db) {
+  MongoClient.connect(url, ignoreWarning, function (err, db) {
+    if (err) {
+      console.log(err);
+      return res.sendStatus(500);
+    }
+    const dbo = db.db(dbName);
+
+    //expect email , password
+    const queryUser = req.body;
+
+    dbo.collection(collectionName).findOne(queryUser, function (err, user) {
       if (err) {
         console.log(err);
         return res.sendStatus(500);
       }
-      const dbo = db.db(dbName);
-  
-      //expect email , password
-      const queryUser = req.body;
-  
-      dbo.collection(collectionName).findOne(queryUser, function(err, user) {
-        if (err) {
-          console.log(err);
-          return res.sendStatus(500);
-        }
-  
-        if (user) {
-          //don't return to user these values
-          delete user.password;
-          delete user.agreedEULA;
-  
-          //..this is post but no document is created so retrun 200
-          return res.status(200).send(user);
-        }
-  
-        //user not found
-        return res.sendStatus(404);
-      });
+
+      if (user) {
+        //don't return to user these values
+        delete user.password;
+        delete user.agreedEULA;
+
+        //..this is post but no document is created so retrun 200
+        return res.status(200).send(user);
+      }
+
+      //user not found
+      return res.sendStatus(404);
     });
-  }
+  });
+}
 
 
 
@@ -43,7 +43,7 @@ function login(req, res) {
 function register(req, res) {
   console.log("/users/register");
 
-  MongoClient.connect(url, ignoreWarning, function(err, db) {
+  MongoClient.connect(url, ignoreWarning, function (err, db) {
     if (err) {
       console.log(err);
       return res.sendStatus(500);
@@ -55,7 +55,7 @@ function register(req, res) {
 
     dbo
       .collection(collectionName)
-      .findOne({ email: queryUser.email }, function(err, userFound) {
+      .findOne({ email: queryUser.email }, function (err, userFound) {
         if (err) {
           return res.sendStatus(500);
         }
@@ -67,7 +67,7 @@ function register(req, res) {
         //no email matched => insert user
         dbo
           .collection(collectionName)
-          .insertOne(queryUser, function(err, result) {
+          .insertOne(queryUser, function (err, result) {
             if (err) {
               console.log(err);
               return res.sendStatus(500);

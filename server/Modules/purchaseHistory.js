@@ -7,12 +7,12 @@ const collectionName = "users";
 
 function getPurchaseHistoryData(req, res) {
   let userId = req.params.userId;
-  MongoClient.connect(url, ignoreWarning, function(err, db) {
+  MongoClient.connect(url, ignoreWarning, function (err, db) {
     if (err) throw err;
     var dbo = db.db(dbName);
     dbo
       .collection(collectionName)
-      .findOne({ _id: new ObjectID(userId) }, function(err, user) {
+      .findOne({ _id: new ObjectID(userId) }, function (err, user) {
         if (err) throw err;
         res.send(user.purchaseHistory);
         db.close();
@@ -24,14 +24,14 @@ function addToPurchaseHistory(req, res) {
   let userId = req.body.id;
   let items = req.body.items;
 
-  MongoClient.connect(url, ignoreWarning, function(err, db) {
+  MongoClient.connect(url, ignoreWarning, function (err, db) {
     if (err) throw err;
     var dbo = db.db(dbName);
     var myquery = { _id: new ObjectID(userId) };
     var newvalues = { $push: { purchaseHistory: { $each: items } } };
     dbo
       .collection(collectionName)
-      .updateOne(myquery, newvalues, function(err, result) {
+      .updateOne(myquery, newvalues, function (err, result) {
         if (err) throw err;
         res.send(result);
         console.log("1 document updated");
