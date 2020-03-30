@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"cd server && npm install && node server.js",
+    "start": "cd server && npm install && node server.js",
     "client-install": "cd client && npm install",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run client-install && npm run build",
-    "dev":"cd server && npm run dev"
+    "dev": "cd server && npm run dev"
   },
   "repository": {
     "type": "git",
