@@ -8,14 +8,14 @@ const collectionName = "users";
 function deleteAllDataFromCart(req, res) {
   let userId = req.params.userId;
 
-  MongoClient.connect(url, ignoreWarning, function(err, db) {
+  MongoClient.connect(url, ignoreWarning, function (err, db) {
     if (err) throw err;
     var dbo = db.db(dbName);
     var myquery = { _id: new ObjectID(userId) };
     var newvalues = { $set: { myCart: [] } };
     dbo
       .collection(collectionName)
-      .updateOne(myquery, newvalues, function(err, result) {
+      .updateOne(myquery, newvalues, function (err, result) {
         if (err) throw err;
         res.send(result);
         console.log("1 document updated");
@@ -27,7 +27,7 @@ function deleteAllDataFromCart(req, res) {
 function getCartData(req, res) {
   let id = req.params.userId;
 
-  MongoClient.connect(url, ignoreWarning, function(err, db) {
+  MongoClient.connect(url, ignoreWarning, function (err, db) {
     if (err) {
       console.log(err);
       return res.sendStatus(500);
@@ -36,7 +36,7 @@ function getCartData(req, res) {
     var dbo = db.db(dbName);
     dbo
       .collection(collectionName)
-      .findOne({ _id: new ObjectID(id) }, function(err, user) {
+      .findOne({ _id: new ObjectID(id) }, function (err, user) {
         if (err) {
           console.log(err);
           return res.sendStatus(500);
@@ -51,7 +51,7 @@ function addToCart(req, res) {
   let id = req.body.id;
   let book = req.body.book;
 
-  MongoClient.connect(url, ignoreWarning, function(err, db) {
+  MongoClient.connect(url, ignoreWarning, function (err, db) {
     if (err) {
       console.log(err);
       return res.sendStatus(500);
@@ -61,7 +61,7 @@ function addToCart(req, res) {
     var newvalues = { $push: { myCart: book } };
     dbo
       .collection(collectionName)
-      .updateOne(myquery, newvalues, function(err, result) {
+      .updateOne(myquery, newvalues, function (err, result) {
         if (err) {
           console.log(err);
           res.sendStatus(500);
@@ -77,7 +77,7 @@ function deleteFromCart(req, res) {
   let userId = req.params.userId;
   let bookId = req.params.bookId;
 
-  MongoClient.connect(url, ignoreWarning, function(err, db) {
+  MongoClient.connect(url, ignoreWarning, function (err, db) {
     if (err) {
       return res.sendStatus(500);
     }
@@ -86,7 +86,7 @@ function deleteFromCart(req, res) {
     var newvalues = { $pull: { myCart: { id: bookId } } };
     dbo
       .collection(collectionName)
-      .updateOne(myquery, newvalues, function(err, result) {
+      .updateOne(myquery, newvalues, function (err, result) {
         if (err) {
           return res.sendStatus(500);
         }
@@ -94,6 +94,7 @@ function deleteFromCart(req, res) {
         console.log("1 document deleted");
       });
   });
+};
 
 module.exports.deleteAllDataFromCart = deleteAllDataFromCart;
 module.exports.getCartData = getCartData;
