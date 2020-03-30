@@ -2,9 +2,9 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 5000;
-const authentication = require("./modules/authentication");
-const purchaseHistory = require("./modules/purchaseHistory");
-const cart = require("./modules/cart");
+const authentication = require("./Modules/authentication");
+const purchaseHistory = require("./Modules/purchaseHistory");
+const cart = require("./Modules/cart");
 app.use(express.json());
 
 
