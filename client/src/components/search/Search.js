@@ -62,7 +62,7 @@ export default class Search extends Component {
                                                 Toast={this.toastDisplay}
                                                 triggerLogin={this.props.triggerLogin}
                                                 moreDetails={this.props.moreDetails}
-                                                searchParam={this.searchParam}
+                                               
                                             />
                                         </Col>
                                     )

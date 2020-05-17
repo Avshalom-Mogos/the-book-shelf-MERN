@@ -1,78 +1,92 @@
-import React, { Component } from 'react';
+import React, { useState } from "react";
 import { Card, Button } from "react-bootstrap";
 import { Redirect, withRouter } from "react-router-dom";
-import StarRatings from 'react-star-ratings';
+import StarRatings from "react-star-ratings";
 import axios from "axios";
 import "./BookCard.css";
 
+const BookCard = (props) => {
+  const { book, triggerLogin, moreDetails, Toast, history } = props;
+  const [rgisterBeforeAdd, setRgisterBeforeAdd] = useState(false);
 
-class BookCard extends Component {
+  if (rgisterBeforeAdd) return <Redirect to="/login" />;
 
-    state = { rgisterBeforeAdd: false };
+  const changeHendler = () => {
+    moreDetails(props.book);
+    history.push("/readMore");
+  };
 
-    render() {
+  const addToCart = () => {
+    let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
+    axios
+      .post("/cart", { id: user._id, book: book })
+      .then((res) => {
+        let newBook = JSON.parse(res.config.data);
+        Toast(newBook.book.volumeInfo.title);
 
-        if (this.state.rgisterBeforeAdd) return <Redirect to="/login" />;
+        //update my cart in session storage
+        let user = JSON.parse(
+          sessionStorage.getItem("theBookShelf_user_login")
+        );
+        user.myCart.push(newBook.book);
+        let updatedUser = JSON.stringify(user);
+        sessionStorage.setItem("theBookShelf_user_login", updatedUser);
 
-        return (
-            <Card className="BookCard">
-                <Card.Img className="BookCard-img" src={this.props.book.volumeInfo.imageLinks.thumbnail} />
-                <Card.Body className="BookCard-cardBody">
-                    <Card.Title className="BookCard-title">{this.props.book.volumeInfo.title}</Card.Title>
-                    <Card.Text className="Bookcard-authors text-muted">By {this.props.book.volumeInfo.authors[0]}</Card.Text>
-                    <StarRatings
-                        rating={Number(this.props.book.rating)}
-                        starDimension="20px"
-                        starSpacing="2px"
-                        starRatedColor="gold"
-                    />
-                    <Card.Text className="BookCard-price">{this.props.book.saleInfo.listPrice.amount.toFixed(2)} ILS</Card.Text>
-                </Card.Body>
-                <Card.Footer>
-                    {
-                        JSON.parse(sessionStorage.getItem("theBookShelf_user_login")) ?
-                            <Button onClick={this.addToCart} className="BookCard-addToCart-btn" variant="primary">Add to Cart</Button>
-                            : <Button onClick={this.rgisterBeforeAdd} className="BookCard-addToCart-btn" variant="primary">Add to Cart</Button>
-                    }
+        //update user info on App.js
+        triggerLogin();
+      })
+      .catch((err) => console.log(err));
+  };
 
-                </Card.Footer>
-                <button className="BookCard-readMoreBtn" onClick={this.changeHendler}>Read more</button>
-            </Card>
-        )
-    };
-
-    changeHendler = () => {
-
-        this.props.moreDetails(this.props.book);
-        this.props.history.push("/readMore");
-    };
-
-    rgisterBeforeAdd = () => {
-        this.setState({ rgisterBeforeAdd: true })
-    };
-
-
-
-    addToCart = () => {
-        let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
-        axios.post("/cart", { id: user._id, book: this.props.book })
-            .then((res) => {
-
-                let newBook = JSON.parse(res.config.data)
-                this.props.Toast(newBook.book.volumeInfo.title)
-
-                //update my cart in session storage
-                let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
-                user.myCart.push(newBook.book)
-                let updatedUser = JSON.stringify(user)
-                sessionStorage.setItem("theBookShelf_user_login", updatedUser);
-
-                //update user info on App.js
-                this.props.triggerLogin()
-
-            })
-            .catch((err) => console.log(err));
-    };
-
+  return (
+    <div>
+      <Card className="BookCard">
+        <Card.Img
+          className="BookCard-img"
+          src={props.book.volumeInfo.imageLinks.thumbnail}
+        />
+        <Card.Body className="BookCard-cardBody">
+          <Card.Title className="BookCard-title">
+            {props.book.volumeInfo.title}
+          </Card.Title>
+          <Card.Text className="Bookcard-authors text-muted">
+            By {props.book.volumeInfo.authors[0]}
+          </Card.Text>
+          <StarRatings
+            rating={Number(props.book.rating)}
+            starDimension="20px"
+            starSpacing="2px"
+            starRatedColor="gold"
+          />
+          <Card.Text className="BookCard-price">
+            {props.book.saleInfo.listPrice.amount.toFixed(2)} ILS
+          </Card.Text>
+        </Card.Body>
+        <Card.Footer>
+          {JSON.parse(sessionStorage.getItem("theBookShelf_user_login")) ? (
+            <Button
+              onClick={addToCart}
+              className="BookCard-addToCart-btn"
+              variant="primary"
+            >
+              Add to Cart
+            </Button>
+          ) : (
+            <Button
+              onClick={() => setRgisterBeforeAdd({ rgisterBeforeAdd: true })}
+              className="BookCard-addToCart-btn"
+              variant="primary"
+            >
+              Add to Cart
+            </Button>
+          )}
+        </Card.Footer>
+        <button className="BookCard-readMoreBtn" onClick={changeHendler}>
+          Read more
+        </button>
+      </Card>
+    </div>
+  );
 };
+
 export default withRouter(BookCard);
