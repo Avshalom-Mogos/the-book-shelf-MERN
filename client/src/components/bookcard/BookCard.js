@@ -12,7 +12,7 @@ const BookCard = (props) => {
   if (rgisterBeforeAdd) return <Redirect to="/login" />;
 
   const changeHendler = () => {
-    moreDetails(props.book);
+    moreDetails(book);
     history.push("/readMore");
   };
 
@@ -43,23 +43,23 @@ const BookCard = (props) => {
       <Card className="BookCard">
         <Card.Img
           className="BookCard-img"
-          src={props.book.volumeInfo.imageLinks.thumbnail}
+          src={book.volumeInfo.imageLinks.thumbnail}
         />
         <Card.Body className="BookCard-cardBody">
           <Card.Title className="BookCard-title">
-            {props.book.volumeInfo.title}
+            {book.volumeInfo.title}
           </Card.Title>
           <Card.Text className="Bookcard-authors text-muted">
-            By {props.book.volumeInfo.authors[0]}
+            By {book.volumeInfo.authors[0]}
           </Card.Text>
           <StarRatings
-            rating={Number(props.book.rating)}
+            rating={Number(book.rating)}
             starDimension="20px"
             starSpacing="2px"
             starRatedColor="gold"
           />
           <Card.Text className="BookCard-price">
-            {props.book.saleInfo.listPrice.amount.toFixed(2)} ILS
+            {book.saleInfo.listPrice.amount.toFixed(2)} ILS
           </Card.Text>
         </Card.Body>
         <Card.Footer>

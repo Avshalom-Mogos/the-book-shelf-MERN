@@ -39,7 +39,7 @@ export default class App extends React.Component {
           <Route exact path="/Cart" render={() => <Cart triggerLogin={this.login} />} />
           <Route exact path="/purchaseHistory" render={() => <PurchaseHistory triggerLogin={this.login} />} />
           <Route path="/search/:searchParam" render={(props) => <Search user={this.state.userInfo} {...props}
-            triggerLogin={this.login} moreDetails={this.moreDetails} />} />
+           triggerLogin={this.login} moreDetails={this.moreDetails} />} />
           <Route render={() => <h1>ERROR:404 page not pound</h1>} />
         </Switch>
         <Footer />

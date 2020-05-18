@@ -1,124 +1,167 @@
-import React, { Component } from 'react';
-import { Container, Col, Row, Badge } from 'react-bootstrap';
-import CartItem from '../cartItem/CartItem';
+import React, { useState, useEffect } from "react";
+import { Container, Col, Row, Badge } from "react-bootstrap";
+import CartItem from "../cartItem/CartItem";
 import OrderSummary from "../orderSummary/OrderSummary";
-import BookLoader from '../bookLoader/BookLoader';
+import BookLoader from "../bookLoader/BookLoader";
 import axios from "axios";
 import "./Cart.css";
 
+const Cart = (props) => {
+  const [items, setItems] = useState([]);
+  const [showOrderSummary, setShowOrderSummary] = useState(false);
+  const [showSpinner, setShowSpinner] = useState(false);
+  const [showEmptyMessage, setShowEmptyMessage] = useState(false);
 
-export default class Cart extends Component {
+  /////clearMycart
+  const clearMycart = () => {
+    return (
+      <div>
+        {items.length === 0 ? (
+          <button disabled className="btn-lg">
+            Clear Cart
+          </button>
+        ) : (
+          <button className="btn" onClick={deleteAlldataFromCart}>
+            Clear Cart
+          </button>
+        )}
+      </div>
+    );
+  };
 
-    state = {
-        items: [],
-        showOrderSummary: false,
-        showSpinner: false,
-        showEmptyMessage: false,
+  ///checkOutDisplay
+  const checkOutDisplay = () => {
+    if (!showSpinner) {
+      return (
+        <div className="Cart-checkOut">
+          <h5>
+            {" "}
+            <i className="fas fa-book"></i> All Books:{" "}
+            <Badge pill variant="info">
+              {items.length}
+            </Badge>
+          </h5>
+          <h5>
+            Total:
+            {console.log(items)}
+            {items
+              .reduce((total, book) => {
+                return total + book.saleInfo.listPrice.amount;
+              }, 0)
+              .toFixed(2)}{" "}
+            ILS
+          </h5>
+          {items.length === 0 ? (
+            <button disabled className="btn-lg">
+              CHECKOUT
+            </button>
+          ) : (
+            <button
+              onClick={() => setShowOrderSummary(true)}
+              style={{ marginBottom: "10px" }}
+              className="btn btn-lg"
+            >
+              CHECKOUT
+            </button>
+          )}
+        </div>
+      );
     }
+  };
 
-    render() {
+  //////deleteAlldataFromCart
 
-        return (
-            <div className="Cart">
-                {this.state.showOrderSummary ? <div className="Cart-dimBackground"></div> : ""}
-                {this.state.showOrderSummary ? <OrderSummary items={this.state.items} close={this.closeOrder} getAllCartDataFromDB={this.getAllCartDataFromDB} /> : ""}
-                <h1 className="text-info text-center">My Cart</h1>
-                <Container>
-                    {this.state.showEmptyMessage ? <h2 className="Cart-emptyMessage">The cart is empty</h2> : ""}
-                    {this.state.showSpinner ? <BookLoader /> : ""}
-                    <Row className="d-flex">
-                        <Col className="Cart-container flex-grow-1">
-                            <Row>
-                                <Col>
-                                    {
-                                        this.state.items.map((book, index) => {
-                                            return (
-                                                <CartItem key={index} book={book} update={this.getAllCartDataFromDB} />
-                                            )
-                                        })
-                                    }
-                                </Col>
-                            </Row>
-                        </Col>
-                        {this.checkOutDisplay()}
-                        {this.clearMycart()}
-                    </Row>
-                </Container>
-            </div>
-        )
-    }
+  const deleteAlldataFromCart = () => {
+    let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
+    axios
+      .delete(`cart/${user._id}`)
+      .then((res) => console.log(res))
+      .catch((err) => {
+        console.log(err);
+      });
 
-    clearMycart = () => {
-        return (
-            <div>
-                {
-                    this.state.items.length === 0 ? <button disabled className="btn-lg" >Clear Cart</button> :
-                        <button className="btn" onClick={this.deleteAlldataFromCart}>Clear Cart</button>
-                }
-            </div>
-        )
-    }
+    getAllCartDataFromDB();
+  };
 
-    checkOutDisplay = () => {
-        if (!this.state.showSpinner) {
-            return (
-                <div className="Cart-checkOut">
-                    <h5> <i className="fas fa-book"></i> All Books: <Badge pill variant="info">{this.state.items.length}</Badge></h5>
-                    <h5>Total:{this.state.items.reduce((total, book) => {
-                        return total + book.saleInfo.listPrice.amount
-                    }, 0).toFixed(2)} ILS</h5>
-                    {this.state.items.length === 0 ? <button disabled className="btn-lg">CHECKOUT</button> :
-                        <button onClick={() => this.setState({ showOrderSummary: true })} style={{ marginBottom: "10px" }} className="btn btn-lg">CHECKOUT</button>}
-                </div>
-            )
-        }
-    }
+  ////useEffect
+  useEffect(() => {
+    setShowSpinner(true);
+    getAllCartDataFromDB();
+  }, []);
 
+  //////getAllCartDataFromDB
+  const getAllCartDataFromDB = () => {
+    let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
+    axios.get(`/cart/${user._id}`).then((res) => {
+      setShowSpinner(false);
 
-    deleteAlldataFromCart = () => {
-        let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
-        axios.delete(`cart/${user._id}`)
-            .then(res => console.log(res)
-            )
-            .catch(err => {
-                console.log(err);
-            })
+      //show cart is empty msg
+      if (res.data.length === 0) {
+        setShowEmptyMessage(true);
+      }
 
-        this.getAllCartDataFromDB()
+      // update myCart in Session storage
+      user.myCart = [...res.data];
+      let updatedUser = JSON.stringify(user);
+      sessionStorage.setItem("theBookShelf_user_login", updatedUser);
 
-    }
+      setItems([...res.data]);
 
-    componentDidMount() {
-        this.setState({ showSpinner: true })
-        this.getAllCartDataFromDB();
-    }
+      //update user info on App.js
+      props.triggerLogin();
+    });
+  };
 
-    getAllCartDataFromDB = () => {
-        let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
-        axios.get(`/cart/${user._id}`)
-            .then((res) => {
-                this.setState({ showSpinner: false })
+  /////closeOrder
+  const closeOrder = () => {
+    setShowOrderSummary(false);
+  };
 
-                //show cart is empty msg
-                if (res.data.length === 0) {
-                    this.setState({ showEmptyMessage: true })
-                }
+  return (
+    <div>
+      <div className="Cart">
+        {showOrderSummary ? <div className="Cart-dimBackground"></div> : ""}
+        {showOrderSummary ? (
+          <OrderSummary
+            items={items}
+            close={closeOrder}
+            getAllCartDataFromDB={getAllCartDataFromDB}
+          />
+        ) : (
+          ""
+        )}
+        <h1 className="text-info text-center">My Cart</h1>
+        <Container>
+          {showEmptyMessage ? (
+            <h2 className="Cart-emptyMessage">The cart is empty</h2>
+          ) : (
+            ""
+          )}
+          {showSpinner ? <BookLoader /> : ""}
+          <Row className="d-flex">
+            <Col className="Cart-container flex-grow-1">
+              <Row>
+                <Col>
+                  {items.map((book, index) => {
+                    return (
+                      <CartItem
+                        key={index}
+                        book={book}
+                        update={getAllCartDataFromDB}
+                      />
+                    );
+                  })}
+                </Col>
+              </Row>
+            </Col>
+            {checkOutDisplay()}
+            {clearMycart()}
+          </Row>
+        </Container>
+      </div>
+      )
+    </div>
+  );
+};
 
-                // update myCart in Session storage
-                user.myCart = [...res.data]
-                let updatedUser = JSON.stringify(user)
-                sessionStorage.setItem("theBookShelf_user_login", updatedUser);
-
-                this.setState({ items: res.data })
-
-
-                //update user info on App.js
-                this.props.triggerLogin()
-            })
-    }
-
-    closeOrder = () => {
-        this.setState({ showOrderSummary: false })
-    }
-}
-
+export default Cart;
