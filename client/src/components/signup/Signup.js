@@ -6,7 +6,7 @@ import axios from "axios";
 import "./Signup.css";
 
 
-const Signup = (props) => {
+const Signup = () => {
 
     const [redirectToHome, setRedirectToHome] = useState(false);
     const [showSpinner, setShowSpinner] = useState(false);
