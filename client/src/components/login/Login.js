@@ -1,94 +1,109 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
+import { useFormik } from 'formik';
 import { Form, Button, Container, Spinner } from "react-bootstrap";
-import { Redirect ,Link} from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import axios from "axios";
 import "./Login.css";
 
 
-export default class Login extends Component {
+const Login = (props) => {
 
-    state = {
-        redirectToHome: false,
-        showError: false,
-        showSpinner: false
-    };
+    const { triggerLogin } = props;
+    const [redirectToHome, setRedirectToHome] = useState(false);
+    const [showError, setShowError] = useState(false);
+    const [showSpinner, setShowSpinner] = useState(false);
 
-    userInfo = {
+    const initialValues = {
         email: "",
         password: "",
     };
 
-    render() {
+    const formik = useFormik({
+        initialValues,
+        onSubmit: values => submitForm(values)
+    });
 
-        if (this.state.redirectToHome) return < Redirect to="/" />;
+    if (redirectToHome) return < Redirect to="/" />;
 
-        return (
-            <div className="Login">
-                <Container className="Login-from">
-                    <Form onSubmit={(e) => this.login(e)}>
-                        <Form.Group controlId="formBasicEmail">
-                            <Form.Label>Email address</Form.Label>
-                            <Form.Control onChange={(e) => this.userInfo.email = e.target.value} type="email" placeholder="Enter email" required />
-                            <Form.Text className="text-muted">
-                                We'll never share your email with anyone else.
-                        </Form.Text>
-                        </Form.Group>
+    const userFeedBack = () => {
+        if (showError) return <p style={{ color: "red" }}> Password or Email Is Invalid</p>
+        if (showSpinner) return <Spinner animation="border" />
+    };
 
-                        <Form.Group controlId="formBasicPassword">
-                            <Form.Label >Password</Form.Label>
-                            <Form.Control onChange={(e) => this.userInfo.password = e.target.value} type="password" placeholder="Password" required minLength={6} />
-                        </Form.Group>
-                        <Form.Group controlId="formBasicCheckbox">
-                            <label>Don't have an account?</label>
-                            <Link to="/signup"> Sign Up</Link>
-                        </Form.Group>
-                        <Form.Group>
-                            <Button variant="primary" type="submit">Login</Button>
-                        </Form.Group>
-                        <Form.Group className="Login-feedback">
-                            {this.userFeedBack()}
-                        </Form.Group>
-                    </Form>
-                </Container>
-            </div>
-        )
-    }
+    const submitForm = (values) => {
 
-    userFeedBack = () => {
-        if (this.state.showError) return <p style={{ color: "red" }}> Password or Email Is Invalid</p>
-        if (this.state.showSpinner) return <Spinner animation="border" />
-    }
+        setShowError(true);
+        setShowError(false);
 
-    
-    login = (e) => {
-        e.preventDefault()
-        this.setState({ showSpinner: true, showError: false })
         axios.post("/users/login", {
-            email: this.userInfo.email,
-            password: this.userInfo.password,
+            email: values.email,
+            password: values.password,
 
         }).then(res => {
             //res.data is user
             if (res.status === 200) {
 
                 //wirte user info to session storage
-                let userInfo = { ...res.data };
+                const userInfo = { ...res.data };
                 sessionStorage.setItem("theBookShelf_user_login", JSON.stringify(userInfo));
-                this.props.triggerLogin();
+                triggerLogin();
 
-
-                this.setState({ redirectToHome: true })
-            }
-
-            else {
-                this.setState({ showError: true })
+                //Redirect
+                setRedirectToHome(true)
+            } else {
+                setShowError(true);
                 console.log(`error code : ${res.status}`);
-            }
+            };
 
         }).catch(err => {
-            this.setState({ showError: true })
+            setShowError(true);
         })
-    }
+    };
 
+    return (
+        <div className="Login">
+            <Container className="Login-from">
+                <Form onSubmit={formik.handleSubmit}>
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Label>Email address</Form.Label>
+                        <Form.Control
+                            type="email"
+                            name="email"
+                            value={formik.values.email}
+                            onChange={formik.handleChange}
+                            placeholder="Enter email"
+                            required
+                        />
+                        <Form.Text className="text-muted">
+                            We'll never share your email with anyone else.
+                        </Form.Text>
+                    </Form.Group>
 
-}
+                    <Form.Group controlId="formBasicPassword">
+                        <Form.Label >Password</Form.Label>
+                        <Form.Control
+                            type="password"
+                            name="password"
+                            value={formik.values.password}
+                            onChange={formik.handleChange}
+                            placeholder="Password"
+                            minLength={6}
+                            required
+                        />
+                    </Form.Group>
+                    <Form.Group controlId="formBasicCheckbox">
+                        <label>Don't have an account?</label>
+                        <Link to="/signup"> Sign Up</Link>
+                    </Form.Group>
+                    <Form.Group>
+                        <Button variant="primary" type="submit">Login</Button>
+                    </Form.Group>
+                    <Form.Group className="Login-feedback">
+                        {userFeedBack()}
+                    </Form.Group>
+                </Form>
+            </Container>
+        </div>
+    )
+};
+export default Login;

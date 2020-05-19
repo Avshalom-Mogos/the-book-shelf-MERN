@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container } from "react-bootstrap";
 import HistoryItem from "../historyItem/HistoryItem";
 import BookLoader from "../bookLoader/BookLoader";
@@ -6,39 +6,39 @@ import "./PurchaseHistory.css";
 import axios from "axios";
 
 
-export default class PurchaseHistory extends Component {
+const PurchaseHistory = () => {
 
-    state = { items: [], showBookLoader: false }
+    const [items, setItems] = useState([]);
+    const [showBookLoader, setShowBookLoader] = useState(false)
 
-    render() {
+    useEffect(() => {
 
-        return (
-            <div className="PurchaseHistory">
-                <h1 className="text-info text-center">Purchase History</h1>
-                {this.state.showBookLoader ? <BookLoader /> : ""}
-                <Container>
-                    {
-                        this.state.items.map((item, index) => {
-                            return <HistoryItem key={index} book={item} />
-                        })
-                    }
-                </Container>
-            </div>
-        )
-    }
+        setShowBookLoader(true);
 
-    componentDidMount() {
-        this.setState({ showBookLoader: true })
-        this.getPurchaseHistoryFromDB()
-    }
-
-    getPurchaseHistoryFromDB = () => {
-
+        //getPurchaseHistoryFromDB
         let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
         axios.get(`/purchaseHistory/${user._id}`)
             .then((res) => {
-                this.setState({ items: res.data, showBookLoader: false })
+                setItems([...res.data]);
+                setShowBookLoader(false);
             })
             .catch(err => console.log(err))
-    }
-}
+
+    }, [])
+
+    return (
+        <div className="PurchaseHistory">
+            <h1 className="text-info text-center">Purchase History</h1>
+            {showBookLoader ? <BookLoader /> : ""}
+            <Container>
+                {!items.length ? <h1>No Purchase history was pound</h1> : ''}
+                {
+                    items.map((item, index) => {
+                        return <HistoryItem key={index} book={item} />
+                    })
+                }
+            </Container>
+        </div>
+    )
+};
+export default PurchaseHistory;

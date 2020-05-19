@@ -8,14 +8,14 @@ const OrderSummary = (props) => {
     const { items, close, getAllCartDataFromDB } = props;
 
     const addToPurchaseHistory = () => {
-        let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
-        let itemsArray = [...items];
+        const user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
+        const itemsArray = [...items];
         addDateStamp(itemsArray);
         axios.post("/purchaseHistory", { id: user._id, items: itemsArray })
             .then((res) => deleteAlldataFromCart())
 
             .catch((err) => console.log(err))
-    }
+    };
 
     const deleteAlldataFromCart = () => {
         let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
@@ -30,15 +30,14 @@ const OrderSummary = (props) => {
             })
 
         getAllCartDataFromDB()
-    }
+    };
 
     const addDateStamp = (itemsArray) => {
 
         itemsArray.forEach(item => {
             item.dateOfPurchase = new Date().toDateString();
         });
-
-    }
+    };
 
     return (
         <div className="OrderSummary">
@@ -64,11 +63,9 @@ const OrderSummary = (props) => {
 
                 <p className="info">After you click buy all your items will be waiting for you in purchase History</p>
                 <button className="OrderSummary-btn" onClick={addToPurchaseHistory}>Buy all</button>
-                <button className="OrderSummary-btn-Cancel" onClick={() => close()}>Cancel</button>
+                <button className="OrderSummary-btn-Cancel" onClick={close}>Cancel</button>
             </div>
         </div>
     )
 }
 export default OrderSummary;
-
-
