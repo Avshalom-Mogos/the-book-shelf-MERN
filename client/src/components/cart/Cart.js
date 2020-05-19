@@ -43,7 +43,6 @@ const Cart = (props) => {
           </h5>
           <h5>
             Total:
-            {console.log(items)}
             {items
               .reduce((total, book) => {
                 return total + book.saleInfo.listPrice.amount;
@@ -70,7 +69,6 @@ const Cart = (props) => {
   };
 
   //////deleteAlldataFromCart
-
   const deleteAlldataFromCart = () => {
     let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
     axios
@@ -83,14 +81,10 @@ const Cart = (props) => {
     getAllCartDataFromDB();
   };
 
-  ////useEffect
-  useEffect(() => {
-    setShowSpinner(true);
-    getAllCartDataFromDB();
-  }, []);
-
+  
   //////getAllCartDataFromDB
   const getAllCartDataFromDB = () => {
+    setShowSpinner(true);
     let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
     axios.get(`/cart/${user._id}`).then((res) => {
       setShowSpinner(false);
@@ -111,6 +105,9 @@ const Cart = (props) => {
       props.triggerLogin();
     });
   };
+
+  useEffect(getAllCartDataFromDB,[]);
+
 
   /////closeOrder
   const closeOrder = () => {

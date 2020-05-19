@@ -6,6 +6,7 @@ import axios from "axios";
 import "./Login.css";
 
 
+
 const Login = (props) => {
 
     const { triggerLogin } = props;
@@ -30,12 +31,12 @@ const Login = (props) => {
 
     const submitForm = (values) => {
 
-        setShowError(true);
+        setShowSpinner(true);
         setShowError(false);
 
         axios.post("/users/login", {
             email: values.email,
-            password: values.password,
+            password: values.password
 
         }).then(res => {
             //res.data is user
