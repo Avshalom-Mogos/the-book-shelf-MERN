@@ -21,5 +21,6 @@
   "bugs": {
     "url": "https://github.com/Avshalom-Mogos/the-book-shelf-MERN/issues"
   },
-  "homepage": "https://github.com/Avshalom-Mogos/the-book-shelf-MERN#readme"
+  "homepage": "https://github.com/Avshalom-Mogos/the-book-shelf-MERN#readme",
+  "dependencies": {}
 }

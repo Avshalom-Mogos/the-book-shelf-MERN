@@ -1,6 +1,6 @@
 import React from 'react';
+import Container from 'react-bootstrap/Container';
 import './TermsAndConditions.css';
-import { Container } from 'react-bootstrap';
 
 
 const TermsAndConditions = () => {
@@ -39,7 +39,6 @@ const TermsAndConditions = () => {
                         <p><strong>Value Added Tax (VAT)</strong> All prices displayed on The Book Shelf website are inclusive of your local Tax (or applicable local sales tax, VAT and similar taxes). Your final price may be different depending upon the tax that applies to your delivery location. Where The Book Shelf apply a different tax rate based on the destination of the goods, this will be declared in the checkout.  When ordering goods from The Book Shelf for delivery overseas, you may be subject to import duties and taxes that are levied once the package reaches your country. Any additional charges for customs clearance must be borne by you; we have no control over these charges and cannot predict what they may be.   Customs policies vary widely from country to country, so you should contact your local customs office for further information. Additionally, please note that when ordering from The Book Shelf, you are considered the importer of record and must comply with all laws and regulations of the country in which you are receiving the goods.  <strong>VAT registration numbers</strong> <span>Austria 437/4614</span> <span>Belgium BE 0842 561 893</span> <span>Bulgaria BG3075132408</span> <span>Croatia HR16379598282</span> <span>Cyprus CY99200052Z</span> <span>Czech Republic CZ683052523</span> <span>Denmark DK12641915</span> <span>Estonia EE101519487</span> <span>Finland FI24504502</span> <span>France 79 498136506</span> <span>Germany 252 8258 94</span> <span>Greece EL997542198</span> <span>Hungary HU26908355</span> <span>Ireland IE9811968B</span> <span>Italy IT00146599998</span> <span>Latvia LV90009697727</span> <span>Lithuania LT100006871218</span> <span>Luxembourg LU25128942</span> <span>Malta MT20619027</span> <span>Netherlands NL823500962B01</span> <span>New Zealand 130-500-501</span> <span>Portugal PT980464315</span> <span>Poland PL5263087768</span> <span>Romania RO30232444</span> <span>Slovakia SK4020351170</span> <span>Spain N8262632F</span> <span>Sweden SE502070939901</span> <span>UK 840 3399 30</span> <span>ABN number: 19 824 886 404 <span>New Zealand GST number: 130-500-501</span> </span></p>
                         <p><strong>Liability</strong> This is as follows:</p>
                         <ol>
-
                             <li> If the goods The Book Shelf delivers are not what you ordered or are damaged or defective or the delivery is of an incorrect quantity, The Book Shelf shall have no liability to you unless you notify The Book Shelf in writing at The Book Shelf contact address of the problem within ten working days of the delivery of goods in question.</li>
                             <br />
                             <li>If you do not receive goods ordered by you within 30 days of the date on which they were dispatched to you, The Book Shelf shall have no liability to you unless you notify The Book Shelf in writing at The Book Shelf contact address of the problem within 40 days of the date on which the goods were dispatched to you.</li>
@@ -82,5 +81,5 @@ const TermsAndConditions = () => {
             </Container>
         </div>
     )
-}
-export default TermsAndConditions
+};
+export default TermsAndConditions;
