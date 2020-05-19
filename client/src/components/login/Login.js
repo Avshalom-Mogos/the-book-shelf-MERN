@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import { useFormik } from 'formik';
 import { Form, Button, Container, Spinner } from "react-bootstrap";
 import { Redirect, Link } from "react-router-dom";
 import axios from "axios";
 import "./Login.css";
-
+import { StateContext } from "../../Contexts/StateContext";
 
 
 const Login = (props) => {
 
-    const { triggerLogin } = props;
+    const { login } =  useContext(StateContext);
     const [redirectToHome, setRedirectToHome] = useState(false);
     const [showError, setShowError] = useState(false);
     const [showSpinner, setShowSpinner] = useState(false);
@@ -45,7 +45,7 @@ const Login = (props) => {
                 //wirte user info to session storage
                 const userInfo = { ...res.data };
                 sessionStorage.setItem("theBookShelf_user_login", JSON.stringify(userInfo));
-                triggerLogin();
+                login();
 
                 //Redirect
                 setRedirectToHome(true)

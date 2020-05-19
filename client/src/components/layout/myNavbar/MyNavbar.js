@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Navbar,
   Form,
@@ -9,6 +9,8 @@ import {
 } from "react-bootstrap";
 import { Link, withRouter } from "react-router-dom";
 import "./MyNavbar.css";
+import { StateContext } from "../../../Contexts/StateContext";
+const { userInfo, logout } = useContext(StateContext);
 
 const MyNavbar = (props) => {
   let searchParams = "";
@@ -16,7 +18,8 @@ const MyNavbar = (props) => {
     e.preventDefault();
 
     let encodedParam = encodeURIComponent(searchParams);
-    props.history.push("/search/" + encodedParam);
+    const { history } = props;
+    history.push("/search/" + encodedParam);
 
     //clear form input fileds
     document.querySelector(".MyNavbar-form").reset();
@@ -37,15 +40,15 @@ const MyNavbar = (props) => {
             <Navbar.Text>
               <DropdownButton id="dropdown-basic-button" title="My Shelf">
                 <Dropdown.Header>
-                  <strong>{`Welcome ${props.userInfo.userName}`}</strong>
+                  <strong>{`Welcome ${userInfo.userName}`}</strong>
                 </Dropdown.Header>
                 <Dropdown.Divider />
-                {props.userInfo._id ? (
+                {userInfo._id ? (
                   <div>
                     <Dropdown.Item as={Link} to="/Cart">
                       <span className="mr-3">Shopping Cart</span>
                       <Badge pill variant="danger">
-                        {props.userInfo.myCart.length}
+                        {userInfo.myCart.length}
                       </Badge>
                     </Dropdown.Item>
                     <Dropdown.Item as={Link} to="/purchaseHistory">
@@ -54,11 +57,7 @@ const MyNavbar = (props) => {
                     <Dropdown.Item as={Link} to="/about">
                       About
                     </Dropdown.Item>
-                    <Dropdown.Item
-                      as={Link}
-                      to="/"
-                      onClick={props.triggerLogout}
-                    >
+                    <Dropdown.Item as={Link} to="/" onClick={logout}>
                       Logout
                     </Dropdown.Item>
                   </div>
