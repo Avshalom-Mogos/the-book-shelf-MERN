@@ -23,8 +23,6 @@ const Login = (props) => {
         onSubmit: values => submitForm(values)
     });
 
-    if (redirectToHome) return < Redirect to="/" />;
-
     const userFeedBack = () => {
         if (showError) return <p style={{ color: "red" }}> Password or Email Is Invalid</p>
         if (showSpinner) return <Spinner animation="border" />
@@ -60,6 +58,8 @@ const Login = (props) => {
         })
     };
 
+    if (redirectToHome) return < Redirect to="/" />;
+    
     return (
         <div className="Login">
             <Container className="Login-from">
