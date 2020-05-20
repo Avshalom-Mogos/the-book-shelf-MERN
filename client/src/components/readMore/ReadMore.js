@@ -7,7 +7,6 @@ import "./ReadMore.css";
 import { StateContext } from "../../Contexts/StateContext";
 
 const ReadMore = (props) => {
-
   const { readMoreProp, login } = useContext(StateContext);
   const { history } = props;
   const [showToast, setShowToast] = useState(false);

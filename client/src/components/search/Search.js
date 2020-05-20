@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import { Container, Col, Row, Accordion, Toast, Dropdown, Card } from 'react-bootstrap';
 import BookCard from '../bookcard/BookCard';
 import BookLoader from '../bookLoader/BookLoader';
 import axios from "axios";
 import "./Search.css";
-
+import { StateContext } from "../../Contexts/StateContext";
 
 const Search = (props) => {
-
+    const { login } = useContext(StateContext);
     const searchParam = props.match.params.searchParam;
     const [toast, setToast] = useState({ show: false, msg: '' });
     const [books, setBooks] = useState([]);
@@ -42,7 +42,7 @@ const Search = (props) => {
                         }
                         onClick={() => {
                             //filter search results
-                            const tmpArr = this.state.books.filter((bookFilter) => {
+                            const tmpArr = books.filter((bookFilter) => {
                                 if (bookFilter.volumeInfo.categories) {
                                     return bookFilter.volumeInfo.categories[0] === booksBtnsObj[book.volumeInfo.categories]
                                 }
@@ -84,17 +84,6 @@ const Search = (props) => {
         )
     };
 
-    // componentDidMount() { this.getBooks(this.searchParam); }
-
-    // componentDidUpdate(prevProps) {
-    //     prevProps = prevProps.match.params.searchParam;
-    //     let currentProps = this.props.match.params.searchParam;
-
-    //     //get new books on search params change
-    //     if (currentProps !== prevProps) {
-    //         this.getBooks(currentProps);
-    //     }
-    // }
 
     useEffect(() => {
 
@@ -210,7 +199,7 @@ const Search = (props) => {
                                     <Col key={index} sm="6" md="4" lg="4">
                                         <BookCard book={book}
                                             Toast={toastDisplay}
-                                            triggerLogin={props.triggerLogin}
+                                            triggerLogin={login}
                                             moreDetails={props.moreDetails}
                                         />
                                     </Col>

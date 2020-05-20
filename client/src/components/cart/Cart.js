@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext} from "react";
 import { Container, Col, Row, Badge } from "react-bootstrap";
 import CartItem from "../cartItem/CartItem";
 import OrderSummary from "../orderSummary/OrderSummary";
 import BookLoader from "../bookLoader/BookLoader";
 import axios from "axios";
 import "./Cart.css";
+import { StateContext } from "../../Contexts/StateContext";
 
 const Cart = (props) => {
+  const { login } = useContext(StateContext);
   const [items, setItems] = useState([]);
   const [showOrderSummary, setShowOrderSummary] = useState(false);
   const [showSpinner, setShowSpinner] = useState(false);
@@ -102,7 +104,7 @@ const Cart = (props) => {
       setItems([...res.data]);
 
       //update user info on App.js
-      props.triggerLogin();
+      login();
     });
   };
 

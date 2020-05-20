@@ -6,13 +6,13 @@ import axios from "axios";
 import "./BookCard.css";
 
 const BookCard = (props) => {
-  const { book, triggerLogin, moreDetails, Toast, history } = props;
+  const { book, triggerLogin, setReadMoreProp, Toast, history } = props;
   const [rgisterBeforeAdd, setRgisterBeforeAdd] = useState(false);
 
   if (rgisterBeforeAdd) return <Redirect to="/login" />;
 
   const changeHendler = () => {
-    moreDetails(book);
+    setReadMoreProp(book);
     history.push("/readMore");
   };
 

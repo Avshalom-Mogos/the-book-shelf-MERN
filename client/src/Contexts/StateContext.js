@@ -6,9 +6,9 @@ export const StateContextProvider = (props) => {
   const [userInfo, setUserInfo] = useState({ userName: "" });
   const [readMoreProp, setReadMoreProp] = useState({});
 
-  const moreDetails = (book) => {
-    setReadMoreProp(book);
-  };
+  // const moreDetails = (book) => {
+  //   setReadMoreProp(book);
+  // };
 
   const login = () => {
     const user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
@@ -37,7 +37,6 @@ export const StateContextProvider = (props) => {
         setUserInfo,
         readMoreProp,
         setReadMoreProp,
-        moreDetails,
         login,
         logout,
         

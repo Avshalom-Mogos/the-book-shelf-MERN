@@ -10,9 +10,10 @@ import {
 import { Link, withRouter } from "react-router-dom";
 import "./MyNavbar.css";
 import { StateContext } from "../../../Contexts/StateContext";
-const { userInfo, logout } = useContext(StateContext);
+
 
 const MyNavbar = (props) => {
+  const { userInfo, logout } = useContext(StateContext);
   let searchParams = "";
   const redirectToSearch = (e) => {
     e.preventDefault();

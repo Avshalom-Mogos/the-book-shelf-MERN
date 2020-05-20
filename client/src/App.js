@@ -97,8 +97,8 @@ import "./App.css";
 import { StateContextProvider } from './Contexts/StateContext';
 const App = () => {
   return (
-    <StateContextProvider>
-      <div className="App">
+    <div className="App">
+      <StateContextProvider>
           <MyNavbar  />
           <Switch>
           <Route exact path="/" component={ <Home />} />
@@ -114,10 +114,10 @@ const App = () => {
               <Route component={ <h1>ERROR:404 page not pound</h1>} />
             </Switch>
             <Footer /> 
+    </StateContextProvider>
       </div>
     );
-    </StateContextProvider>
-  )
+  
 }
 
 export default App
