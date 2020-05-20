@@ -48,34 +48,34 @@
 //   }
 
 
-  // moreDetails = (book) => {
+// moreDetails = (book) => {
 
-  //   this.setState({ readMoreProp: book })
-  // }
+//   this.setState({ readMoreProp: book })
+// }
 
 
-  // login = () => {
+// login = () => {
 
-  //   let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
-  //   this.setState({ userInfo: user });
-  // }
+//   let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
+//   this.setState({ userInfo: user });
+// }
 
-  // logout = () => {
+// logout = () => {
 
-  //   sessionStorage.removeItem("theBookShelf_user_login");
-  //   this.setState({ userInfo: { userName: "Guest" } });
-  // }
+//   sessionStorage.removeItem("theBookShelf_user_login");
+//   this.setState({ userInfo: { userName: "Guest" } });
+// }
 
-  // componentDidMount() {
+// componentDidMount() {
 
-  //   let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
+//   let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
 
-  //   if (user) {
-  //     this.login()
-  //   } else {
-  //     this.setState({ userInfo: { userName: "Guest" } })
-  //   }
-  // }
+//   if (user) {
+//     this.login()
+//   } else {
+//     this.setState({ userInfo: { userName: "Guest" } })
+//   }
+// }
 // }
 
 /////////////////Hooks////////
@@ -93,38 +93,32 @@ import Cart from "./components/cart/Cart";
 import PurchaseHistory from "./components/purchaseHistory/PurchaseHistory";
 import ReadMore from "./components/readMore/ReadMore";
 import { Route, Switch } from "react-router-dom";
-import "./App.css";
 import { StateContextProvider } from './Contexts/StateContext';
+import "./App.css";
+
+
 const App = () => {
+
   return (
     <div className="App">
       <StateContextProvider>
-          <MyNavbar  />
-          <Switch>
-          <Route exact path="/" component={ <Home />} />
-              <Route exact path="/privacyPolicy" component={ <PrivacyPolicy />} />
-              <Route exact path="/termsAndConditions" component={ <TermsAndConditions />} />
-              <Route exact path="/login" component={ <Login />} />
-              <Route exact path="/signup" component={<Signup />} />
-              <Route exact path="/about" component={ <About />} />
-              <Route exact path="/readMore" component={ <ReadMore  />} />
-              <Route exact path="/Cart" component={ <Cart/> } />
-              <Route exact path="/purchaseHistory" component={ <PurchaseHistory  />} />
-              <Route path="/search/:searchParam" render={(props) => <Search />} />
-              <Route component={ <h1>ERROR:404 page not pound</h1>} />
-            </Switch>
-            <Footer /> 
-    </StateContextProvider>
-      </div>
-    );
-  
-}
-
-export default App
-
-
-
-
-
-
-
+        <MyNavbar />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/cart" component={Cart} />
+          <Route exact path="/about" component={About} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={Signup} />
+          <Route exact path="/readMore/:id" render={(props) => <ReadMore {...props} />} />
+          <Route exact path="/privacyPolicy" component={PrivacyPolicy} />
+          <Route path="/search/:searchParam" render={(props) => <Search {...props} />} />
+          <Route exact path="/purchaseHistory" component={PurchaseHistory} />
+          <Route exact path="/termsAndConditions" component={TermsAndConditions} />
+          <Route render={() => <h1>ERROR:404 page not pound</h1>} />
+        </Switch>
+        <Footer />
+      </StateContextProvider>
+    </div>
+  )
+};
+export default App;

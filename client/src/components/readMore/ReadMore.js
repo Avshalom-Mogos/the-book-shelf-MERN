@@ -1,19 +1,32 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Container, Card, Col, Toast, Button, Row } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
 import StarRatings from "react-star-ratings";
+import { StateContext } from "../../Contexts/StateContext";
 import axios from "axios";
 import "./ReadMore.css";
-import { StateContext } from "../../Contexts/StateContext";
+
 
 const ReadMore = (props) => {
-  const { readMoreProp, login } = useContext(StateContext);
+
+  const { login, books } = useContext(StateContext);
   const { history } = props;
+  const bookId = props.match.params.id;
   const [showToast, setShowToast] = useState(false);
   const [rgisterBeforeAdd, setRgisterBeforeAdd] = useState(false);
+  const [book, setBook] = useState(books[0]);
 
-  if (!readMoreProp.id) return <Redirect to="/" />;
+
+  useEffect(() => {
+
+    const index = books.findIndex((book) => book.id === bookId);
+    setBook(books[index])
+  }, [bookId, books])
+
+
+  if (!book) return <Redirect to="/" />;
   if (rgisterBeforeAdd) return <Redirect to="/login" />;
+
 
   const toast = () => {
     return (
@@ -32,7 +45,7 @@ const ReadMore = (props) => {
             </strong>
           </Toast.Header>
           <Toast.Body>
-            "<strong>{readMoreProp.volumeInfo.title}</strong>" was added to the cart!
+            "<strong>{book.volumeInfo.title}</strong>" was added to the cart!
           </Toast.Body>
         </Toast>
       </div>
@@ -41,13 +54,13 @@ const ReadMore = (props) => {
 
   const addToCart = () => {
     const user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
-    axios.post("/cart", { id: user._id, book: readMoreProp }).then((res) => {
+    axios.post("/cart", { id: user._id, book: book }).then((res) => {
       ///____________________________________
 
       // this.setState({ showToast: true })
       setShowToast(true);
       // console.log(res)
-      const newBook = JSON.parse(res.config.data).readMoreProp;
+      const newBook = JSON.parse(res.config.data).book;
 
       //update my cart in session storage
       const user = JSON.parse(
@@ -71,45 +84,45 @@ const ReadMore = (props) => {
             <Col sm={4}>
               <Card.Img
                 className="ReadMore-pic"
-                src={readMoreProp.volumeInfo.imageLinks.thumbnail}
+                src={book.volumeInfo.imageLinks.thumbnail}
               />
             </Col>
             <Col>
               <Card.Body className="cardBody">
                 <div>
                   <Card.Title className="title">
-                    {readMoreProp.volumeInfo.title}
+                    {book.volumeInfo.title}
                   </Card.Title>
                   <Card.Text className="authors">
-                    <strong>By:</strong> {readMoreProp.volumeInfo.authors[0]}{" "}
+                    <strong>By:</strong> {book.volumeInfo.authors[0]}{" "}
                   </Card.Text>
                   <Card.Text>
                     <strong>Price:</strong>{" "}
                     <span className="price">
-                      {readMoreProp.saleInfo.listPrice.amount}.99 ILS
+                      {book.saleInfo.listPrice.amount}.99 ILS
                     </span>{" "}
                   </Card.Text>
                   <StarRatings
-                    rating={Number(readMoreProp.rating)}
+                    rating={Number(book.rating)}
                     starDimension="20px"
                     starSpacing="2px"
                     starRatedColor="gold"
                   />
                   <Card.Text>
                     <strong>Publish Date:</strong>{" "}
-                    {readMoreProp.volumeInfo.publishedDate}
+                    {book.volumeInfo.publishedDate}
                   </Card.Text>
 
                   <Card.Text>
                     <strong>Pages:</strong>{" "}
-                    {readMoreProp.volumeInfo.pageCount
-                      ? readMoreProp.volumeInfo.pageCount
+                    {book.volumeInfo.pageCount
+                      ? book.volumeInfo.pageCount
                       : "300"}
                   </Card.Text>
                   <Card.Text>
-                    <strong>Categories:</strong> {readMoreProp.volumeInfo.categories}
+                    <strong>Categories:</strong> {book.volumeInfo.categories}
                   </Card.Text>
-                  <Card.Text>{readMoreProp.volumeInfo.description}</Card.Text>
+                  <Card.Text>{book.volumeInfo.description}</Card.Text>
                 </div>
               </Card.Body>
             </Col>
@@ -120,10 +133,10 @@ const ReadMore = (props) => {
                 Add To Cart
               </Button>
             ) : (
-              <Button onClick={() => setRgisterBeforeAdd(true)} className="Add">
-                Add To Cart
-              </Button>
-            )}
+                <Button onClick={() => setRgisterBeforeAdd(true)} className="Add">
+                  Add To Cart
+                </Button>
+              )}
             <Button className="search" onClick={history.goBack}>
               Back to search
             </Button>

@@ -42,5 +42,5 @@ export const About = () => {
             </Container>
         </div>
     )
-}
+};
 export default About;

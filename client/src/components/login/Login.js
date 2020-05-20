@@ -2,12 +2,12 @@ import React, { useState,useContext } from 'react';
 import { useFormik } from 'formik';
 import { Form, Button, Container, Spinner } from "react-bootstrap";
 import { Redirect, Link } from "react-router-dom";
+import { StateContext } from "../../Contexts/StateContext";
 import axios from "axios";
 import "./Login.css";
-import { StateContext } from "../../Contexts/StateContext";
 
 
-const Login = (props) => {
+const Login = () => {
 
     const { login } =  useContext(StateContext);
     const [redirectToHome, setRedirectToHome] = useState(false);

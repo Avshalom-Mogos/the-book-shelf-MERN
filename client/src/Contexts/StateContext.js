@@ -1,14 +1,12 @@
 import React, { createContext, useState, useEffect } from "react";
 
-export const StateContext = createContext();
 
+export const StateContext = createContext();
 export const StateContextProvider = (props) => {
+
   const [userInfo, setUserInfo] = useState({ userName: "" });
   const [readMoreProp, setReadMoreProp] = useState({});
-
-  // const moreDetails = (book) => {
-  //   setReadMoreProp(book);
-  // };
+  const [books, setBooks] = useState([]);
 
   const login = () => {
     const user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
@@ -31,18 +29,17 @@ export const StateContextProvider = (props) => {
 
 
   return (
-    <StateContext.Provider
-      value={{
-        userInfo,
-        setUserInfo,
-        readMoreProp,
-        setReadMoreProp,
-        login,
-        logout,
-        
-      }}
-    >
+    <StateContext.Provider value={{
+      books,
+      setBooks,
+      userInfo,
+      setUserInfo,
+      readMoreProp,
+      setReadMoreProp,
+      login,
+      logout
+    }}>
       {props.children}
     </StateContext.Provider>
-  );
+  )
 };

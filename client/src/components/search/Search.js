@@ -1,27 +1,20 @@
-import React, { useState, useEffect,useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Container, Col, Row, Accordion, Toast, Dropdown, Card } from 'react-bootstrap';
 import BookCard from '../bookcard/BookCard';
 import BookLoader from '../bookLoader/BookLoader';
+import { StateContext } from "../../Contexts/StateContext";
 import axios from "axios";
 import "./Search.css";
-import { StateContext } from "../../Contexts/StateContext";
 
 const Search = (props) => {
-    const { login } = useContext(StateContext);
+
+    const { login, books, setBooks } = useContext(StateContext);
     const searchParam = props.match.params.searchParam;
     const [toast, setToast] = useState({ show: false, msg: '' });
-    const [books, setBooks] = useState([]);
     const [showLoader, setShowLoader] = useState(false);
     const [listToDisplay, setListToDisplay] = useState([]);
     const [categories, setCategories] = useState('categories');
 
-    // state = {
-    //     books: [],
-    //     showLoader: false,
-    //     showToast: false,
-    //     listToDisplay: [],
-    //     categories: "categories"
-    // };
 
     const filterButtons = () => {
 
@@ -106,7 +99,7 @@ const Search = (props) => {
             })
             .catch((err) => console.log(err));
 
-    }, [searchParam])
+    }, [searchParam, setBooks])
 
     const addMissingDetails = (fullDataArr, index) => {
 

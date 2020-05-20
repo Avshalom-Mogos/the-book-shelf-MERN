@@ -8,6 +8,5 @@ const Home = () => {
             <h1>The Book Shelf</h1>
         </div>
     )
-}
+};
 export default Home;
-

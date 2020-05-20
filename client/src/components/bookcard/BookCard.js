@@ -6,14 +6,14 @@ import axios from "axios";
 import "./BookCard.css";
 
 const BookCard = (props) => {
-  const { book, triggerLogin, setReadMoreProp, Toast, history } = props;
+
+  const { book, triggerLogin, Toast, history } = props;
   const [rgisterBeforeAdd, setRgisterBeforeAdd] = useState(false);
 
   if (rgisterBeforeAdd) return <Redirect to="/login" />;
 
   const changeHendler = () => {
-    setReadMoreProp(book);
-    history.push("/readMore");
+    history.push(`/readMore/${book.id}`);
   };
 
   const addToCart = () => {
@@ -72,14 +72,14 @@ const BookCard = (props) => {
               Add to Cart
             </Button>
           ) : (
-            <Button
-              onClick={() => setRgisterBeforeAdd({ rgisterBeforeAdd: true })}
-              className="BookCard-addToCart-btn"
-              variant="primary"
-            >
-              Add to Cart
-            </Button>
-          )}
+              <Button
+                onClick={() => setRgisterBeforeAdd({ rgisterBeforeAdd: true })}
+                className="BookCard-addToCart-btn"
+                variant="primary"
+              >
+                Add to Cart
+              </Button>
+            )}
         </Card.Footer>
         <button className="BookCard-readMoreBtn" onClick={changeHendler}>
           Read more
@@ -88,5 +88,4 @@ const BookCard = (props) => {
     </div>
   );
 };
-
 export default withRouter(BookCard);

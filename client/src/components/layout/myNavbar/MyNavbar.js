@@ -8,13 +8,15 @@ import {
   DropdownButton,
 } from "react-bootstrap";
 import { Link, withRouter } from "react-router-dom";
-import "./MyNavbar.css";
 import { StateContext } from "../../../Contexts/StateContext";
+import "./MyNavbar.css";
 
 
 const MyNavbar = (props) => {
+
   const { userInfo, logout } = useContext(StateContext);
   let searchParams = "";
+
   const redirectToSearch = (e) => {
     e.preventDefault();
 
@@ -46,7 +48,7 @@ const MyNavbar = (props) => {
                 <Dropdown.Divider />
                 {userInfo._id ? (
                   <div>
-                    <Dropdown.Item as={Link} to="/Cart">
+                    <Dropdown.Item as={Link} to="/cart">
                       <span className="mr-3">Shopping Cart</span>
                       <Badge pill variant="danger">
                         {userInfo.myCart.length}
@@ -63,15 +65,15 @@ const MyNavbar = (props) => {
                     </Dropdown.Item>
                   </div>
                 ) : (
-                  <div>
-                    <Dropdown.Item as={Link} to="/login">
-                      Login
+                    <div>
+                      <Dropdown.Item as={Link} to="/login">
+                        Login
                     </Dropdown.Item>
-                    <Dropdown.Item as={Link} to="/about">
-                      About
+                      <Dropdown.Item as={Link} to="/about">
+                        About
                     </Dropdown.Item>
-                  </div>
-                )}
+                    </div>
+                  )}
               </DropdownButton>
             </Navbar.Text>
           </Form>
@@ -93,5 +95,4 @@ const MyNavbar = (props) => {
     </div>
   );
 };
-
 export default withRouter(MyNavbar);
