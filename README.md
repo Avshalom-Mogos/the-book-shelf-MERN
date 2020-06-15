@@ -12,7 +12,7 @@ live link: https://the-book-shelf-project.herokuapp.com
 - NodeJs
 
 ## Illustration
-<img src="https://raw.githubusercontent.com/Avshalom-Mogos/the-book-shelf-MERN/master/readmeIMG.JPG" width="500"/>
+<img src="https://raw.githubusercontent.com/Avshalom-Mogos/portfolio/master/src/assests/GIFs/theBookShelf.gif"/>
 
 ## Functionalities
 - Login, Logout, Register
