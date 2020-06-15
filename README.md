@@ -1,12 +1,11 @@
 # Introduction
-Online store for buying books.  
+Online book store.  
 live link: https://the-book-shelf-project.herokuapp.com
 
 ## Technologies
-- HTML
-- CSS
+- CSS3
 - JavaScript
-- Reactjs
+- React
 - MongoDB
 - Express
 - NodeJs
@@ -15,7 +14,7 @@ live link: https://the-book-shelf-project.herokuapp.com
 <img src="https://raw.githubusercontent.com/Avshalom-Mogos/portfolio/master/src/assests/GIFs/theBookShelf.gif"/>
 
 ## Functionalities
-- Login, Logout, Register
-- Add / Remove from the shopping cart
-- Buy books
-- View purchase history
+- Login, Logout, Register.
+- Add / Remove items from the shopping cart.
+- Buy books.
+- View purchase history.
