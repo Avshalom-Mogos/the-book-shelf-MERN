@@ -1,6 +1,6 @@
 # Introduction
 Online book store.  
-live link: https://the-book-shelf-project.herokuapp.com
+Link: https://the-book-shelf-project.herokuapp.com
 
 ## Technologies
 - CSS3
