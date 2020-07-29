@@ -25,8 +25,8 @@ const Login = () => {
     });
 
     const userFeedBack = () => {
-        if (showError) return <p style={{ color: "red" }}> Password or Email Is Invalid</p>
-        if (showSpinner) return <Spinner animation="border" />
+        if (showError) return <p style={{ color: "red" }}> Password or Email Is Invalid</p>;
+        if (showSpinner) return <Spinner animation="border" />;
     };
 
     const submitForm = (values) => {

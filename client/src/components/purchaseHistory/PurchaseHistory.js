@@ -4,26 +4,25 @@ import HistoryItem from "../historyItem/HistoryItem";
 import BookLoader from "../bookLoader/BookLoader";
 import "./PurchaseHistory.css";
 import axios from "axios";
-// import { StateContext } from "../../Contexts/StateContext";
 
 
 const PurchaseHistory = () => {
-    // const { login } = useContext(StateContext);
     const [items, setItems] = useState([]);
-    const [showBookLoader, setShowBookLoader] = useState(false)
+    const [showBookLoader, setShowBookLoader] = useState(false);
+
 
     useEffect(() => {
 
         setShowBookLoader(true);
 
         //getPurchaseHistoryFromDB
-        let user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
+        const user = JSON.parse(sessionStorage.getItem("theBookShelf_user_login"));
         axios.get(`/purchaseHistory/${user._id}`)
             .then((res) => {
                 setItems([...res.data]);
                 setShowBookLoader(false);
             })
-            .catch(err => console.log(err))
+            .catch(err => console.error(err))
 
     }, [])
 

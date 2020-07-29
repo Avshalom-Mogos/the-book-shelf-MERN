@@ -3,9 +3,7 @@ import { Row, Col, Container } from "react-bootstrap";
 import "./HistoryItem.css";
 
 
-const HistoryItem = (props) => {
-
-    const book = props.book;
+const HistoryItem = ({ book }) => {
     return (
         <Container>
             <Row className="HistoryItem">
@@ -24,6 +22,6 @@ const HistoryItem = (props) => {
                 </Col>
             </Row>
         </Container>
-    )
-}
+    );
+};
 export default HistoryItem;
